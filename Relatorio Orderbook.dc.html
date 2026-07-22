@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/tokens/colors.css">
+<link rel="stylesheet" href="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/tokens/typography.css">
+<link rel="stylesheet" href="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/tokens/effects.css">
+<link rel="stylesheet" href="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/styles.css">
+<script src="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/_ds_bundle.js"></script>
+<style>
+body { margin: 0; background: var(--slate-200); }
+.theme-light { --color-bg: #ece5d3; }
+:root { --pos: var(--success-500); --neg: var(--error-500); --feat: var(--forest-500); --th-bg: var(--slate-500); --th-fg: var(--slate-0); --row-line: var(--slate-300); --amber: var(--gold-500); }
+.theme-dark { --pos: var(--success-300); --neg: var(--error-300); --feat: var(--lime-300); --th-bg: var(--forest-600); --th-fg: var(--forest-300); --row-line: var(--forest-600); --amber: var(--gold-300); }
+@media (max-width: 860px) {
+  .rp-wrap { padding: 20px !important; }
+  .rp-head { padding: 20px !important; }
+  .rp-2col { grid-template-columns: 1fr !important; }
+  .rp-title { font-size: 2.5rem !important; }
+}
+</style>
+</helmet>
+<div class="{{ themeClass }}" data-screen-label="relatorio orderbook" style="min-height: 100vh; background-image: var(--bg-svg); background-size: 12px; background-color: var(--color-bg); color: var(--color-fg); font-family: var(--font-body); letter-spacing: -0.25px;">
+
+  <div style="background: var(--color-bg); border-bottom: 2px solid var(--color-border);">
+    <div class="rp-head" style="max-width: 1280px; margin: 0 auto; padding: 28px 36px;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+          <div style="background: var(--color-fg); color: var(--color-bg); width: fit-content; padding: 0 4px; font-family: var(--font-aux); font-size: 0.75rem; font-weight: 600;">QUANT RESEARCH</div>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.StatusChip" status="waiting" hint-size="auto,20px">{{ t.statusChip }}</x-import>
+        </div>
+        <span class="rp-title" style="font-family: var(--font-display); text-transform: lowercase; font-size: 3.75rem; line-height: 1;">orderbook signal</span>
+        <span style="display: inline-flex; align-items: center; flex-wrap: wrap; font-size: 0.875rem; font-weight: 500;">{{ t.subtitle }}<x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Icon" name="symbol-02" size="1.5em" style="margin-left: 8px;" hint-size="2em,1.5em"></x-import></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rp-wrap" style="max-width: 1280px; margin: 0 auto; padding: 36px; display: flex; flex-direction: column; gap: 36px;">
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.obResumo }}" hint-size="100%,340px">
+      <div data-screen-label="resumo" style="padding: 12px 24px 24px; display: flex; flex-direction: column; gap: 24px;">
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">Pipeline completo de coleta, feature engineering e modelagem preditiva sobre o <strong>L2 order book</strong> do par BTC/USDT na Binance. O <strong>order book imbalance</strong> prevê a direção do próximo movimento de preço com AUC alto em horizontes curtos, mas o sinal decai rápido e os custos de mercado devoram o edge. O resultado honesto: o sinal existe e é mensurável; a estratégia é inviável como taker.</p></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">A complete pipeline for collection, feature engineering and predictive modeling on the BTC/USDT <strong>L2 order book</strong> at Binance. <strong>Order book imbalance</strong> predicts the direction of the next price move with high AUC at short horizons, but the signal decays fast and market costs devour the edge. The honest result: the signal exists and is measurable; the strategy is unviable as a taker.</p></sc-if>
+        <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.StatBox" label="auc · target 1s" hint-size="auto,64px">0.886</x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.StatBox" label="auc · target 5s" hint-size="auto,64px">0.758</x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.StatBox" label="auc · target 30s" hint-size="auto,64px">0.610</x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.StatBox" label="{{ t.costLabel }}" hint-size="auto,64px">17:1</x-import>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.InfoChit" label="{{ t.chitPar }}" hint-size="auto,52px">BTC / USDT</x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.InfoChit" label="{{ t.chitPeriodo }}" hint-size="auto,52px">26/06–14/07/26</x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.InfoChit" label="snapshots" hint-size="auto,52px">3.0M</x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.InfoChit" label="features" hint-size="auto,52px">6</x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.InfoChit" label="exchange" hint-size="auto,52px">Binance</x-import>
+        </div>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.obBook }}" hint-size="100%,720px">
+      <div data-screen-label="book em acao" style="padding: 12px 24px 24px; display: flex; flex-direction: column; gap: 20px;">
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">Replay interativo do order book BTC/USDT durante a janela de maior volatilidade coletada (13/jul, 20:51–20:54 UTC). Cada barra é a liquidez disponível em cada nível de preço; os pontos sobre a sparkline são trades reais executados no período. A barra <strong>OBI</strong> abaixo mostra o imbalance instantâneo, o sinal que este estudo tenta explorar.</p></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">Interactive replay of the BTC/USDT order book during the most volatile window collected (Jul 13, 20:51–20:54 UTC). Each bar is the liquidity available at each price level; the dots over the sparkline are real trades executed in the period. The <strong>OBI</strong> bar below shows the instantaneous imbalance, the signal this study tries to exploit.</p></sc-if>
+        <iframe src="uploads/orderbook_hud.html" title="BTC/USDT order book replay" style="width: 100%; height: 600px; border: 2px solid var(--color-border-strong); display: block; background: var(--forest-700);"></iframe>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.obFeatures }}" hint-size="100%,1200px">
+      <div data-screen-label="features" style="padding: 12px 24px 24px; display: flex; flex-direction: column; gap: 20px;">
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">Seis features derivadas do book e do fluxo de trades. As de <strong>OBI</strong> (order book imbalance) concentram massa nos extremos ±1: o book quase sempre pende claramente para um lado. As de <strong>flow</strong> (TFI, VWAP deviation) têm caudas pesadas de agressão direcional. A matriz de correlação revela o problema que definirá a modelagem: <strong>obi_l1 e obi_weighted_5l são quase perfeitamente colineares (ρ ≈ 1.00)</strong>.</p></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">Six features derived from the book and the trade flow. The <strong>OBI</strong> (order book imbalance) ones concentrate mass at the ±1 extremes: the book almost always leans clearly to one side. The <strong>flow</strong> ones (TFI, VWAP deviation) have heavy tails of directional aggression. The correlation matrix reveals the problem that will define the modeling: <strong>obi_l1 and obi_weighted_5l are almost perfectly collinear (ρ ≈ 1.00)</strong>.</p></sc-if>
+        <figure style="margin: 0; border: 2px solid var(--color-border-strong); background: var(--color-bg);">
+          <div style="display: flex; justify-content: space-between; gap: 12px; background: var(--th-bg); color: var(--th-fg); padding: 3px 10px; font-size: 0.8125rem; font-weight: 600; text-transform: uppercase;"><span>{{ t.fig01h }}</span><span>BTC / USDT</span></div>
+          <img src="uploads/obi_distributions.png" alt="OBI feature distributions" style="width: 100%; display: block; background: #ffffff; filter: {{ figFilter }};">
+          <figcaption style="padding: 6px 10px; font-family: var(--font-aux); font-size: 0.75rem; color: var(--color-muted); border-top: 1px solid var(--row-line);">{{ t.cap01 }}</figcaption>
+        </figure>
+        <figure style="margin: 0; border: 2px solid var(--color-border-strong); background: var(--color-bg);">
+          <div style="display: flex; justify-content: space-between; gap: 12px; background: var(--th-bg); color: var(--th-fg); padding: 3px 10px; font-size: 0.8125rem; font-weight: 600; text-transform: uppercase;"><span>{{ t.fig02h }}</span><span>TFI · VWAP dev</span></div>
+          <img src="uploads/flow_distributions.png" alt="flow feature distributions" style="width: 100%; display: block; background: #ffffff; filter: {{ figFilter }};">
+          <figcaption style="padding: 6px 10px; font-family: var(--font-aux); font-size: 0.75rem; color: var(--color-muted); border-top: 1px solid var(--row-line);">{{ t.cap02 }}</figcaption>
+        </figure>
+        <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; align-items: center;" class="rp-2col">
+          <figure style="margin: 0; border: 2px solid var(--color-border-strong); background: var(--color-bg);">
+            <div style="display: flex; justify-content: space-between; gap: 12px; background: var(--th-bg); color: var(--th-fg); padding: 3px 10px; font-size: 0.8125rem; font-weight: 600; text-transform: uppercase;"><span>{{ t.fig03h }}</span><span>Pearson</span></div>
+            <img src="uploads/feature_correlation.png" alt="feature correlation matrix" style="width: 100%; display: block; background: #ffffff; filter: {{ figFilter }};">
+          </figure>
+          <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7;"><strong>obi_l1</strong> e <strong>obi_weighted_5l</strong> carregam essencialmente a mesma informação (ρ = 1.00). Quando ambas entram num modelo linear, a regressão distribui o peso entre elas de forma arbitrária; é exatamente por isso que, mais adiante, o coeficiente de obi_weighted_5l aparece <em>anticolinear</em> (negativo) apesar de a feature ser individualmente preditiva. spread_relative é ortogonal a tudo (ρ ≈ 0).</p></sc-if>
+          <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7;"><strong>obi_l1</strong> and <strong>obi_weighted_5l</strong> carry essentially the same information (ρ = 1.00). When both enter a linear model, the regression splits the weight between them arbitrarily; that's exactly why, further on, the obi_weighted_5l coefficient appears <em>anti-collinear</em> (negative) even though the feature is individually predictive. spread_relative is orthogonal to everything (ρ ≈ 0).</p></sc-if>
+        </div>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.obF1 }}" hint-size="100%,480px">
+      <div data-screen-label="dedup" style="padding: 12px 24px 24px; display: flex; flex-direction: column; gap: 20px;">
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">A limpeza inicial deduplicava trades por <strong>timestamp</strong> apenas. Resultado: <strong style="color: var(--neg);">63% dos registros descartados como duplicatas</strong>, incorretamente. Na Binance, múltiplos trades ocorrem no mesmo milissegundo quando uma ordem de mercado grande atravessa vários níveis do book. A correção foi a chave composta <strong>(timestamp, price, quantity)</strong>.</p></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">The initial cleaning deduplicated trades by <strong>timestamp</strong> alone. Result: <strong style="color: var(--neg);">63% of records discarded as duplicates</strong>, incorrectly. On Binance, multiple trades happen in the same millisecond when a large market order sweeps several book levels. The fix was the composite key <strong>(timestamp, price, quantity)</strong>.</p></sc-if>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;" class="rp-2col">
+          <div style="border: 2px solid var(--color-border); border-top: 4px solid var(--neg); background: var(--color-bg); padding: 18px 20px; display: flex; flex-direction: column; gap: 10px;">
+            <span style="font-family: var(--font-display); text-transform: lowercase; font-size: 1.5rem; line-height: 1;">{{ t.f1cardA }}</span>
+            <div style="display: flex; flex-direction: column; font-size: 0.875rem;">
+              <div style="display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-top: 1px solid var(--row-line);"><span style="color: var(--color-muted);">{{ t.f1crit }}</span><span style="color: var(--neg); font-weight: 600;">timestamp only</span></div>
+              <div style="display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-top: 1px solid var(--row-line);"><span style="color: var(--color-muted);">{{ t.f1disc }}</span><span style="color: var(--neg); font-weight: 600;">~63%</span></div>
+              <div style="display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-top: 1px solid var(--row-line);"><span style="color: var(--color-muted);">{{ t.f1prob }}</span><span style="color: var(--neg); font-weight: 600;">{{ t.f1valLose }}</span></div>
+              <div style="display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-top: 1px solid var(--row-line);"><span style="color: var(--color-muted);">TFI</span><span style="color: var(--neg); font-weight: 600;">{{ t.f1valUnder }}</span></div>
+            </div>
+          </div>
+          <div style="border: 2px solid var(--color-border); border-top: 4px solid var(--pos); background: var(--color-bg); padding: 18px 20px; display: flex; flex-direction: column; gap: 10px;">
+            <span style="font-family: var(--font-display); text-transform: lowercase; font-size: 1.5rem; line-height: 1;">{{ t.f1cardB }}</span>
+            <div style="display: flex; flex-direction: column; font-size: 0.875rem;">
+              <div style="display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-top: 1px solid var(--row-line);"><span style="color: var(--color-muted);">{{ t.f1crit }}</span><span style="color: var(--pos); font-weight: 600;">{{ t.f1valComposite }}</span></div>
+              <div style="display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-top: 1px solid var(--row-line);"><span style="color: var(--color-muted);">{{ t.f1disc }}</span><span style="color: var(--pos); font-weight: 600;">2.1%</span></div>
+              <div style="display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-top: 1px solid var(--row-line);"><span style="color: var(--color-muted);">{{ t.f1prob }}</span><span style="color: var(--pos); font-weight: 600;">{{ t.f1valNone }}</span></div>
+              <div style="display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-top: 1px solid var(--row-line);"><span style="color: var(--color-muted);">TFI</span><span style="color: var(--pos); font-weight: 600;">{{ t.f1valPreserved }}</span></div>
+            </div>
+          </div>
+        </div>
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch; color: var(--color-muted);">Um único agressor atravessando vários níveis indica pressão direcional intensa, o sinal mais forte que o Trade Flow Imbalance tenta capturar. Descartar esses eventos produz uma feature de fluxo sistematicamente subestimada.</p></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch; color: var(--color-muted);">A single aggressor sweeping several levels signals intense directional pressure, the strongest signal Trade Flow Imbalance tries to capture. Discarding those events produces a systematically underestimated flow feature.</p></sc-if>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.obF2 }}" hint-size="100%,420px">
+      <div data-screen-label="flat" style="padding: 12px 24px 24px; display: flex; flex-direction: column; gap: 20px;">
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">BTC/USDT tem tick mínimo de $0.01 sobre um preço de ~$62.000, equivalente a <strong>0.000017% do preço</strong>. Em <strong style="color: var(--neg);">74.9% dos snapshots</strong> o mid-price não se move nenhum tick em 1 segundo. A distribuição de classes muda radicalmente com o horizonte:</p></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">BTC/USDT has a minimum tick of $0.01 on a price of ~$62,000, equivalent to <strong>0.000017% of price</strong>. In <strong style="color: var(--neg);">74.9% of snapshots</strong> the mid-price doesn't move a single tick in 1 second. The class distribution changes radically with the horizon:</p></sc-if>
+        <div style="border: 2px solid var(--color-border); background: var(--color-bg); font-size: 0.875rem; display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr 1.2fr;">
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem;">{{ t.thHorizon }}</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem; text-align: right;">{{ t.thUp }}</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem; text-align: right;">Flat 0</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem; text-align: right;">{{ t.thDown }}</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem; text-align: right;">{{ t.thSamples }}</div>
+          <sc-for list="{{ flatDist }}" as="r" hint-placeholder-count="3">
+            <div style="display: contents;">
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); font-weight: 600;">{{ r.h }}</div>
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); text-align: right;">{{ r.up }}</div>
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); text-align: right; font-weight: 600; color: {{ r.flatc }};">{{ r.flat }}</div>
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); text-align: right;">{{ r.down }}</div>
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); text-align: right; color: var(--color-muted);">{{ r.n }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch; color: var(--color-muted);">Incluir "flat" como classe negativa em target_1s treinaria um modelo para separar <em>movimento vs estagnação</em>, não <em>direção</em>. A decisão metodológica foi <strong style="color: var(--color-fg);">excluir linhas flat em todos os horizontes</strong> e comparar sempre "subiu vs desceu", permitindo comparação justa na análise de signal decay.</p></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch; color: var(--color-muted);">Including "flat" as a negative class in target_1s would train a model to separate <em>movement vs stagnation</em>, not <em>direction</em>. The methodological decision was to <strong style="color: var(--color-fg);">exclude flat rows at every horizon</strong> and always compare "up vs down", allowing a fair comparison in the signal decay analysis.</p></sc-if>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.obF3 }}" hint-size="100%,900px">
+      <div data-screen-label="signal decay" style="padding: 12px 24px 24px; display: flex; flex-direction: column; gap: 24px;">
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">O achado central. Usando <strong>purged k-fold cross-validation</strong> (5 folds, embargo 1% ≈ 47 min, Logistic L1) com exclusão de flat, o decay do imbalance é monotônico e pronunciado:</p></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">The central finding. Using <strong>purged k-fold cross-validation</strong> (5 folds, 1% embargo ≈ 47 min, Logistic L1) with flat exclusion, the imbalance decay is monotonic and pronounced:</p></sc-if>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;" class="rp-2col">
+          <sc-for list="{{ decay }}" as="d" hint-placeholder-count="3">
+            <div style="border: 2px solid {{ d.border }}; background: var(--color-bg); padding: 20px 18px; text-align: center; display: flex; flex-direction: column; gap: 4px;">
+              <span style="font-family: var(--font-aux); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-muted);">{{ d.hz }}</span>
+              <span style="font-family: var(--font-display); text-transform: lowercase; font-size: 2.75rem; line-height: 1.1; color: {{ d.tone }};">{{ d.auc }}</span>
+              <span style="font-size: 0.8125rem; color: var(--color-muted);">{{ d.std }}</span>
+              <span style="font-family: var(--font-aux); font-size: 0.75rem; color: var(--color-muted);">{{ d.n }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <figure style="margin: 0; border: 2px solid var(--color-border-strong); background: var(--color-bg);">
+          <div style="display: flex; justify-content: space-between; gap: 12px; background: var(--th-bg); color: var(--th-fg); padding: 3px 10px; font-size: 0.8125rem; font-weight: 600; text-transform: uppercase;"><span>fig 04 · signal decay</span><span>purged 5-fold CV</span></div>
+          <img src="uploads/signal_decay.png" alt="AUC per prediction horizon, signal decay" style="width: 100%; display: block; background: #ffffff; filter: {{ figFilter }};">
+          <figcaption style="padding: 6px 10px; font-family: var(--font-aux); font-size: 0.75rem; color: var(--color-muted); border-top: 1px solid var(--row-line);">{{ t.cap04 }}</figcaption>
+        </figure>
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><div style="border-left: 3px solid var(--feat); background: var(--surface-header); padding: 14px 18px; font-size: 0.8625rem; line-height: 1.65; color: var(--color-muted);"><em style="color: var(--color-fg); font-style: italic;">Cont, Stoikov &amp; Talreja (2010)</em> demonstraram que o queue imbalance no melhor nível do book é o preditor mais forte da direção do próximo mid-price change em ativos de alta liquidez. Estes resultados replicam o achado para BTC/USDT na Binance e quantificam o decay: de AUC 0.886 (1s) para 0.610 (30s), à medida que novos fluxos diluem a informação do imbalance instantâneo.</div></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><div style="border-left: 3px solid var(--feat); background: var(--surface-header); padding: 14px 18px; font-size: 0.8625rem; line-height: 1.65; color: var(--color-muted);"><em style="color: var(--color-fg); font-style: italic;">Cont, Stoikov &amp; Talreja (2010)</em> showed that queue imbalance at the top of the book is the strongest predictor of the next mid-price change direction in high-liquidity assets. These results replicate the finding for BTC/USDT on Binance and quantify the decay: from AUC 0.886 (1s) to 0.610 (30s), as new flows dilute the information in the instantaneous imbalance.</div></sc-if>
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;"><strong>Nota de interpretação:</strong> o AUC de 0.886 é <em>condicional a um movimento ocorrer</em>. Como 74.9% dos ticks de 1s são planos, o modelo é avaliado apenas nas 752k linhas não-flat, o que eleva o AUC observado em relação ao universo completo de snapshots.</p></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;"><strong>Interpretation note:</strong> the AUC of 0.886 is <em>conditional on a move occurring</em>. Since 74.9% of 1s ticks are flat, the model is evaluated only on the 752k non-flat rows, which raises the observed AUC relative to the full universe of snapshots.</p></sc-if>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.obF4 }}" hint-size="100%,1400px">
+      <div data-screen-label="modelagem" style="padding: 12px 24px 24px; display: flex; flex-direction: column; gap: 24px;">
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">Logistic L1 <strong>venceu XGBoost</strong>, e o motivo importa. O XGBoost parou na iteração 22 de 500 (early stopping): o sinal de microestrutura é <strong style="color: var(--feat);">predominantemente linear e aditivo</strong>, sem interações não-lineares que justifiquem um ensemble de árvores.</p></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">Logistic L1 <strong>beat XGBoost</strong>, and the reason matters. XGBoost stopped at iteration 22 of 500 (early stopping): the microstructure signal is <strong style="color: var(--feat);">predominantly linear and additive</strong>, with no non-linear interactions to justify a tree ensemble.</p></sc-if>
+        <div style="border: 2px solid var(--color-border); background: var(--color-bg); font-size: 0.875rem; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;">
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem;">{{ t.thModel }}</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem; text-align: right;">AUC-ROC</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem; text-align: right;">Accuracy</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem; text-align: right;">Precision</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem; text-align: right;">Recall</div>
+          <sc-for list="{{ models }}" as="m" hint-placeholder-count="2">
+            <div style="display: contents;">
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); font-weight: 600;">{{ m.m }}</div>
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); text-align: right; font-weight: 600; color: {{ m.ac }};">{{ m.auc }}</div>
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); text-align: right;">{{ m.acc }}</div>
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); text-align: right;">{{ m.prec }}</div>
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); text-align: right;">{{ m.rec }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <figure style="margin: 0; border: 2px solid var(--color-border-strong); background: var(--color-bg);">
+          <div style="display: flex; justify-content: space-between; gap: 12px; background: var(--th-bg); color: var(--th-fg); padding: 3px 10px; font-size: 0.8125rem; font-weight: 600; text-transform: uppercase;"><span>fig 05 · baseline</span><span>target 30s</span></div>
+          <img src="uploads/baseline_roc.png" alt="baseline Logistic L1 ROC and confusion matrix" style="width: 100%; display: block; background: #ffffff; filter: {{ figFilter }};">
+          <figcaption style="padding: 6px 10px; font-family: var(--font-aux); font-size: 0.75rem; color: var(--color-muted); border-top: 1px solid var(--row-line);">{{ t.cap05 }}</figcaption>
+        </figure>
+        <figure style="margin: 0 auto; width: 100%; max-width: 560px; border: 2px solid var(--color-border-strong); background: var(--color-bg);">
+          <div style="display: flex; justify-content: space-between; gap: 12px; background: var(--th-bg); color: var(--th-fg); padding: 3px 10px; font-size: 0.8125rem; font-weight: 600; text-transform: uppercase;"><span>fig 06 · ROC comparison</span><span>L1 vs XGB</span></div>
+          <img src="uploads/roc_comparison.png" alt="ROC comparison Logistic L1 vs XGBoost" style="width: 100%; display: block; background: #ffffff; filter: {{ figFilter }};">
+          <figcaption style="padding: 6px 10px; font-family: var(--font-aux); font-size: 0.75rem; color: var(--color-muted); border-top: 1px solid var(--row-line);">{{ t.cap06 }}</figcaption>
+        </figure>
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">Os coeficientes do Logistic L1 confirmam a hierarquia de sinal. <strong>obi_l1</strong> domina; a regularização L1 zera as features fracas automaticamente:</p></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">The Logistic L1 coefficients confirm the signal hierarchy. <strong>obi_l1</strong> dominates; L1 regularization zeroes out the weak features automatically:</p></sc-if>
+        <div style="border: 2px solid var(--color-border); background: var(--color-bg); font-size: 0.875rem; display: grid; grid-template-columns: 1.3fr 0.8fr 1.4fr 2fr;">
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem;">Feature</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem; text-align: right;">{{ t.thCoef }}</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem;">Magnitude</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem;">{{ t.thInterp }}</div>
+          <sc-for list="{{ coefs }}" as="c" hint-placeholder-count="6">
+            <div style="display: contents;">
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); font-family: var(--font-aux); font-weight: 600;">{{ c.f }}</div>
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); text-align: right; font-weight: 600; color: {{ c.cc }};">{{ c.v }}</div>
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); display: flex; align-items: center;">
+                <div style="width: 100%; height: 8px; background: var(--row-line);"><div style="height: 100%; width: {{ c.w }}; background: {{ c.bar }};"></div></div>
+              </div>
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); color: var(--color-muted);">{{ c.note }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <figure style="margin: 0; border: 2px solid var(--color-border-strong); background: var(--color-bg);">
+          <div style="display: flex; justify-content: space-between; gap: 12px; background: var(--th-bg); color: var(--th-fg); padding: 3px 10px; font-size: 0.8125rem; font-weight: 600; text-transform: uppercase;"><span>fig 07 · XGBoost gain</span><span>feature importance</span></div>
+          <img src="uploads/xgb_feature_importance.png" alt="XGBoost feature importance by gain" style="width: 100%; display: block; background: #ffffff; filter: {{ figFilter }};">
+          <figcaption style="padding: 6px 10px; font-family: var(--font-aux); font-size: 0.75rem; color: var(--color-muted); border-top: 1px solid var(--row-line);">{{ t.cap07 }}</figcaption>
+        </figure>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.obF5 }}" hint-size="100%,1100px">
+      <div data-screen-label="backtest" style="padding: 12px 24px 24px; display: flex; flex-direction: column; gap: 24px;">
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">Modelo treinado em target_5s (AUC 0.7902 no teste), sinais aplicados a todos os 599.969 ticks do período de teste. Holding de 5s, taker fee 0.04% entrada + saída. O PnL <strong>bruto</strong> é positivo em todos os thresholds, mas o custo o anula:</p></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">Model trained on target_5s (AUC 0.7902 on test), signals applied to all 599,969 ticks of the test period. 5s holding, taker fee 0.04% entry + exit. The <strong>gross</strong> PnL is positive at every threshold, but cost cancels it out:</p></sc-if>
+        <div style="border: 2px solid var(--color-border-strong); background: var(--color-bg); padding: 32px 28px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center;">
+          <span style="font-family: var(--font-display); text-transform: lowercase; font-size: 5rem; line-height: 1; color: var(--neg);">17:1</span>
+          <span style="font-weight: 600; text-transform: uppercase; font-size: 1rem;">{{ t.bigTitle }}</span>
+          <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 0.875rem; color: var(--color-muted); max-width: 56ch;">Para cada 1 basis point de vantagem direcional capturada, a estratégia paga 17 basis points em taxas taker de mercado.</p></sc-if>
+          <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 0.875rem; color: var(--color-muted); max-width: 56ch;">For every 1 basis point of directional edge captured, the strategy pays 17 basis points in taker market fees.</p></sc-if>
+          <div style="display: flex; gap: 40px; margin-top: 12px; flex-wrap: wrap; justify-content: center;">
+            <div style="text-align: center;"><div style="font-size: 1.5rem; font-weight: 600; color: var(--pos);">0.45 bps</div><div style="font-family: var(--font-aux); font-size: 0.75rem; color: var(--color-muted); text-transform: uppercase;">{{ t.lblEdge }}</div></div>
+            <div style="font-size: 1.5rem; font-weight: 600; color: var(--color-muted); align-self: center;">vs</div>
+            <div style="text-align: center;"><div style="font-size: 1.5rem; font-weight: 600; color: var(--neg);">8 bps</div><div style="font-family: var(--font-aux); font-size: 0.75rem; color: var(--color-muted); text-transform: uppercase;">{{ t.lblCostRT }}</div></div>
+          </div>
+        </div>
+        <div style="border: 2px solid var(--color-border); background: var(--color-bg); font-size: 0.875rem; display: grid; grid-template-columns: 0.8fr 1fr 1fr 1fr 1fr 1fr; overflow-x: auto;">
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem;">Threshold</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem; text-align: right;">N trades</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem; text-align: right;">Win net</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem; text-align: right;">Net PnL%</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem; text-align: right;">Avg bps</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem; text-align: right;">{{ t.thActive }}</div>
+          <sc-for list="{{ thresh }}" as="r" hint-placeholder-count="6">
+            <div style="display: contents;">
+              <div style="padding: 6px 12px; border-top: 1px solid var(--row-line); font-weight: {{ r.fw }};">{{ r.t }}</div>
+              <div style="padding: 6px 12px; border-top: 1px solid var(--row-line); text-align: right; font-weight: {{ r.fw }};">{{ r.n }}</div>
+              <div style="padding: 6px 12px; border-top: 1px solid var(--row-line); text-align: right;">{{ r.win }}</div>
+              <div style="padding: 6px 12px; border-top: 1px solid var(--row-line); text-align: right; color: var(--neg); font-weight: 600;">{{ r.pnl }}</div>
+              <div style="padding: 6px 12px; border-top: 1px solid var(--row-line); text-align: right; color: var(--neg);">{{ r.bps }}</div>
+              <div style="padding: 6px 12px; border-top: 1px solid var(--row-line); text-align: right; color: var(--color-muted);">{{ r.act }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <figure style="margin: 0; border: 2px solid var(--color-border-strong); background: var(--color-bg);">
+          <div style="display: flex; justify-content: space-between; gap: 12px; background: var(--th-bg); color: var(--th-fg); padding: 3px 10px; font-size: 0.8125rem; font-weight: 600; text-transform: uppercase;"><span>fig 08 · sensitivity</span><span>threshold sweep</span></div>
+          <img src="uploads/orderbook_threshold_sensitivity.png" alt="sensitivity analysis: threshold vs net PnL and N trades" style="width: 100%; display: block; background: #ffffff; filter: {{ figFilter }};">
+          <figcaption style="padding: 6px 10px; font-family: var(--font-aux); font-size: 0.75rem; color: var(--color-muted); border-top: 1px solid var(--row-line);">{{ t.cap08 }}</figcaption>
+        </figure>
+        <span style="font-weight: 600; text-transform: uppercase; font-size: 0.9375rem;">{{ t.viabTitle }}</span>
+        <div style="border: 2px solid var(--color-border); background: var(--color-bg); font-size: 0.875rem; display: grid; grid-template-columns: 1fr 1.4fr;">
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem;">{{ t.thAlt }}</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem;">{{ t.thEff }}</div>
+          <sc-for list="{{ viab }}" as="v" hint-placeholder-count="3">
+            <div style="display: contents;">
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); font-weight: 600;">{{ v.alt }}</div>
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); color: var(--color-muted);">{{ v.eff }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.obLims }}" hint-size="100%,460px">
+      <div data-screen-label="limitacoes" style="padding: 12px 24px 24px; display: flex; flex-direction: column; gap: 20px;">
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">As limitações no mesmo nível de destaque que os achados positivos.</p></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">The limitations, given the same prominence as the positive findings.</p></sc-if>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;" class="rp-2col">
+          <sc-for list="{{ lims }}" as="l" hint-placeholder-count="4">
+            <div style="border: 2px solid var(--color-border); background: var(--color-bg); padding: 16px 18px; display: flex; flex-direction: column; gap: 10px;">
+              <span style="display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 0.875rem; text-transform: uppercase;"><span style="width: 9px; height: 9px; border-radius: 100%; background: var(--amber); flex-shrink: 0;"></span>{{ l.t }}</span>
+              <span style="font-size: 0.8125rem; line-height: 1.65; color: var(--color-muted);">{{ l.d }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.obSteps }}" hint-size="100%,460px">
+      <div data-screen-label="proximos passos" style="padding: 12px 24px 24px; display: flex; flex-direction: column;">
+        <sc-for list="{{ steps }}" as="s" hint-placeholder-count="5">
+          <div style="display: grid; grid-template-columns: 32px 1fr; gap: 14px; align-items: start; padding: 14px 0; border-top: 1px solid var(--row-line);">
+            <span style="width: 26px; height: 26px; border: 2px solid var(--color-border-strong); display: flex; align-items: center; justify-content: center; font-family: var(--font-aux); font-size: 0.8125rem; font-weight: 700;">{{ s.n }}</span>
+            <span style="font-size: 0.9375rem; line-height: 1.6;"><strong>{{ s.t }}:</strong> <span style="color: var(--color-muted);">{{ s.d }}</span></span>
+          </div>
+        </sc-for>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.obEng }}" hint-size="100%,760px">
+      <div data-screen-label="engenharia" style="padding: 12px 24px 24px; display: flex; flex-direction: column; gap: 20px;">
+        <span style="font-weight: 600; text-transform: uppercase; font-size: 0.9375rem;">{{ t.engTitle }}</span>
+        <div style="border: 2px solid var(--color-border); background: var(--color-bg); padding: 18px 24px; display: flex; flex-direction: column; font-size: 0.875rem; overflow-x: auto;">
+          <sc-for list="{{ pipe }}" as="s" hint-placeholder-count="9">
+            <div style="display: flex; flex-direction: column;">
+              <sc-if value="{{ s.a }}" hint-placeholder-val="{{ false }}"><div style="color: var(--slate-500); line-height: 1.15; padding-left: 2ch;">▼</div></sc-if>
+              <div style="display: grid; grid-template-columns: 26ch 1fr; gap: 16px; align-items: baseline; padding: 3px 0;">
+                <span style="color: var(--color-accent-text); font-family: var(--font-aux); font-weight: 600;">{{ s.f }}</span>
+                <span style="color: var(--color-muted);">→&nbsp; {{ s.d }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="border: 2px solid var(--color-border); background: var(--color-bg); font-size: 0.875rem; display: grid; grid-template-columns: 0.5fr 1.5fr;">
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem;">{{ t.thLib }}</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem;">{{ t.thPurpose }}</div>
+          <sc-for list="{{ libs }}" as="b" hint-placeholder-count="7">
+            <div style="display: contents;">
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); font-family: var(--font-aux); font-weight: 600;">{{ b.l }}</div>
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); color: var(--color-muted);">{{ b.d }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </x-import>
+
+  </div>
+
+  <div style="border-top: 2px solid var(--color-border); background: var(--color-bg); padding: 36px 24px 48px; display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center;">
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Button" variant="primary" icon="{{ smileyIcon }}" href="https://github.com/pedromparanhos-sys/orderbook-signal" hint-size="auto,28px">{{ t.footBtn }}</x-import>
+    <span style="font-size: 0.875rem; font-weight: 500;">{{ t.footLine }}</span>
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.SymbolSeparatedItems" hint-size="auto,24px"><span>python</span><span>pandas</span><span>numpy</span><span>scikit-learn</span><span>xgboost</span><span>websockets</span></x-import>
+    <span style="font-family: var(--font-aux); font-size: 0.75rem; color: var(--color-muted);">{{ t.footCopy }}</span>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;theme&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;light&quot;, &quot;dark&quot;], &quot;default&quot;: &quot;light&quot;, &quot;tsType&quot;: &quot;'light' | 'dark'&quot;, &quot;section&quot;: &quot;tema&quot; },
+  &quot;idioma&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;pt&quot;, &quot;en&quot;], &quot;default&quot;: &quot;pt&quot;, &quot;tsType&quot;: &quot;'pt' | 'en'&quot;, &quot;section&quot;: &quot;idioma&quot; },
+  &quot;invertFigures&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;tema&quot; }
+}">
+class Component extends DCLogic {
+  state = { theme: null };
+  componentDidMount() {
+    if (!window.PsycheDesignSystem_d0a47d) {
+      this._t = setInterval(() => {
+        if (window.PsycheDesignSystem_d0a47d) { clearInterval(this._t); this.forceUpdate(); }
+      }, 80);
+    }
+  }
+  componentWillUnmount() { if (this._t) clearInterval(this._t); }
+  icon(n) {
+    const DS = window.PsycheDesignSystem_d0a47d;
+    return DS ? React.createElement(DS.Icon, { name: n }) : null;
+  }
+  renderVals() {
+    const params = (typeof location !== 'undefined') ? new URLSearchParams(location.search) : new URLSearchParams();
+    const theme = this.state.theme || params.get('theme') || this.props.theme || 'light';
+    const lang = (params.get('lang') === 'en' || this.props.idioma === 'en') ? 'en' : 'pt';
+
+    const STR = {
+      pt: {
+        statusChip: 'edge real · inviável como taker',
+        subtitle: 'ORDER BOOK IMBALANCE COMO SINAL PREDITIVO · BTC/USDT · BINANCE · JUN–JUL 2026',
+        obResumo: 'resumo', obBook: 'book em ação', obFeatures: 'as features', obF1: 'achado 1 · deduplicação', obF2: 'achado 2 · o problema do flat', obF3: 'achado 3 · signal decay', obF4: 'achado 4 · modelagem', obF5: 'achado 5 · backtest', obLims: 'limitações', obSteps: 'próximos passos', obEng: 'engenharia',
+        costLabel: 'custo / sinal', chitPar: 'par', chitPeriodo: 'período',
+        fig01h: 'fig 01 · distribuição OBI', fig02h: 'fig 02 · distribuição flow', fig03h: 'fig 03 · correlação',
+        cap01: 'OBI nível 1 · OBI ponderado 5 níveis · OBI rolling 10s · spread relativo · massa concentrada nos extremos ±1',
+        cap02: 'Trade Flow Imbalance 5s (bimodal em ±1) · VWAP deviation 30s (pico em zero, caudas de agressão)',
+        cap04: 'AUC médio por horizonte · barras = ± 1 std entre folds · linha random (AUC 0.50) de referência',
+        cap05: 'Curva ROC (AUC 0.6243) e matriz de confusão do Logistic L1',
+        cap06: 'Curvas praticamente sobrepostas · L1 (0.6243) vs XGBoost (0.6220)',
+        cap07: 'Ganho médio por split · o XGBoost também elege obi_l1 e obi_weighted_5l como dominantes, ecoando o modelo linear',
+        cap08: 'Barras = N trades · linha = Net PnL% · todos os thresholds permanecem negativos',
+        f1cardA: 'dedup por timestamp', f1cardB: 'dedup por (ts, price, qty)',
+        f1crit: 'critério', f1disc: 'descartados', f1prob: 'problema',
+        f1valLose: 'perde trades reais', f1valUnder: 'subestimado', f1valComposite: 'chave composta', f1valNone: 'nenhum', f1valPreserved: 'preservado',
+        thHorizon: 'Horizonte', thUp: 'Subiu +1', thDown: 'Desceu −1', thSamples: 'Amostras',
+        thModel: 'Modelo', thCoef: 'Coeficiente', thInterp: 'Interpretação',
+        bigTitle: 'o custo consome o edge', lblEdge: 'edge bruto médio', lblCostRT: 'custo round-trip',
+        thActive: '% ativo', viabTitle: 'Caminhos para viabilidade operacional', thAlt: 'Alternativa', thEff: 'Efeito estimado',
+        engTitle: 'Stack & arquitetura do pipeline', thLib: 'Biblioteca', thPurpose: 'Propósito',
+        footBtn: 'ver no github',
+        footLine: 'ORDERBOOK SIGNAL · ORDER BOOK IMBALANCE COMO SINAL PREDITIVO · RELATÓRIO DE RESEARCH QUANTITATIVO',
+        footCopy: '©2026 quant research · dados: binance L2 · não constitui recomendação de investimento',
+      },
+      en: {
+        statusChip: 'real edge · unviable as taker',
+        subtitle: 'ORDER BOOK IMBALANCE AS A PREDICTIVE SIGNAL · BTC/USDT · BINANCE · JUN–JUL 2026',
+        obResumo: 'summary', obBook: 'book in action', obFeatures: 'the features', obF1: 'finding 1 · deduplication', obF2: 'finding 2 · the flat problem', obF3: 'finding 3 · signal decay', obF4: 'finding 4 · modeling', obF5: 'finding 5 · backtest', obLims: 'limitations', obSteps: 'next steps', obEng: 'engineering',
+        costLabel: 'cost / signal', chitPar: 'pair', chitPeriodo: 'period',
+        fig01h: 'fig 01 · OBI distribution', fig02h: 'fig 02 · flow distribution', fig03h: 'fig 03 · correlation',
+        cap01: 'OBI level 1 · 5-level weighted OBI · OBI rolling 10s · relative spread · mass concentrated at the ±1 extremes',
+        cap02: 'Trade Flow Imbalance 5s (bimodal at ±1) · VWAP deviation 30s (peak at zero, aggression tails)',
+        cap04: 'Mean AUC per horizon · bars = ± 1 std across folds · random line (AUC 0.50) for reference',
+        cap05: 'ROC curve (AUC 0.6243) and confusion matrix of the Logistic L1',
+        cap06: 'Curves practically overlapping · L1 (0.6243) vs XGBoost (0.6220)',
+        cap07: 'Mean gain per split · XGBoost also elects obi_l1 and obi_weighted_5l as dominant, echoing the linear model',
+        cap08: 'Bars = N trades · line = Net PnL% · every threshold stays negative',
+        f1cardA: 'dedup by timestamp', f1cardB: 'dedup by (ts, price, qty)',
+        f1crit: 'criterion', f1disc: 'discarded', f1prob: 'problem',
+        f1valLose: 'loses real trades', f1valUnder: 'underestimated', f1valComposite: 'composite key', f1valNone: 'none', f1valPreserved: 'preserved',
+        thHorizon: 'Horizon', thUp: 'Up +1', thDown: 'Down −1', thSamples: 'Samples',
+        thModel: 'Model', thCoef: 'Coefficient', thInterp: 'Interpretation',
+        bigTitle: 'the cost consumes the edge', lblEdge: 'avg gross edge', lblCostRT: 'round-trip cost',
+        thActive: '% active', viabTitle: 'Paths to operational viability', thAlt: 'Alternative', thEff: 'Estimated effect',
+        engTitle: 'Pipeline stack & architecture', thLib: 'Library', thPurpose: 'Purpose',
+        footBtn: 'view on github',
+        footLine: 'ORDERBOOK SIGNAL · ORDER BOOK IMBALANCE AS A PREDICTIVE SIGNAL · QUANTITATIVE RESEARCH REPORT',
+        footCopy: '©2026 quant research · data: binance L2 · not investment advice',
+      },
+    };
+
+    const ARR = {
+      pt: {
+        flatDist: [
+          { h: 'target_1s', up: '12.6%', flat: '74.9%', flatc: 'var(--neg)', down: '12.5%', n: '2.999.843' },
+          { h: 'target_5s', up: '30.3%', flat: '40.3%', flatc: 'inherit', down: '29.4%', n: '2.999.843' },
+          { h: 'target_30s', up: '47.5%', flat: '6.4%', flatc: 'var(--pos)', down: '46.2%', n: '2.999.843' }
+        ],
+        decay: [
+          { hz: 'target · 1 segundo', auc: '0.886', std: '± 0.024 std', n: '752.855 amostras', tone: 'var(--feat)', border: 'var(--feat)' },
+          { hz: 'target · 5 segundos', auc: '0.758', std: '± 0.040 std', n: '1.792.057 amostras', tone: 'inherit', border: 'var(--color-border)' },
+          { hz: 'target · 30 segundos', auc: '0.610', std: '± 0.019 std', n: '2.809.180 amostras', tone: 'var(--color-muted)', border: 'var(--color-border)' }
+        ],
+        models: [
+          { m: 'Logistic L1', auc: '0.6243', acc: '0.5951', prec: '0.6175', rec: '0.5995', ac: 'var(--pos)' },
+          { m: 'XGBoost', auc: '0.6220', acc: '0.5926', prec: '0.6175', rec: '0.5870', ac: 'inherit' }
+        ],
+        coefs: [
+          { f: 'obi_l1', v: '+0.8108', w: '100%', bar: 'var(--feat)', cc: 'var(--feat)', note: 'Sinal dominante: bid > ask prediz subida' },
+          { f: 'obi_weighted_5l', v: '−0.4545', w: '56%', bar: 'var(--neg)', cc: 'var(--neg)', note: 'Anticolinear com obi_l1 (multicolinearidade)' },
+          { f: 'vwap_deviation_30s', v: '−0.0827', w: '10%', bar: 'var(--neg)', cc: 'inherit', note: 'Quase zerado: sinal fraco relativo a λ' },
+          { f: 'obi_rolling_10s', v: '+0.0616', w: '8%', bar: 'var(--feat)', cc: 'inherit', note: 'Pressão sustentada de curto prazo' },
+          { f: 'tfi_5s', v: '−0.0156', w: '2%', bar: 'var(--neg)', cc: 'inherit', note: 'Fluxo de trades (efeito residual)' },
+          { f: 'spread_relative', v: '+0.0033', w: '1%', bar: 'var(--slate-400)', cc: 'var(--color-muted)', note: 'Efetivamente zerado pelo L1' }
+        ],
+        thresh: [
+          { t: '0.55', n: '11.431', win: '0.3%', pnl: '−0.077%', bps: '−7.71', act: '89.2%', fw: 400 },
+          { t: '0.60', n: '10.826', win: '0.3%', pnl: '−0.076%', bps: '−7.56', act: '78.4%', fw: 400 },
+          { t: '0.65', n: '10.055', win: '0.3%', pnl: '−0.075%', bps: '−7.52', act: '66.5%', fw: 400 },
+          { t: '0.70', n: '9.152', win: '0.3%', pnl: '−0.074%', bps: '−7.44', act: '52.6%', fw: 400 },
+          { t: '0.75', n: '7.829', win: '0.4%', pnl: '−0.074%', bps: '−7.35', act: '35.5%', fw: 400 },
+          { t: '0.80', n: '2.058', win: '0.6%', pnl: '−0.073%', bps: '−7.27', act: '4.9%', fw: 700 }
+        ],
+        viab: [
+          { alt: 'Maker orders (post-only, rebate +0.01%)', eff: 'Custo vira −5 bps/trade (recebe rebate) → edge reverte positivo' },
+          { alt: 'Tier institucional (fee ~0.02%)', eff: 'Round-trip cai de 8 bps para 4 bps → razão custo/sinal cai para ~9:1' },
+          { alt: 'target_1s como alvo (AUC 0.886)', eff: 'Sinal muito mais forte, mas holding de 1s torna a latência crítica' }
+        ],
+        lims: [
+          { t: 'Variação de regime entre folds', d: 'O AUC de 30s variou de 0.59 a 0.64 por fold. Os folds de 28–29/jun ficaram próximos de 0.59, quase aleatório. O sinal não é estável no tempo; um modelo de uma semana pode não generalizar para a seguinte.' },
+          { t: 'Win rate líquido < 1%', d: 'Com edge de ~0.45 bps e custo de 8 bps, menos de 1 em 100 trades é lucrativo líquido, mesmo no threshold mais seletivo (0.80). Academicamente interessante, operacionalmente inviável como taker.' },
+          { t: 'Sem latência simulada', d: 'O modelo gera sinais instantaneamente. Na prática há latência de API Binance (~10–50ms) + processamento (~1–5ms). Com holding de 5s, 100ms de latência já são 2% do horizonte.' },
+          { t: 'Escopo restrito ao período', d: 'Todos os resultados valem apenas para BTC/USDT spot na Binance em 26/06–14/07/2026. Sem garantia de que o AUC ou o decay se reproduzam em outros exchanges, pares ou regimes.' }
+        ],
+        steps: [
+          { n: '1', t: 'Maker orders (post-only)', d: 'reescrever o backtest com side=post-only; medir fill rate e custo efetivo na testnet, único caminho realista para viabilidade dado o edge observado.' },
+          { n: '2', t: 'Replicação em outros pares', d: 'ETH/USDT, SOL/USDT: verificar se o decay e a razão custo/sinal se comportam da mesma forma em ativos de liquidez distinta.' },
+          { n: '3', t: 'Shape do book como feature', d: 'concentração de volume por nível, ratio nível 1/5, assimetria da distribuição de liquidez, informação ainda não capturada pelo OBI ponderado.' },
+          { n: '4', t: 'Latência real medida', d: 'medir RTT de WebSocket até execução via testnet; ajustar holding_period para max(5s, 2 × latência medida).' },
+          { n: '5', t: 'target_1s como alvo operacional', d: 'AUC 0.886 sugere sinal muito mais forte; com holding de 1s o custo de latência é proporcionalmente maior, mas o edge bruto pode bastar com maker.' }
+        ],
+        pipe: [
+          { a: false, f: 'data/collector.py', d: 'asyncio + reconexão exponencial · depth20@100ms + aggTrade · flush Parquet 10 min' },
+          { a: true, f: 'data/cleaner.py', d: 'streaming por lotes, dedup (ts+price+qty), gap masking 60s' },
+          { a: true, f: 'features/obi.py', d: 'OBI L1, OBI ponderado 5 níveis, OBI rolling 10s' },
+          { a: false, f: 'features/flow.py', d: 'TFI 5s, VWAP deviation 30s' },
+          { a: true, f: 'features/pipeline.py', d: 'targets 3-vias (−1/0/+1) para 1s, 5s, 30s via searchsorted' },
+          { a: true, f: 'models/baseline.py', d: 'Logistic L1 (SAGA, 2.25M amostras) → AUC 0.6243' },
+          { a: false, f: 'models/gradient.py', d: 'XGBoost (early stop na iteração 22/500) → AUC 0.6220' },
+          { a: false, f: 'models/evaluate.py', d: 'purged k-fold CV (n=5, embargo 1%) + signal decay' },
+          { a: true, f: 'backtest/simulate.py', d: 'sinais threshold, no-overlap, taker fee, sensitivity' }
+        ],
+        libs: [
+          { l: 'websockets', d: 'Stream WebSocket da Binance com reconexão exponencial' },
+          { l: 'pyarrow', d: 'Parquet streaming incremental' },
+          { l: 'pandas', d: 'Séries temporais e DataFrames' },
+          { l: 'numpy', d: 'Vetorização (searchsorted, arrays pré-alocados)' },
+          { l: 'scikit-learn', d: 'LogisticRegression SAGA, StandardScaler, métricas' },
+          { l: 'xgboost', d: 'XGBClassifier com early stopping e eval_set' },
+          { l: 'matplotlib', d: 'ROC, feature importance, signal decay, sensitivity' }
+        ]
+      },
+      en: {
+        flatDist: [
+          { h: 'target_1s', up: '12.6%', flat: '74.9%', flatc: 'var(--neg)', down: '12.5%', n: '2,999,843' },
+          { h: 'target_5s', up: '30.3%', flat: '40.3%', flatc: 'inherit', down: '29.4%', n: '2,999,843' },
+          { h: 'target_30s', up: '47.5%', flat: '6.4%', flatc: 'var(--pos)', down: '46.2%', n: '2,999,843' }
+        ],
+        decay: [
+          { hz: 'target · 1 second', auc: '0.886', std: '± 0.024 std', n: '752,855 samples', tone: 'var(--feat)', border: 'var(--feat)' },
+          { hz: 'target · 5 seconds', auc: '0.758', std: '± 0.040 std', n: '1,792,057 samples', tone: 'inherit', border: 'var(--color-border)' },
+          { hz: 'target · 30 seconds', auc: '0.610', std: '± 0.019 std', n: '2,809,180 samples', tone: 'var(--color-muted)', border: 'var(--color-border)' }
+        ],
+        models: [
+          { m: 'Logistic L1', auc: '0.6243', acc: '0.5951', prec: '0.6175', rec: '0.5995', ac: 'var(--pos)' },
+          { m: 'XGBoost', auc: '0.6220', acc: '0.5926', prec: '0.6175', rec: '0.5870', ac: 'inherit' }
+        ],
+        coefs: [
+          { f: 'obi_l1', v: '+0.8108', w: '100%', bar: 'var(--feat)', cc: 'var(--feat)', note: 'Dominant signal: bid > ask predicts a rise' },
+          { f: 'obi_weighted_5l', v: '−0.4545', w: '56%', bar: 'var(--neg)', cc: 'var(--neg)', note: 'Anti-collinear with obi_l1 (multicollinearity)' },
+          { f: 'vwap_deviation_30s', v: '−0.0827', w: '10%', bar: 'var(--neg)', cc: 'inherit', note: 'Nearly zeroed: weak signal relative to λ' },
+          { f: 'obi_rolling_10s', v: '+0.0616', w: '8%', bar: 'var(--feat)', cc: 'inherit', note: 'Sustained short-term pressure' },
+          { f: 'tfi_5s', v: '−0.0156', w: '2%', bar: 'var(--neg)', cc: 'inherit', note: 'Trade flow (residual effect)' },
+          { f: 'spread_relative', v: '+0.0033', w: '1%', bar: 'var(--slate-400)', cc: 'var(--color-muted)', note: 'Effectively zeroed by L1' }
+        ],
+        thresh: [
+          { t: '0.55', n: '11,431', win: '0.3%', pnl: '−0.077%', bps: '−7.71', act: '89.2%', fw: 400 },
+          { t: '0.60', n: '10,826', win: '0.3%', pnl: '−0.076%', bps: '−7.56', act: '78.4%', fw: 400 },
+          { t: '0.65', n: '10,055', win: '0.3%', pnl: '−0.075%', bps: '−7.52', act: '66.5%', fw: 400 },
+          { t: '0.70', n: '9,152', win: '0.3%', pnl: '−0.074%', bps: '−7.44', act: '52.6%', fw: 400 },
+          { t: '0.75', n: '7,829', win: '0.4%', pnl: '−0.074%', bps: '−7.35', act: '35.5%', fw: 400 },
+          { t: '0.80', n: '2,058', win: '0.6%', pnl: '−0.073%', bps: '−7.27', act: '4.9%', fw: 700 }
+        ],
+        viab: [
+          { alt: 'Maker orders (post-only, rebate +0.01%)', eff: 'Cost becomes −5 bps/trade (earns rebate) → edge turns positive' },
+          { alt: 'Institutional tier (fee ~0.02%)', eff: 'Round-trip drops from 8 bps to 4 bps → cost/signal ratio falls to ~9:1' },
+          { alt: 'target_1s as the target (AUC 0.886)', eff: 'Much stronger signal, but a 1s holding makes latency critical' }
+        ],
+        lims: [
+          { t: 'Regime variation across folds', d: 'The 30s AUC ranged from 0.59 to 0.64 per fold. The Jun 28–29 folds landed near 0.59, nearly random. The signal is not stable over time; a one-week model may not generalize to the next.' },
+          { t: 'Net win rate < 1%', d: 'With a ~0.45 bps edge and 8 bps cost, fewer than 1 in 100 trades is net profitable, even at the most selective threshold (0.80). Academically interesting, operationally unviable as a taker.' },
+          { t: 'No simulated latency', d: 'The model generates signals instantly. In practice there is Binance API latency (~10–50ms) + processing (~1–5ms). With a 5s holding, 100ms of latency is already 2% of the horizon.' },
+          { t: 'Scope limited to the period', d: 'All results hold only for BTC/USDT spot on Binance from Jun 26 to Jul 14, 2026. No guarantee the AUC or decay reproduce on other exchanges, pairs or regimes.' }
+        ],
+        steps: [
+          { n: '1', t: 'Maker orders (post-only)', d: 'rewrite the backtest with side=post-only; measure fill rate and effective cost on testnet, the only realistic path to viability given the observed edge.' },
+          { n: '2', t: 'Replication on other pairs', d: 'ETH/USDT, SOL/USDT: check whether the decay and cost/signal ratio behave the same way on assets of different liquidity.' },
+          { n: '3', t: 'Book shape as a feature', d: 'volume concentration per level, level 1/5 ratio, skew of the liquidity distribution, information not yet captured by the weighted OBI.' },
+          { n: '4', t: 'Measured real latency', d: 'measure WebSocket-to-execution RTT via testnet; set holding_period to max(5s, 2 × measured latency).' },
+          { n: '5', t: 'target_1s as the operational target', d: 'AUC 0.886 suggests a much stronger signal; with a 1s holding the latency cost is proportionally larger, but the gross edge may suffice with maker orders.' }
+        ],
+        pipe: [
+          { a: false, f: 'data/collector.py', d: 'asyncio + exponential reconnection · depth20@100ms + aggTrade · Parquet flush every 10 min' },
+          { a: true, f: 'data/cleaner.py', d: 'batch streaming, dedup (ts+price+qty), 60s gap masking' },
+          { a: true, f: 'features/obi.py', d: 'OBI L1, 5-level weighted OBI, OBI rolling 10s' },
+          { a: false, f: 'features/flow.py', d: 'TFI 5s, VWAP deviation 30s' },
+          { a: true, f: 'features/pipeline.py', d: '3-way targets (−1/0/+1) for 1s, 5s, 30s via searchsorted' },
+          { a: true, f: 'models/baseline.py', d: 'Logistic L1 (SAGA, 2.25M samples) → AUC 0.6243' },
+          { a: false, f: 'models/gradient.py', d: 'XGBoost (early stop at iteration 22/500) → AUC 0.6220' },
+          { a: false, f: 'models/evaluate.py', d: 'purged k-fold CV (n=5, 1% embargo) + signal decay' },
+          { a: true, f: 'backtest/simulate.py', d: 'threshold signals, no-overlap, taker fee, sensitivity' }
+        ],
+        libs: [
+          { l: 'websockets', d: 'Binance WebSocket stream with exponential reconnection' },
+          { l: 'pyarrow', d: 'Incremental Parquet streaming' },
+          { l: 'pandas', d: 'Time series and DataFrames' },
+          { l: 'numpy', d: 'Vectorization (searchsorted, pre-allocated arrays)' },
+          { l: 'scikit-learn', d: 'LogisticRegression SAGA, StandardScaler, metrics' },
+          { l: 'xgboost', d: 'XGBClassifier with early stopping and eval_set' },
+          { l: 'matplotlib', d: 'ROC, feature importance, signal decay, sensitivity' }
+        ]
+      },
+    };
+
+    const a = ARR[lang];
+    return {
+      themeClass: 'theme-' + theme,
+      isPT: lang === 'pt',
+      isEN: lang === 'en',
+      t: STR[lang],
+      smileyIcon: this.icon('smiley'),
+      figFilter: (this.props.invertFigures ?? false) ? 'invert(0.9) hue-rotate(180deg)' : 'none',
+      flatDist: a.flatDist,
+      decay: a.decay,
+      models: a.models,
+      coefs: a.coefs,
+      thresh: a.thresh,
+      viab: a.viab,
+      lims: a.lims,
+      steps: a.steps,
+      pipe: a.pipe,
+      libs: a.libs,
+    };
+  }
+}
+</script>
+</body>
+</html>

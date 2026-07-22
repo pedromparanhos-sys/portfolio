@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/tokens/effects.css">
+  <link rel="stylesheet" href="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/styles.css">
+  <script src="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/_ds_bundle.js"></script>
+  <style>
+    body { margin: 0; background: var(--slate-200); }
+    .theme-light { --color-bg: #ece5d3; }
+    .theme-light .psy-btn--theme { background: #ece5d3; }
+    .theme-light .psy-btn--theme:not(:disabled):active, .theme-light .psy-btn--theme.fakePressed { background: #e0d6bd; }
+    a { color: var(--color-fg); }
+    a:hover { color: var(--color-muted); }
+    @media (max-width: 900px) {
+      .layout-grid { grid-template-columns: 1fr !important; padding: 20px !important; gap: 24px !important; }
+      .header-fleur { display: none !important; }
+      .overlay-relatorio { padding: 10px !important; }
+    }
+  </style>
+</helmet>
+<div class="{{ themeClass }}" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; background-image: var(--bg-svg); background-size: 12px; background-color: var(--color-bg); color: var(--color-fg)">
+
+  <!-- ============ HEADER ============ -->
+  <div data-screen-label="header" style="display: flex; flex-direction: row; flex-wrap: wrap; padding: 8px; background: var(--color-bg)">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; flex: 1 1 600px; min-width: 0; padding: 24px">
+      <div style="display: flex; flex-direction: column; gap: 12px; width: fit-content">
+        <span style="display: inline-flex; align-items: center; font-family: var(--font-display); text-transform: lowercase; font-size: clamp(2.25rem, 6vw, 3rem); line-height: 1">
+          <span>pedro muralha</span>
+        </span>
+        <span style="display: inline-flex; align-items: center; font-family: var(--font-body); letter-spacing: -0.25px; word-spacing: -3px; font-size: 0.875rem; font-weight: 500; width: 255px; height: 30px">
+          DARE TO BUILD
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Icon" name="symbol-02" size="1.5em" style="margin-left: 8px; width: 2em" hint-size="2em,1.5em"></x-import>
+        </span><div style="background: var(--color-fg); color: var(--color-bg); width: fit-content; padding: 0 4px; font-family: var(--font-aux); font-size: 0.75rem; font-weight: 600">PORTFOLIO</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px; justify-self: center; text-transform: uppercase; font-family: var(--font-body); letter-spacing: -0.25px; font-size: 0.875rem; font-weight: 500">
+        <div>{{ t.role }}</div>
+        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap">
+          <a href="#" onClick="{{ irSobre }}" style="font-weight: {{ pesoSobre }}">{{ t.navAbout }}</a>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Icon" name="symbol-06" size="0.75em" hint-size="0.75em,0.75em"></x-import>
+          <a href="#" onClick="{{ irProjetos }}" style="font-weight: {{ pesoProjetos }}">{{ t.navProjects }}</a>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Icon" name="symbol-06" size="0.75em" hint-size="0.75em,0.75em"></x-import>
+          <a href="#" onClick="{{ irExp }}" style="font-weight: {{ pesoExp }}">{{ t.navExp }}</a>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Icon" name="symbol-06" size="0.75em" hint-size="0.75em,0.75em"></x-import>
+          <a href="#" onClick="{{ irResume }}" style="font-weight: {{ pesoResume }}">{{ t.navResume }}</a>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px; justify-self: end">
+        <div style="display: flex; gap: 8px">
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Button" variant="theme" pressed="{{ isPT }}" onClick="{{ setPT }}" hint-size="54px,36px">PT</x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Button" variant="theme" pressed="{{ isEN }}" onClick="{{ setEN }}" hint-size="54px,36px">EN</x-import>
+        </div>
+        <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Button" variant="theme" icon="{{ iconSun }}" pressed="{{ isLight }}" onClick="{{ setLight }}" hint-size="120px,36px">{{ t.light }}</x-import>
+        <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Button" variant="theme" icon="{{ iconMoon }}" pressed="{{ isDark }}" onClick="{{ setDark }}" hint-size="120px,36px">{{ t.dark }}</x-import>
+      </div>
+    </div>
+    <div class="header-fleur" style="display: flex; align-items: flex-start; gap: 16px; flex-wrap: wrap; justify-content: flex-end">
+      <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Icon" name="corner-fleur" size="128px" style="min-width: 128px" hint-size="128px,128px"></x-import>
+    </div>
+  </div>
+
+  <!-- ============ CONTEÚDO ============ -->
+  <div style="display: flex; flex: 1">
+    <div class="layout-grid" style="flex-basis: 1700px; margin: 0 auto; display: grid; grid-template-columns: minmax(280px, 512px) minmax(0,1fr); justify-content: center; align-items: start; gap: 36px; padding: 36px; width: 100%; box-sizing: border-box">
+
+      <div style="display: flex; flex-direction: column; gap: 24px; min-width: 0">
+        <div style="width: 100%; aspect-ratio: 4 / 5; border: 2px solid var(--color-border); box-sizing: border-box; overflow: hidden; background: var(--color-bg)">
+          <x-import component-from-global-scope="dither-image" from="./dither-image.js" src="uploads/tdlr1xcz8pe71.jpg, uploads/3fa825ee6d567fcf5c1afec93a3ae3ea.jpg, uploads/ec67206b909cb62b9d57278a5db70af8.jpg, uploads/32b005472c899adb6ff627a5f328ecbe.jpg, uploads/Diana_the_Huntress).jpg, uploads/Johannes_Vermeer_(1632-1675)_-_The_Girl_With_The_Pearl_Earring_(1665).jpg" hint-size="100%,100%"></x-import>
+        </div>
+      </div>
+
+      <div style="min-width: 0">
+
+        <sc-if value="{{ showSobre }}" hint-placeholder-val="{{ true }}">
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.obAbout }}" style="background: var(--color-bg)" hint-size="100%,520px">
+            <div style="display: flex; flex-direction: column; gap: 32px; padding: 8px 4px">
+
+              <div style="display: flex; flex-direction: column; gap: 12px">
+                <div style="display: flex; flex-direction: column; gap: 12px; font-family: var(--font-body); letter-spacing: -0.25px; font-size: 0.9375rem; line-height: 1.55; max-width: 62ch">
+                  <p style="margin: 0">{{ t.aboutP1 }}</p>
+                  <p style="margin: 0">{{ t.aboutP2 }}</p>
+                  <p style="margin: 0">{{ t.aboutP3 }}</p>
+                </div>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 12px">
+                <div style="font-family: var(--font-display); text-transform: lowercase; font-size: 1.5rem; line-height: 1.1">{{ t.philH }}</div>
+                <div style="display: flex; flex-direction: column; gap: 12px; font-family: var(--font-body); letter-spacing: -0.25px; font-size: 0.9375rem; line-height: 1.55; max-width: 62ch">
+                  <p style="margin: 0">{{ t.philP1 }}</p>
+                  <p style="margin: 0">{{ t.philP2 }}</p>
+                  <p style="margin: 0">{{ t.philP3 }}</p>
+                  <p style="margin: 0">{{ t.philP4 }}</p>
+                </div>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 12px">
+                <div style="font-family: var(--font-display); text-transform: lowercase; font-size: 1.5rem; line-height: 1.1">{{ t.seekH }}</div>
+                <div style="display: flex; flex-direction: column; gap: 12px; font-family: var(--font-body); letter-spacing: -0.25px; font-size: 0.9375rem; line-height: 1.55; max-width: 62ch">
+                  <p style="margin: 0">{{ t.seekP1 }}</p>
+                  <p style="margin: 0">{{ t.seekP2 }}</p>
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 12px">
+                <sc-for list="{{ interesses }}" as="it" hint-placeholder-count="4">
+                  <div style="border: 2px solid var(--color-border); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; background: var(--color-bg)">
+                    <span style="font-family: var(--font-body); text-transform: uppercase; letter-spacing: -0.25px; font-size: 0.875rem; font-weight: 600">{{ it.nome }}</span>
+                    <span style="font-family: var(--font-aux); font-size: 0.8125rem; color: var(--color-muted)">{{ it.desc }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </x-import>
+        </sc-if>
+
+        <sc-if value="{{ showProjetos }}" hint-placeholder-val="{{ false }}">
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.obProjects }}" style="background: var(--color-bg)" hint-size="100%,520px">
+            <div style="display: flex; flex-direction: column; gap: 20px; padding: 8px 4px">
+              <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 24px">
+                <sc-for list="{{ projetos }}" as="pr" hint-placeholder-count="1">
+                  <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.ShadowCard" onClick="{{ pr.abrir }}" hint-size="100%,240px">
+                    <div style="display: flex; flex-direction: column; gap: 12px; padding: 20px; min-height: 200px; box-sizing: border-box">
+                      <span style="font-family: var(--font-display); text-transform: lowercase; font-size: 1.5rem; line-height: 1.1">{{ pr.titulo }}</span>
+                      <span style="font-family: var(--font-aux); font-size: 0.8125rem; color: var(--color-muted); flex: 1; line-height: 1.5">{{ pr.desc }}</span>
+                      <a href="{{ pr.github }}" onClick="{{ segurarClique }}" target="_blank" style="font-family: var(--font-aux); font-size: 0.8125rem; width: fit-content; text-decoration-line: none">github ↗</a>
+                      <span style="font-family: var(--font-body); text-transform: uppercase; letter-spacing: -0.25px; font-size: 0.8125rem; font-weight: 600; display: inline-flex; align-items: center; gap: 8px">{{ t.openReport }}
+                        <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Icon" name="arrow-right" hint-size="1em,1em"></x-import>
+                      </span>
+                    </div>
+                  </x-import>
+                </sc-for>
+              </div>
+            </div>
+          </x-import>
+        </sc-if>
+
+        <sc-if value="{{ showExp }}" hint-placeholder-val="{{ false }}">
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.obExp }}" style="background: var(--color-bg)" hint-size="100%,520px">
+            <div style="display: flex; flex-direction: column; gap: 16px; padding: 8px 4px">
+              <sc-for list="{{ experiencias }}" as="e" hint-placeholder-count="3">
+                <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.RunBox" title="{{ e.titulo }}" hint-size="100%,120px">
+                  <div style="display: flex; flex-direction: column; gap: 8px; padding: 12px 16px">
+                    <span style="font-family: var(--font-body); text-transform: uppercase; letter-spacing: -0.25px; font-size: 0.8125rem; font-weight: 600">{{ e.periodo }}</span>
+                    <span style="font-family: var(--font-aux); font-size: 0.875rem; color: var(--color-muted); line-height: 1.5">{{ e.desc }}</span>
+                  </div>
+                </x-import>
+              </sc-for>
+            </div>
+          </x-import>
+        </sc-if>
+
+        <sc-if value="{{ showResume }}" hint-placeholder-val="{{ false }}">
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.obResume }}" style="background: var(--color-bg)" hint-size="100%,720px">
+            <div style="display: flex; flex-direction: column; gap: 16px; padding: 8px 4px">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap">
+                <span style="font-family: var(--font-aux); font-size: 0.8125rem; color: var(--color-muted)">{{ t.resumeCaption }}</span>
+                <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Button" variant="primary" href="uploads/PedroMuralhaCV-3.pdf" download="PedroMuralhaCV.pdf" hint-size="160px,40px">{{ t.downloadPdf }}</x-import>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 16px">
+                <img src="uploads/PedroMuralhaCV-3_page-0001.jpg" alt="{{ t.resumeAlt1 }}" style="width: 100%; height: auto; display: block; border: 2px solid var(--color-border); box-sizing: border-box; background: #ffffff">
+                <img src="uploads/PedroMuralhaCV-3_page-0002.jpg" alt="{{ t.resumeAlt2 }}" style="width: 100%; height: auto; display: block; border: 2px solid var(--color-border); box-sizing: border-box; background: #ffffff">
+              </div>
+            </div>
+          </x-import>
+        </sc-if>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ FOOTER ============ -->
+  <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding: 20px 24px; background: var(--color-bg); font-family: var(--font-body); letter-spacing: -0.25px; font-size: 0.875rem">
+    <span>©2026 pedro muralha</span>
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.SymbolSeparatedItems" hint-size="auto,24px">
+      <a href="https://github.com/pedromparanhos-sys">github</a>
+      <a href="{{ mailtoHref }}">email</a>
+    </x-import>
+  </div>
+
+  <!-- ============ RELATÓRIO (overlay) ============ -->
+  <sc-if value="{{ showRelatorio }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ fecharRelatorio }}" class="overlay-relatorio" style="position: fixed; inset: 0; z-index: 100; background: rgba(14, 30, 25, 0.78); display: flex; align-items: center; justify-content: center; padding: 28px; box-sizing: border-box">
+      <div onClick="{{ segurarClique }}" style="position: relative; width: min(1480px, 100%); height: 100%; border: 2px solid var(--color-border); background: var(--color-bg); box-sizing: border-box">
+        <iframe src="{{ relatorioSrc }}" title="{{ t.obReport }}" style="width: 100%; height: 100%; border: 0; display: block; background: var(--color-bg)"></iframe>
+        <button onClick="{{ fecharRelatorio }}" aria-label="{{ t.closeLabel }}" style="position: absolute; top: 0; right: 0; width: 44px; height: 44px; border: 0; border-left: 2px solid var(--color-border); border-bottom: 2px solid var(--color-border); background: var(--color-bg); color: var(--color-fg); font-family: var(--font-body); font-size: 1.25rem; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center">×</button>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;temaInicial&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;escuro&quot;,&quot;options&quot;:[&quot;claro&quot;,&quot;escuro&quot;],&quot;tsType&quot;:&quot;'claro' | 'escuro'&quot;,&quot;section&quot;:&quot;Aparência&quot;},&quot;idiomaInicial&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;pt&quot;,&quot;options&quot;:[&quot;pt&quot;,&quot;en&quot;],&quot;tsType&quot;:&quot;'pt' | 'en'&quot;,&quot;section&quot;:&quot;Idioma&quot;},&quot;mostrarStatus&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Perfil&quot;},&quot;emailContato&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;pedroparanhos02@gmail.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contato&quot;}}">
+class Component extends DCLogic {
+  state = {
+    dark: (this.props.temaInicial ?? 'escuro') === 'escuro',
+    lang: this.props.idiomaInicial ?? 'pt',
+    tab: 'sobre',
+    relatorio: null,
+  };
+
+  componentDidMount() {
+    try {
+      const saved = localStorage.getItem('pf_lang');
+      if (saved && saved !== this.state.lang) this.setState({ lang: saved });
+    } catch (e) {}
+    if (!window.PsycheDesignSystem_d0a47d) {
+      this._poll = setInterval(() => {
+        if (window.PsycheDesignSystem_d0a47d) {
+          clearInterval(this._poll);
+          this.forceUpdate();
+        }
+      }, 100);
+    }
+  }
+
+  componentWillUnmount() {
+    if (this._poll) clearInterval(this._poll);
+  }
+
+  setLang(lang) {
+    try { localStorage.setItem('pf_lang', lang); } catch (e) {}
+    this.setState({ lang });
+  }
+
+  renderVals() {
+    const DS = window.PsycheDesignSystem_d0a47d || {};
+    const icon = (name) => (DS.Icon ? React.createElement(DS.Icon, { name }) : null);
+    const email = this.props.emailContato ?? 'pedroparanhos02@gmail.com';
+    const lang = this.state.lang === 'en' ? 'en' : 'pt';
+
+    const TT = {
+      pt: {
+        role: 'Estudante de engenharia mecânica',
+        navAbout: 'sobre mim', navProjects: 'projetos', navExp: 'experiência', navResume: 'resume',
+        light: 'Claro', dark: 'Escuro',
+        obAbout: 'sobre mim', obProjects: 'projetos', obExp: 'experiência', obResume: 'resume', obReport: 'relatório',
+        aboutP1: 'Sou estudante de Engenharia Mecânica na Universidade Federal do Rio de Janeiro (UFRJ). Ao longo da graduação, desenvolvi uma base sólida em matemática aplicada, modelagem de sistemas e resolução de problemas complexos por meio de disciplinas como Métodos Matemáticos, Métodos Experimentais, Mecânica dos Sólidos, Ciência dos Materiais, Dinâmica, Termodinâmica, Mecânica dos Fluidos, Máquinas Térmicas, Usinagem, Organização Industrial e Economia.',
+        aboutP2: 'Hoje direciono esse raciocínio para problemas orientados por dados. Meus principais interesses estão na interseção entre Ciência de Dados, Inteligência Artificial, Finanças Quantitativas e Economia. Tenho interesse especial em pesquisa quantitativa, gestão de investimentos, modelagem de risco, mercados financeiros e desenvolvimento de soluções baseadas em dados para tomada de decisão.',
+        aboutP3: 'Além da engenharia, encontro inspiração na arte, no design, na história e na arquitetura. Acredito que conhecimento técnico e sensibilidade estética se complementam, permitindo construir soluções que sejam ao mesmo tempo rigorosas e elegantes.',
+        philH: 'minha filosofia',
+        philP1: 'A Engenharia Mecânica me ensinou que os melhores sistemas são aqueles capazes de permanecer confiáveis por décadas. Essa forma de pensar influencia diretamente a maneira como desenvolvo projetos.',
+        philP2: 'Procuro construir soluções simples, robustas e bem documentadas, priorizando clareza, confiabilidade e capacidade de evolução em vez de complexidade desnecessária.',
+        philP3: 'Ao mesmo tempo, acredito que engenharia e design caminham juntos. Um modelo quantitativo, uma visualização de dados ou uma ferramenta de análise devem comunicar suas ideias com clareza e proporcionar uma experiência intuitiva para quem os utiliza. Por isso, valorizo tanto a arquitetura de um sistema quanto sua apresentação.',
+        philP4: 'Vejo a tecnologia como a união entre matemática, engenharia e criatividade: compreender problemas profundamente, construir soluções duráveis e comunicar resultados de forma clara e elegante.',
+        seekH: 'o que busco',
+        seekP1: 'Tenho interesse em oportunidades que me permitam pesquisar, analisar e construir. Busco atuar em equipes que desenvolvam soluções na interseção entre Inteligência Artificial, Ciência de Dados e Finanças, contribuindo para pesquisa quantitativa, gestão de investimentos, análise de risco, Asset Management, Investment Banking, Private Equity e desenvolvimento de aplicações de IA para o mercado financeiro.',
+        seekP2: 'Meu objetivo é transformar modelos quantitativos e pesquisa em ferramentas que apoiem decisões estratégicas e gerem impacto no mundo real.',
+        openReport: 'abrir relatório',
+        resumeCaption: 'Pedro Muralha Paranhos · currículo · PDF',
+        downloadPdf: 'baixar pdf ↓',
+        resumeAlt1: 'currículo Pedro Muralha, página 1',
+        resumeAlt2: 'currículo Pedro Muralha, página 2',
+        closeLabel: 'fechar',
+        interesses: [
+          { nome: 'Pesquisa quantitativa', desc: 'Modelos e sinais para mercados financeiros.' },
+          { nome: 'Gestão de investimentos', desc: 'Asset management, alocação e modelagem de risco.' },
+          { nome: 'Ciência de dados & IA', desc: 'Dados e aprendizado aplicados à decisão.' },
+          { nome: 'Finanças & economia', desc: 'IB, private equity e análise de mercados.' },
+        ],
+        projetos: [
+          { titulo: 'pairs trading', desc: 'Arbitragem estatística com pares cointegrados: sinais por z-score e backtest completo.' },
+          { titulo: 'orderbook signal', desc: 'Order book imbalance como sinal preditivo de preço em BTC/USDT: L2 book, signal decay e backtest de microestrutura.' },
+        ],
+        experiencias: [
+          { titulo: 'projetos independentes', periodo: '2026 até o presente', desc: 'Estudos autônomos em finanças quantitativas e IA aplicada, com projetos open-source no GitHub.' },
+          { titulo: 'estágio de projetos na moove (cosan)', periodo: '2024 a 2025', desc: 'Suporte técnico em projetos de alta complexidade: otimização de batedeiras de graxa/óleo, automação de tubulações com válvulas pneumáticas e infraestrutura civil. Liderança de projetos menores da cotação à instalação, checklist oficial de projetos e gestão de compras/Capex.' },
+          { titulo: 'graduação em engenharia mecânica', periodo: '2023 até o presente', desc: 'Bacharelado na UFRJ (previsão dez/2027), com ênfase em métodos numéricos, mecânica computacional e matemática aplicada.' },
+          { titulo: 'graduação em engenharia elétrica', periodo: '2020 a junho de 2023', desc: 'Cursada na UFRJ antes da transição para a mecânica; base em sistemas elétricos e eletrônica.' },
+        ],
+      },
+      en: {
+        role: 'Mechanical engineering student',
+        navAbout: 'about', navProjects: 'projects', navExp: 'experience', navResume: 'resume',
+        light: 'Light', dark: 'Dark',
+        obAbout: 'about me', obProjects: 'projects', obExp: 'experience', obResume: 'resume', obReport: 'report',
+        aboutP1: "I'm a Mechanical Engineering student at the Federal University of Rio de Janeiro (UFRJ). Throughout my degree, I built a solid foundation in applied mathematics, systems modeling and complex problem-solving through courses such as Mathematical Methods, Experimental Methods, Solid Mechanics, Materials Science, Dynamics, Thermodynamics, Fluid Mechanics, Thermal Machines, Machining, Industrial Organization and Economics.",
+        aboutP2: "Today I direct that reasoning toward data-driven problems. My main interests lie at the intersection of Data Science, Artificial Intelligence, Quantitative Finance and Economics. I'm especially interested in quantitative research, investment management, risk modeling, financial markets and building data-driven solutions for decision-making.",
+        aboutP3: 'Beyond engineering, I find inspiration in art, design, history and architecture. I believe technical knowledge and aesthetic sensibility complement each other, making it possible to build solutions that are both rigorous and elegant.',
+        philH: 'my philosophy',
+        philP1: 'Mechanical engineering taught me that the best systems are the ones that stay reliable for decades. That mindset directly shapes the way I build projects.',
+        philP2: 'I aim to build simple, robust and well-documented solutions, prioritizing clarity, reliability and room to evolve over unnecessary complexity.',
+        philP3: "At the same time, I believe engineering and design go hand in hand. A quantitative model, a data visualization or an analysis tool should communicate its ideas clearly and offer an intuitive experience to whoever uses it. That's why I value a system's architecture as much as its presentation.",
+        philP4: 'I see technology as the union of mathematics, engineering and creativity: understanding problems deeply, building durable solutions and communicating results clearly and elegantly.',
+        seekH: "what i'm looking for",
+        seekP1: "I'm interested in opportunities that let me research, analyze and build. I want to work on teams building solutions at the intersection of Artificial Intelligence, Data Science and Finance, contributing to quantitative research, investment management, risk analysis, Asset Management, Investment Banking, Private Equity and the development of AI applications for financial markets.",
+        seekP2: 'My goal is to turn quantitative models and research into tools that support strategic decisions and create real-world impact.',
+        openReport: 'open report',
+        resumeCaption: 'Pedro Muralha Paranhos · résumé · PDF',
+        downloadPdf: 'download pdf ↓',
+        resumeAlt1: 'Pedro Muralha résumé, page 1',
+        resumeAlt2: 'Pedro Muralha résumé, page 2',
+        closeLabel: 'close',
+        interesses: [
+          { nome: 'Quantitative research', desc: 'Models and signals for financial markets.' },
+          { nome: 'Investment management', desc: 'Asset management, allocation and risk modeling.' },
+          { nome: 'Data science & AI', desc: 'Data and learning applied to decisions.' },
+          { nome: 'Finance & economics', desc: 'IB, private equity and market analysis.' },
+        ],
+        projetos: [
+          { titulo: 'pairs trading', desc: 'Statistical arbitrage on cointegrated pairs: z-score signals and a full backtest.' },
+          { titulo: 'orderbook signal', desc: 'Order book imbalance as a predictive price signal on BTC/USDT: L2 book, signal decay and microstructure backtest.' },
+        ],
+        experiencias: [
+          { titulo: 'independent projects', periodo: '2026 to present', desc: 'Self-directed studies in quantitative finance and applied AI, with open-source projects on GitHub.' },
+          { titulo: 'projects intern at moove (cosan)', periodo: '2024 to 2025', desc: 'Technical support on high-complexity projects: optimization of grease/oil mixers, pipeline automation with pneumatic valves and civil infrastructure. Led smaller projects from quotation to installation, official project checklist and procurement/Capex management.' },
+          { titulo: 'b.sc. mechanical engineering', periodo: '2023 to present', desc: 'B.Sc. at UFRJ (expected Dec 2027), focused on numerical methods, computational mechanics and applied mathematics.' },
+          { titulo: 'b.sc. electrical engineering', periodo: '2020 to June 2023', desc: 'Studied at UFRJ before transitioning to mechanical; foundation in electrical systems and electronics.' },
+        ],
+      },
+    };
+
+    const t = TT[lang];
+
+    const projBase = [
+      { relatorio: 'uploads/Pairs Trading HTML/Relatorio Pairs Trading.dc-0cae2306.html', github: 'https://github.com/pedromparanhos-sys/pairs-trading' },
+      { relatorio: 'Relatorio Orderbook.dc.html', github: 'https://github.com/pedromparanhos-sys/orderbook-signal' },
+    ];
+    const projetos = projBase.map((p, i) => ({
+      ...p,
+      titulo: t.projetos[i].titulo,
+      desc: t.projetos[i].desc,
+      abrir: () => this.setState({ relatorio: p.relatorio }),
+    }));
+
+    return {
+      t,
+      themeClass: this.state.dark ? 'theme-dark' : 'theme-light',
+      isDark: this.state.dark,
+      isLight: !this.state.dark,
+      setDark: () => this.setState({ dark: true }),
+      setLight: () => this.setState({ dark: false }),
+      isPT: lang === 'pt',
+      isEN: lang === 'en',
+      setPT: () => this.setLang('pt'),
+      setEN: () => this.setLang('en'),
+      iconSun: icon('sun'),
+      iconMoon: icon('moon'),
+
+      email,
+      mailtoHref: 'mailto:' + email,
+
+      irSobre: (e) => { e.preventDefault(); this.setState({ tab: 'sobre' }); },
+      irProjetos: (e) => { e.preventDefault(); this.setState({ tab: 'projetos' }); },
+      irExp: (e) => { e.preventDefault(); this.setState({ tab: 'exp' }); },
+      irResume: (e) => { e.preventDefault(); this.setState({ tab: 'resume' }); },
+      pesoSobre: this.state.tab === 'sobre' ? 700 : 500,
+      pesoProjetos: this.state.tab === 'projetos' ? 700 : 500,
+      pesoExp: this.state.tab === 'exp' ? 700 : 500,
+      pesoResume: this.state.tab === 'resume' ? 700 : 500,
+
+      showSobre: this.state.tab === 'sobre',
+      showProjetos: this.state.tab === 'projetos',
+      showExp: this.state.tab === 'exp',
+      showResume: this.state.tab === 'resume',
+
+      interesses: t.interesses,
+      experiencias: t.experiencias,
+      projetos,
+
+      showRelatorio: !!this.state.relatorio,
+      relatorioSrc: this.state.relatorio ? this.state.relatorio + '?theme=' + (this.state.dark ? 'dark' : 'light') + '&lang=' + lang : '',
+      fecharRelatorio: () => this.setState({ relatorio: null }),
+      segurarClique: (e) => e.stopPropagation(),
+    };
+  }
+}
+</script>
+</body>
+</html>
