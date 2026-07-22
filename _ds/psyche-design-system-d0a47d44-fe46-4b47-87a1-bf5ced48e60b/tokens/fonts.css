@@ -1,0 +1,24 @@
+/* Psyche webfonts — exact binaries from website/frontend/src/assets/fonts */
+@font-face {
+	font-family: 'Soufflet Vert Hybrid 106R';
+	src: url('../assets/fonts/SouffletVert-Hybrid106R.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Geist Mono';
+	src: url('../assets/fonts/GeistMono[wght].woff2') format('woff2');
+	font-weight: 1 999;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Geist';
+	src: url('../assets/fonts/Geist[wght].woff2') format('woff2');
+	font-weight: 1 999;
+	font-style: normal;
+	font-display: swap;
+}
