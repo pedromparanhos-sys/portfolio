@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/tokens/colors.css">
+<link rel="stylesheet" href="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/tokens/typography.css">
+<link rel="stylesheet" href="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/tokens/effects.css">
+<link rel="stylesheet" href="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/styles.css">
+<script src="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/_ds_bundle.js"></script>
+<style>
+body { margin: 0; background: var(--slate-200); }
+.theme-light { --color-bg: #ece5d3; }
+.theme-light .psy-btn--theme { background: #ece5d3; }
+.theme-light .psy-btn--theme:not(:disabled):active, .theme-light .psy-btn--theme.fakePressed { background: #e0d6bd; }
+:root { --pos: var(--success-500); --neg: var(--error-500); --feat: var(--forest-500); --th-bg: var(--slate-500); --th-fg: var(--slate-0); --row-line: var(--slate-300); }
+.theme-dark { --pos: var(--success-300); --neg: var(--error-300); --feat: var(--lime-300); --th-bg: var(--forest-600); --th-fg: var(--forest-300); --row-line: var(--forest-600); }
+</style>
+</helmet>
+<div class="{{ themeClass }}" data-screen-label="relatorio" style="min-height: 100vh; background-image: var(--bg-svg); background-size: 12px; background-color: var(--color-bg); color: var(--color-fg); font-family: var(--font-body); letter-spacing: -0.25px;">
+
+  <div style="background: var(--color-bg); border-bottom: 2px solid var(--color-border);">
+  <div style="display: flex; align-items: stretch; justify-content: space-between; gap: 24px; max-width: 1280px; margin: 0 auto; padding: 24px 8px 24px 36px;">
+      <div style="display: flex; flex-direction: column; gap: 12px; justify-content: center;">
+        <div style="display: flex; gap: 16px; align-items: center;">
+          <div style="background: var(--color-fg); color: var(--color-bg); width: fit-content; padding: 0 4px; font-family: var(--font-aux); font-size: 0.75rem; font-weight: 600;">QUANT RESEARCH</div>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.StatusChip" status="completed" hint-size="auto,20px">{{ t.statusChip }}</x-import>
+        </div>
+        <span style="font-family: var(--font-display); text-transform: lowercase; font-size: 3.75rem; line-height: 1;">pairs trading</span>
+        <span style="display: inline-flex; align-items: center; font-size: 0.875rem; font-weight: 500;">{{ t.subtitle }}<x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Icon" name="symbol-02" size="1.5em" style="margin-left: 8px;" hint-size="2em,1.5em"></x-import></span>
+      </div>
+      <div style="display: flex; gap: 24px; align-items: center;">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+        </div>
+      </div>
+    </div></div>
+
+  <div style="max-width: 1280px; margin: 0 auto; padding: 36px; display: flex; flex-direction: column; gap: 36px;">
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.obResumo }}" hint-size="100%,320px">
+      <div data-screen-label="resumo" style="padding: 12px 24px 24px; display: flex; flex-direction: column; gap: 24px;">
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">Estratégia estatística de reversão à média sobre o par <strong>QQQ/XLK</strong>, com hedge ratio dinâmico estimado via <strong>Kalman Filter</strong> e validação walk-forward out-of-sample. Máquina de estados tick a tick, zero look-ahead bias, custos reais de transação.</p></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">A statistical mean-reversion strategy on the <strong>QQQ/XLK</strong> pair, with a dynamic hedge ratio estimated via a <strong>Kalman Filter</strong> and out-of-sample walk-forward validation. Tick-by-tick state machine, zero look-ahead bias, real transaction costs.</p></sc-if>
+        <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.StatBox" label="{{ t.sbSharpe }}" hint-size="auto,64px">0.79</x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.StatBox" label="{{ t.sbWin }}" hint-size="auto,64px">70.3%</x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.StatBox" label="{{ t.sbWindows }}" hint-size="auto,64px">91.7%</x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.StatBox" label="max drawdown" hint-size="auto,64px">-0.28%</x-import>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.InfoChit" label="{{ t.chitPar }}" hint-size="auto,52px">QQQ / XLK</x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.InfoChit" label="{{ t.chitPeriodo }}" hint-size="auto,52px">2018–2026</x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.InfoChit" label="capital" hint-size="auto,52px">$100k</x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.InfoChit" label="half-life" hint-size="auto,52px">11–17d</x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.InfoChit" label="trades" hint-size="auto,52px">84</x-import>
+        </div>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.obProblema }}" hint-size="100%,520px">
+      <div data-screen-label="o problema" style="padding: 12px 24px 24px; display: flex; flex-direction: column; gap: 20px;">
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">O ponto de partida de qualquer estratégia de pairs trading é encontrar um par <strong>cointegrado</strong>, cuja combinação linear seja estacionária. Aplicando os testes de <strong>Engle-Granger</strong> e <strong>Johansen</strong> sobre todo o histórico de 2018–2026, o resultado foi inequívoco: <strong>nenhum dos 18 pares correlacionados passou os dois testes simultaneamente</strong>. Os melhores candidatos ficaram apenas na fronteira da significância.</p></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">The starting point of any pairs-trading strategy is finding a <strong>cointegrated</strong> pair, one whose linear combination is stationary. Applying the <strong>Engle-Granger</strong> and <strong>Johansen</strong> tests over the full 2018–2026 history, the result was unequivocal: <strong>none of the 18 correlated pairs passed both tests simultaneously</strong>. The best candidates sat right at the edge of significance.</p></sc-if>
+        <div style="border: 2px solid var(--color-border); background: var(--color-bg); font-size: 0.875rem; display: grid; grid-template-columns: 1.2fr 1.2fr 1fr 0.7fr;">
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem;">{{ t.thPar }}</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem; text-align: right;">Engle-Granger p-value</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem; text-align: right;">{{ t.thHalfLife }}</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem;">Johansen</div>
+          <sc-for list="{{ pairs }}" as="r" hint-placeholder-count="5">
+            <div style="display: contents;">
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); font-weight: 500;">{{ r.p }}</div>
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); text-align: right;">{{ r.pv }}</div>
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); text-align: right;">{{ r.hl }}</div>
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); color: var(--neg); font-weight: 600;">{{ t.failed }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch; color: var(--color-muted);">O limiar de aprovação é p &lt; 0.05, e todos ficaram acima. A razão é <strong style="color: var(--color-fg);">estrutural</strong>: ao longo de 8 anos, a relação entre os ativos sofreu múltiplas quebras de regime. O <strong style="color: var(--color-fg);">choque da COVID (2020)</strong> rompeu correlações históricas, o <strong style="color: var(--color-fg);">ciclo de aperto do Fed (2022)</strong> reprecificou setores inteiros, e a <strong style="color: var(--color-fg);">expansão da megacap tech (2023–24)</strong> distorceu a relação entre índices amplos e o setor de tecnologia. Um teste de cointegração sobre janela única e longa não consegue capturar uma relação que <em>existe, mas se desloca no tempo</em>.</p></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch; color: var(--color-muted);">The approval threshold is p &lt; 0.05, and all of them landed above it. The reason is <strong style="color: var(--color-fg);">structural</strong>: over 8 years, the relationship between the assets went through multiple regime breaks. The <strong style="color: var(--color-fg);">COVID shock (2020)</strong> broke historical correlations, the <strong style="color: var(--color-fg);">Fed tightening cycle (2022)</strong> repriced entire sectors, and the <strong style="color: var(--color-fg);">megacap tech expansion (2023–24)</strong> distorted the relationship between broad indices and the tech sector. A cointegration test over a single long window cannot capture a relationship that <em>exists but shifts over time</em>.</p></sc-if>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.obSolucao }}" hint-size="100%,900px">
+      <div data-screen-label="a solucao" style="padding: 12px 24px 24px; display: flex; flex-direction: column; gap: 20px;">
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">Em vez de um hedge ratio fixo via OLS, o Kalman Filter trata o coeficiente <strong>β[t]</strong> como um estado latente que evolui dinamicamente, atualizado a cada novo preço. O efeito sobre a estacionariedade do spread é dramático:</p></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">Instead of a fixed OLS hedge ratio, the Kalman Filter treats the coefficient <strong>β[t]</strong> as a latent state that evolves dynamically, updated with each new price. The effect on the spread's stationarity is dramatic:</p></sc-if>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.ShadowCard" dc-props="{{ cardProps }}" hint-size="100%,240px">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <span style="font-family: var(--font-display); text-transform: lowercase; font-size: 1.5rem; line-height: 2rem;">{{ t.cardOls }}</span>
+              <span style="background: var(--neg); color: var(--slate-0); padding: 0 6px; font-family: var(--font-aux); font-size: 0.75rem; font-weight: 600;">{{ t.badgeNonStat }}</span>
+            </div>
+            <div style="display: flex; flex-direction: column; font-size: 0.875rem;">
+              <div style="display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-top: 1px solid var(--row-line);"><span style="color: var(--color-muted);">ADF p-value</span><span style="color: var(--neg); font-weight: 600;">0.6306</span></div>
+              <div style="display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-top: 1px solid var(--row-line);"><span style="color: var(--color-muted);">spread std</span><span style="font-weight: 600;">13.29</span></div>
+              <div style="display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-top: 1px solid var(--row-line);"><span style="color: var(--color-muted);">hedge ratio</span><span style="font-weight: 600;">{{ t.hrFixed }}</span></div>
+            </div>
+          </x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.ShadowCard" dc-props="{{ cardProps }}" hint-size="100%,240px">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+              <span style="font-family: var(--font-display); text-transform: lowercase; font-size: 1.5rem; line-height: 2rem;">{{ t.cardKalman }}</span>
+              <span style="background: var(--pos); color: var(--slate-0); padding: 0 6px; font-family: var(--font-aux); font-size: 0.75rem; font-weight: 600;">{{ t.badgeStat }}</span>
+            </div>
+            <div style="display: flex; flex-direction: column; font-size: 0.875rem;">
+              <div style="display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-top: 1px solid var(--row-line);"><span style="color: var(--color-muted);">ADF p-value</span><span style="color: var(--pos); font-weight: 600;">0.0111</span></div>
+              <div style="display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-top: 1px solid var(--row-line);"><span style="color: var(--color-muted);">spread std</span><span style="font-weight: 600;">0.27</span></div>
+              <div style="display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-top: 1px solid var(--row-line);"><span style="color: var(--color-muted);">hedge ratio</span><span style="font-weight: 600;">{{ t.hrDynamic }}</span></div>
+            </div>
+          </x-import>
+        </div>
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">O hedge ratio OLS fixo mascara uma relação de cointegração que só se revela quando β é livre para variar. O spread Kalman tem desvio padrão <strong>~49× menor</strong> e é estatisticamente estacionário, exatamente a propriedade que torna a reversão à média operável.</p></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">The fixed OLS hedge ratio masks a cointegration relationship that only reveals itself when β is free to vary. The Kalman spread has a standard deviation <strong>~49× smaller</strong> and is statistically stationary, exactly the property that makes mean reversion tradeable.</p></sc-if>
+        <figure style="margin: 0; border: 2px solid var(--color-border-strong); background: var(--color-bg);">
+          <div style="display: flex; justify-content: space-between; gap: 12px; background: var(--th-bg); color: var(--th-fg); padding: 3px 10px; font-size: 0.8125rem; font-weight: 600; text-transform: uppercase;"><span>{{ t.fig01h }}</span><span>QQQ / XLK</span></div>
+          <img src="figures/kalman_analysis.png" alt="Kalman analysis: normalized prices, dynamic vs OLS hedge ratio, spread and z-score" style="width: 100%; display: block; background: #ffffff; filter: {{ figFilter }};">
+          <figcaption style="padding: 6px 10px; font-family: var(--font-aux); font-size: 0.75rem; color: var(--color-muted); border-top: 1px solid var(--row-line);">{{ t.cap01 }}</figcaption>
+        </figure>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.obSelecao }}" hint-size="100%,480px">
+      <div data-screen-label="selecao de pares" style="padding: 12px 24px 24px; display: flex; flex-direction: column; gap: 20px;">
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">Já que a cointegração é instável numa janela única, a seleção foi feita por <strong>janelas rolantes</strong> (treino 504d / teste 63d, deslizando 63d, com Johansen relaxado). Contando em quantas das 15 janelas cada par foi aprovado, emerge uma hierarquia clara de robustez:</p></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">Since cointegration is unstable over a single window, selection was done with <strong>rolling windows</strong> (504d train / 63d test, sliding 63d, with a relaxed Johansen). Counting in how many of the 15 windows each pair passed, a clear robustness hierarchy emerges:</p></sc-if>
+        <div style="border: 2px solid var(--color-border); background: var(--color-bg); font-size: 0.875rem; display: grid; grid-template-columns: 1.3fr 1.1fr 0.8fr 1fr;">
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem;">{{ t.thPar }}</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem; text-align: right;">{{ t.thWindows }}</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem; text-align: right;">{{ t.thFreq }}</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem;">{{ t.thSector }}</div>
+          <sc-for list="{{ rolling }}" as="r" hint-placeholder-count="5">
+            <div style="display: contents;">
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); color: {{ r.c }}; font-weight: {{ r.fw }};">{{ r.p }}</div>
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); text-align: right; color: {{ r.c }}; font-weight: {{ r.fw }};">{{ r.w }}</div>
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); text-align: right; color: {{ r.c }}; font-weight: {{ r.fw }};">{{ r.f }}</div>
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); color: {{ r.c }};">{{ r.s }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;"><strong>QQQ/XLK foi escolhido como par principal</strong>: é o mais frequente (6 janelas, não-contíguas, de 2018 a 2025), com half-life consistente de 11–17 dias. São dois ETFs de tecnologia com overlap econômico genuíno (XLK e o componente tech do QQQ compartilham as mesmas megacaps), o que dá fundamento econômico, não apenas estatístico, à relação.</p></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;"><strong>QQQ/XLK was chosen as the primary pair</strong>: it is the most frequent (6 non-contiguous windows, from 2018 to 2025), with a consistent 11–17 day half-life. They are two technology ETFs with genuine economic overlap (XLK and the tech component of QQQ share the same megacaps), which gives the relationship an economic, not merely statistical, foundation.</p></sc-if>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.obInSample }}" hint-size="100%,760px">
+      <div data-screen-label="in-sample" style="padding: 12px 24px 24px; display: flex; flex-direction: column; gap: 24px;">
+        <div style="display: grid; grid-template-columns: 5fr 7fr; gap: 24px; align-items: start;">
+          <div style="border: 2px solid var(--color-border); background: var(--color-bg); font-size: 0.875rem; display: grid; grid-template-columns: 1.2fr 1fr;">
+            <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem;">{{ t.thMetric }}</div>
+            <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem; text-align: right;">{{ t.thValue }}</div>
+            <sc-for list="{{ metrics }}" as="m" hint-placeholder-count="8">
+              <div style="display: contents;">
+                <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); color: var(--color-muted);">{{ m.k }}</div>
+                <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); text-align: right; font-weight: 600; color: {{ m.c }};">{{ m.v }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <figure style="margin: 0; border: 2px solid var(--color-border-strong); background: var(--color-bg);">
+            <div style="display: flex; justify-content: space-between; gap: 12px; background: var(--th-bg); color: var(--th-fg); padding: 3px 10px; font-size: 0.8125rem; font-weight: 600; text-transform: uppercase;"><span>fig 02 · backtest</span><span>2018–2026</span></div>
+            <img src="figures/backtest_equity.png" alt="Equity curve, drawdown and PnL per trade" style="width: 100%; display: block; background: #ffffff; filter: {{ figFilter }};">
+            <figcaption style="padding: 6px 10px; font-family: var(--font-aux); font-size: 0.75rem; color: var(--color-muted); border-top: 1px solid var(--row-line);">{{ t.cap02 }}</figcaption>
+          </figure>
+        </div>
+        <div style="border: 2px solid var(--color-border); background: var(--color-bg); padding: 20px 24px; display: flex; flex-direction: column; gap: 14px;">
+          <span style="font-weight: 600; text-transform: uppercase; font-size: 0.9375rem;">{{ t.costTitle }}</span>
+          <div style="display: flex; justify-content: space-between; gap: 16px; font-size: 0.8125rem; font-weight: 600;"><span>NET 5.03% (38%)</span><span style="color: var(--neg);">{{ t.costLabelBar }}</span></div>
+          <div style="display: flex; height: 28px; border: 2px solid var(--color-border-strong); background: var(--color-bg);">
+            <div style="width: 38%; background: repeating-linear-gradient(90deg, var(--lime-400) 0px, var(--lime-400) 12px, transparent 12px, transparent 16px);"></div>
+            <div style="width: 62%; border-left: 2px solid var(--color-border-strong); background: repeating-linear-gradient(90deg, var(--error-400) 0px, var(--error-400) 12px, transparent 12px, transparent 16px);"></div>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 24px; font-family: var(--font-aux); font-size: 0.75rem; color: var(--color-muted);">
+            <span style="display: inline-flex; align-items: center; gap: 7px;"><span style="width: 10px; height: 10px; background: var(--lime-400);"></span>{{ t.legendNet }}</span>
+            <span style="display: inline-flex; align-items: center; gap: 7px;"><span style="width: 10px; height: 10px; background: var(--error-400);"></span>{{ t.legendCost }}</span>
+          </div>
+          <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch; color: var(--color-muted);">De 13.21% de retorno bruto, apenas 5.03% chegam ao bolso. Comissão ($0.005/ação) e slippage (0.05%) sobre 84 trades de giro rápido devoram a maior parte do edge estatístico.</p></sc-if>
+          <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch; color: var(--color-muted);">Of 13.21% gross return, only 5.03% reaches the pocket. Commission ($0.005/share) and slippage (0.05%) over 84 fast-turnover trades devour most of the statistical edge.</p></sc-if>
+        </div>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.obSinais }}" hint-size="100%,900px">
+      <div data-screen-label="sinais" style="padding: 12px 24px 24px; display: flex; flex-direction: column; gap: 20px;">
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">O z-score do spread Kalman é traduzido em sinais de trading por uma <strong>máquina de estados processada tick a tick</strong>: um loop explícito, não vetorizado, justamente para garantir <strong>zero look-ahead bias</strong>: a decisão em cada dia depende apenas do estado anterior e do z-score corrente. Entrada quando o spread desvia ±2σ da média (long se &lt;−2σ, short se &gt;+2σ), saída por reversão ao cruzar ±0.5σ, stop loss de proteção em ±3.5σ.</p></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">The z-score of the Kalman spread is translated into trading signals by a <strong>state machine processed tick by tick</strong>: an explicit, non-vectorized loop, precisely to guarantee <strong>zero look-ahead bias</strong>: each day's decision depends only on the previous state and the current z-score. Entry when the spread deviates ±2σ from the mean (long if &lt;−2σ, short if &gt;+2σ), exit on reversion crossing ±0.5σ, protective stop loss at ±3.5σ.</p></sc-if>
+        <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.InfoChit" label="{{ t.chitEntry }}" hint-size="auto,52px">±2.0σ</x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.InfoChit" label="{{ t.chitExit }}" hint-size="auto,52px">±0.5σ</x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.InfoChit" label="stop" hint-size="auto,52px">±3.5σ</x-import>
+        </div>
+        <figure style="margin: 0; border: 2px solid var(--color-border-strong); background: var(--color-bg);">
+          <div style="display: flex; justify-content: space-between; gap: 12px; background: var(--th-bg); color: var(--th-fg); padding: 3px 10px; font-size: 0.8125rem; font-weight: 600; text-transform: uppercase;"><span>{{ t.fig03h }}</span><span>{{ t.fig03r }}</span></div>
+          <img src="figures/signals_overview.png" alt="Normalized prices with entry/exit markers, z-score with bands and position over time" style="width: 100%; display: block; background: #ffffff; filter: {{ figFilter }};">
+          <figcaption style="padding: 6px 10px; font-family: var(--font-aux); font-size: 0.75rem; color: var(--color-muted); border-top: 1px solid var(--row-line);">{{ t.cap03 }}</figcaption>
+        </figure>
+        <div style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; padding: 8px 0;">
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.MiniCard" value="84" text="{{ t.mcTrades }}" hint-size="200px,120px"></x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.MiniCard" value="0" text="{{ t.mcStops }}" hint-size="200px,120px"></x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.MiniCard" value="1.65" text="{{ t.mcHold }}" hint-size="200px,120px"></x-import>
+        </div>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="walk-forward" hint-size="100%,1100px">
+      <div data-screen-label="walk-forward" style="padding: 12px 24px 24px; display: flex; flex-direction: column; gap: 24px;">
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">O teste definitivo. Em cada janela, o Kalman é <strong>re-treinado apenas com dados de treino</strong> (504d) e opera 126d out-of-sample, com o z-score normalizado pelas estatísticas do treino: <strong>zero look-ahead</strong>.</p></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">The definitive test. In each window, the Kalman is <strong>re-trained on training data only</strong> (504d) and operates 126d out-of-sample, with the z-score normalized by the training statistics: <strong>zero look-ahead</strong>.</p></sc-if>
+        <div style="border: 2px solid var(--color-border); background: var(--color-bg); font-size: 0.875rem; display: grid; grid-template-columns: 1.1fr 1.1fr 1.1fr 0.7fr 0.9fr 0.9fr 0.7fr;">
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem;">{{ t.thTrainEnd }}</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem;">{{ t.thTestStart }}</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem;">{{ t.thTestEnd }}</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem; text-align: right;">Sharpe</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem; text-align: right;">{{ t.thReturn }}</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem; text-align: right;">Win rate</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem; text-align: right;">Trades</div>
+          <sc-for list="{{ wf }}" as="r" hint-placeholder-count="12">
+            <div style="display: contents;">
+              <div style="padding: 6px 12px; border-top: 1px solid var(--row-line); color: var(--color-muted);">{{ r.a }}</div>
+              <div style="padding: 6px 12px; border-top: 1px solid var(--row-line); color: var(--color-muted);">{{ r.b }}</div>
+              <div style="padding: 6px 12px; border-top: 1px solid var(--row-line); color: var(--color-muted);">{{ r.c }}</div>
+              <div style="padding: 6px 12px; border-top: 1px solid var(--row-line); text-align: right; font-weight: 600; color: {{ r.cc }};">{{ r.sh }}</div>
+              <div style="padding: 6px 12px; border-top: 1px solid var(--row-line); text-align: right; color: {{ r.cc }};">{{ r.ret }}</div>
+              <div style="padding: 6px 12px; border-top: 1px solid var(--row-line); text-align: right;">{{ r.w }}</div>
+              <div style="padding: 6px 12px; border-top: 1px solid var(--row-line); text-align: right;">{{ r.n }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; padding: 8px 0;">
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.MiniCard" value="0.79" text="{{ t.mcSharpe }}" hint-size="200px,120px"></x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.MiniCard" value="91.7%" text="{{ t.mcPosWin }}" hint-size="200px,120px"></x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.MiniCard" value="2.33%" text="{{ t.mcCumRet }}" hint-size="200px,120px"></x-import>
+        </div>
+        <figure style="margin: 0; border: 2px solid var(--color-border-strong); background: var(--color-bg);">
+          <div style="display: flex; justify-content: space-between; gap: 12px; background: var(--th-bg); color: var(--th-fg); padding: 3px 10px; font-size: 0.8125rem; font-weight: 600; text-transform: uppercase;"><span>fig 04 · walk-forward</span><span>{{ t.fig04r }}</span></div>
+          <img src="figures/walk_forward_results.png" alt="Sharpe per window and cumulative out-of-sample return" style="width: 100%; display: block; background: #ffffff; filter: {{ figFilter }};">
+          <figcaption style="padding: 6px 10px; font-family: var(--font-aux); font-size: 0.75rem; color: var(--color-muted); border-top: 1px solid var(--row-line);">{{ t.cap04 }}</figcaption>
+        </figure>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.obLims }}" hint-size="100%,520px">
+      <div data-screen-label="limitacoes" style="padding: 12px 24px 24px; display: flex; flex-direction: column; gap: 20px;">
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">O que diferencia análise séria de projeto de estudante: as limitações no mesmo nível de destaque que os resultados positivos.</p></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 0.875rem; line-height: 1.7; max-width: 90ch;">What separates serious analysis from a student project: the limitations given the same prominence as the positive results.</p></sc-if>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+          <sc-for list="{{ lims }}" as="l" hint-placeholder-count="4">
+            <div style="border: 2px solid var(--color-border); background: var(--color-bg); padding: 16px 18px; display: flex; flex-direction: column; gap: 10px;">
+              <span style="display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 0.875rem; text-transform: uppercase;"><span style="width: 9px; height: 9px; border-radius: 100%; background: var(--gold-400); flex-shrink: 0;"></span>{{ l.t }}</span>
+              <span style="font-size: 0.8125rem; line-height: 1.65; color: var(--color-muted);">{{ l.d }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-family: var(--font-aux); font-size: 0.75rem; line-height: 1.6; max-width: 100ch; color: var(--color-muted);">Nota metodológica: no walk-forward, o capital é reinicializado em $100k a cada janela (sem compounding). O retorno acumulado OOS é uma medida de consistência, não uma curva de patrimônio de uma única conta operando continuamente.</p></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-family: var(--font-aux); font-size: 0.75rem; line-height: 1.6; max-width: 100ch; color: var(--color-muted);">Methodological note: in the walk-forward, capital is reset to $100k for each window (no compounding). The cumulative OOS return is a measure of consistency, not the equity curve of a single account trading continuously.</p></sc-if>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.obEng }}" hint-size="100%,720px">
+      <div data-screen-label="engenharia" style="padding: 12px 24px 24px; display: flex; flex-direction: column; gap: 20px;">
+        <span style="font-weight: 600; text-transform: uppercase; font-size: 0.9375rem;">{{ t.engTitle }}</span>
+        <div style="border: 2px solid var(--color-border); background: var(--color-bg); padding: 18px 24px; display: flex; flex-direction: column; font-size: 0.875rem; overflow-x: auto;">
+          <sc-for list="{{ pipe }}" as="s" hint-placeholder-count="7">
+            <div style="display: flex; flex-direction: column;">
+              <sc-if value="{{ s.a }}" hint-placeholder-val="{{ false }}"><div style="color: var(--slate-500); line-height: 1.15; padding-left: 2ch;">▼</div></sc-if>
+              <div style="display: grid; grid-template-columns: 28ch 1fr; gap: 16px; align-items: baseline; padding: 3px 0;">
+                <span style="color: var(--color-accent-text); font-weight: 600;">{{ s.f }}</span>
+                <span style="color: var(--color-muted);">→&nbsp; {{ s.d }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="border: 2px solid var(--color-border); background: var(--color-bg); font-size: 0.875rem; display: grid; grid-template-columns: 0.5fr 1.5fr;">
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem;">{{ t.thLib }}</div>
+          <div style="background: var(--th-bg); color: var(--th-fg); padding: 5px 12px; font-weight: 600; text-transform: uppercase; font-size: 0.8125rem;">{{ t.thPurpose }}</div>
+          <sc-for list="{{ libs }}" as="b" hint-placeholder-count="7">
+            <div style="display: contents;">
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); font-weight: 600;">{{ b.l }}</div>
+              <div style="padding: 7px 12px; border-top: 1px solid var(--row-line); color: var(--color-muted);">{{ b.d }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </x-import>
+
+  </div>
+
+  <div style="border-top: 2px solid var(--color-border); background: var(--color-bg); padding: 36px 24px 48px; display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center;">
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Button" variant="primary" icon="{{ smileyIcon }}" href="https://github.com/pedromparanhos-sys/pairs-trading" hint-size="auto,28px">{{ t.footBtn }}</x-import>
+    <span style="font-size: 0.875rem; font-weight: 500;">{{ t.footLine }}</span>
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.SymbolSeparatedItems" hint-size="auto,24px"><span>python</span><span>pandas</span><span>statsmodels</span><span>pykalman</span><span>matplotlib</span><span>yfinance</span></x-import>
+    <span style="font-family: var(--font-aux); font-size: 0.75rem; color: var(--color-muted);">{{ t.footCopy }}</span>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;theme&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;light&quot;, &quot;dark&quot;], &quot;default&quot;: &quot;light&quot;, &quot;tsType&quot;: &quot;'light' | 'dark'&quot;, &quot;section&quot;: &quot;tema&quot; },
+  &quot;idioma&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;pt&quot;, &quot;en&quot;], &quot;default&quot;: &quot;pt&quot;, &quot;tsType&quot;: &quot;'pt' | 'en'&quot;, &quot;section&quot;: &quot;idioma&quot; },
+  &quot;invertFigures&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;tema&quot; }
+}">
+class Component extends DCLogic {
+  state = { theme: null };
+  componentDidMount() {
+    if (!window.PsycheDesignSystem_d0a47d) {
+      this._t = setInterval(() => {
+        if (window.PsycheDesignSystem_d0a47d) { clearInterval(this._t); this.forceUpdate(); }
+      }, 80);
+    }
+  }
+  componentWillUnmount() { if (this._t) clearInterval(this._t); }
+  icon(n) {
+    const DS = window.PsycheDesignSystem_d0a47d;
+    return DS ? React.createElement(DS.Icon, { name: n }) : null;
+  }
+  renderVals() {
+    const params = (typeof location !== 'undefined') ? new URLSearchParams(location.search) : new URLSearchParams();
+    const theme = this.state.theme || params.get('theme') || this.props.theme || 'light';
+    const lang = (params.get('lang') === 'en' || this.props.idioma === 'en') ? 'en' : 'pt';
+
+    const STR = {
+      pt: {
+        statusChip: 'validado out-of-sample',
+        subtitle: 'MEAN REVERSION COM KALMAN FILTER · QQQ / XLK · 2018–2026',
+        obResumo: 'resumo', obProblema: 'o problema', obSolucao: 'a solução: kalman filter', obSelecao: 'seleção de pares', obInSample: 'resultados in-sample', obSinais: 'sinais', obLims: 'limitações', obEng: 'engenharia',
+        sbSharpe: 'sharpe oos médio', sbWin: 'win rate in-sample', sbWindows: 'janelas positivas',
+        chitPar: 'par', chitPeriodo: 'período', chitEntry: 'entrada', chitExit: 'saída',
+        thPar: 'Par', thHalfLife: 'Half-life (dias)', failed: 'falhou',
+        thWindows: 'Janelas aprovadas', thFreq: 'Frequência', thSector: 'Setor',
+        thMetric: 'Métrica', thValue: 'Valor',
+        thTrainEnd: 'Treino fim', thTestStart: 'Teste início', thTestEnd: 'Teste fim', thReturn: 'Retorno',
+        cardOls: 'ols estático', cardKalman: 'kalman dinâmico', badgeNonStat: 'NÃO ESTACIONÁRIO', badgeStat: 'ESTACIONÁRIO',
+        hrFixed: 'fixo (≈3.98)', hrDynamic: 'dinâmico (3.74–5.02)',
+        fig01h: 'fig 01 · análise kalman',
+        cap01: 'Preços normalizados · hedge ratio dinâmico vs OLS estático · spread Kalman vs OLS · z-score do spread (janela 60d)',
+        cap02: 'Curva de equity · drawdown · PnL líquido por trade',
+        costTitle: 'O custo do giro: 62% do alpha bruto consumido',
+        costLabelBar: 'CUSTOS 8.18 P.P. (62%)',
+        legendNet: 'retorno líquido retido', legendCost: 'consumido por comissão + slippage',
+        fig03h: 'fig 03 · sinais gerados', fig03r: 'máquina de estados',
+        cap03: 'Preços normalizados com entradas/saídas · z-score com bandas de entrada e stop · posição ao longo do tempo (±1 / 0)',
+        mcTrades: 'trades completos', mcStops: 'stop losses acionados', mcHold: 'holding médio (dias)',
+        mcSharpe: 'sharpe médio OOS', mcPosWin: 'janelas positivas (11/12)', mcCumRet: 'retorno acumulado OOS',
+        fig04r: '12 janelas OOS',
+        cap04: 'Sharpe ratio por janela de teste · retorno acumulado out-of-sample concatenado',
+        engTitle: 'Stack & arquitetura do pipeline', thLib: 'Biblioteca', thPurpose: 'Propósito',
+        footBtn: 'ver no github',
+        footLine: 'PAIRS TRADING · MEAN REVERSION COM KALMAN FILTER · RELATÓRIO DE RESEARCH QUANTITATIVO',
+        footCopy: '©2026 quant research · dados: yahoo finance',
+      },
+      en: {
+        statusChip: 'validated out-of-sample',
+        subtitle: 'MEAN REVERSION WITH A KALMAN FILTER · QQQ / XLK · 2018–2026',
+        obResumo: 'summary', obProblema: 'the problem', obSolucao: 'the solution: kalman filter', obSelecao: 'pair selection', obInSample: 'in-sample results', obSinais: 'signals', obLims: 'limitations', obEng: 'engineering',
+        sbSharpe: 'avg oos sharpe', sbWin: 'in-sample win rate', sbWindows: 'positive windows',
+        chitPar: 'pair', chitPeriodo: 'period', chitEntry: 'entry', chitExit: 'exit',
+        thPar: 'Pair', thHalfLife: 'Half-life (days)', failed: 'failed',
+        thWindows: 'Windows passed', thFreq: 'Frequency', thSector: 'Sector',
+        thMetric: 'Metric', thValue: 'Value',
+        thTrainEnd: 'Train end', thTestStart: 'Test start', thTestEnd: 'Test end', thReturn: 'Return',
+        cardOls: 'static ols', cardKalman: 'dynamic kalman', badgeNonStat: 'NON-STATIONARY', badgeStat: 'STATIONARY',
+        hrFixed: 'fixed (≈3.98)', hrDynamic: 'dynamic (3.74–5.02)',
+        fig01h: 'fig 01 · kalman analysis',
+        cap01: 'Normalized prices · dynamic vs static OLS hedge ratio · Kalman vs OLS spread · spread z-score (60d window)',
+        cap02: 'Equity curve · drawdown · net PnL per trade',
+        costTitle: 'The cost of turnover: 62% of gross alpha consumed',
+        costLabelBar: 'COSTS 8.18 P.P. (62%)',
+        legendNet: 'net return retained', legendCost: 'consumed by commission + slippage',
+        fig03h: 'fig 03 · generated signals', fig03r: 'state machine',
+        cap03: 'Normalized prices with entries/exits · z-score with entry and stop bands · position over time (±1 / 0)',
+        mcTrades: 'completed trades', mcStops: 'stop losses triggered', mcHold: 'avg holding (days)',
+        mcSharpe: 'avg OOS sharpe', mcPosWin: 'positive windows (11/12)', mcCumRet: 'cumulative OOS return',
+        fig04r: '12 OOS windows',
+        cap04: 'Sharpe ratio per test window · concatenated cumulative out-of-sample return',
+        engTitle: 'Pipeline stack & architecture', thLib: 'Library', thPurpose: 'Purpose',
+        footBtn: 'view on github',
+        footLine: 'PAIRS TRADING · MEAN REVERSION WITH A KALMAN FILTER · QUANTITATIVE RESEARCH REPORT',
+        footCopy: '©2026 quant research · data: yahoo finance',
+      },
+    };
+
+    const rollingPT = [
+      { p: 'QQQ / XLK', w: '6 / 15', f: '40%', s: 'ETFs tech', c: 'var(--feat)', fw: 600 },
+      { p: 'MSFT / XLK', w: '5 / 15', f: '33%', s: 'Tech / ETF', c: 'inherit', fw: 400 },
+      { p: 'COP / EOG', w: '4 / 15', f: '27%', s: 'Energia', c: 'inherit', fw: 400 },
+      { p: 'XOM / CVX', w: '4 / 15', f: '27%', s: 'Energia', c: 'inherit', fw: 400 },
+      { p: 'SPY / QQQ', w: '2 / 15', f: '13%', s: 'ETFs amplos', c: 'inherit', fw: 400 }
+    ];
+    const rollingEN = [
+      { p: 'QQQ / XLK', w: '6 / 15', f: '40%', s: 'Tech ETFs', c: 'var(--feat)', fw: 600 },
+      { p: 'MSFT / XLK', w: '5 / 15', f: '33%', s: 'Tech / ETF', c: 'inherit', fw: 400 },
+      { p: 'COP / EOG', w: '4 / 15', f: '27%', s: 'Energy', c: 'inherit', fw: 400 },
+      { p: 'XOM / CVX', w: '4 / 15', f: '27%', s: 'Energy', c: 'inherit', fw: 400 },
+      { p: 'SPY / QQQ', w: '2 / 15', f: '13%', s: 'Broad ETFs', c: 'inherit', fw: 400 }
+    ];
+
+    const limsPT = [
+      { t: 'Custos consomem 62% do alpha', d: 'Gross 13.21% → net 5.03%. $8,175 em custos sobre 84 trades. O edge existe, mas a fricção operacional devora a maior parte.' },
+      { t: 'Holding 1.65d vs half-life ~13d', d: 'O ruído diário do spread (std ≈ 0.42) supera o desvio móvel do z-score (≈ 0.25), gerando saídas prematuras por ruído antes da reversão real. Nenhuma combinação de parâmetros testada chegou perto de 13 dias.' },
+      { t: 'Frequência caindo pós-2021', d: 'Janelas de 6 meses geram apenas 1–3 trades entre 2021–2026 (vs 5–11 em 2020). O regime de cointegração do par mudou e o spread cruza os thresholds com menos frequência.' },
+      { t: 'Johansen falhou no histórico completo', d: 'Os 18 pares correlacionados reprovaram Johansen na janela longa. A cointegração só aparece em janelas rolantes com critério relaxado: sinal estatístico frágil e dependente da janela.' }
+    ];
+    const limsEN = [
+      { t: 'Costs consume 62% of alpha', d: 'Gross 13.21% → net 5.03%. $8,175 in costs over 84 trades. The edge exists, but operational friction devours most of it.' },
+      { t: 'Holding 1.65d vs half-life ~13d', d: 'The daily noise of the spread (std ≈ 0.42) exceeds the moving deviation of the z-score (≈ 0.25), causing premature noise-driven exits before the real reversion. No parameter combination tested came close to 13 days.' },
+      { t: 'Frequency falling post-2021', d: '6-month windows produce only 1–3 trades between 2021–2026 (vs 5–11 in 2020). The cointegration regime of the pair shifted and the spread crosses the thresholds less often.' },
+      { t: 'Johansen failed on the full history', d: 'The 18 correlated pairs failed Johansen over the long window. Cointegration only appears in rolling windows with a relaxed criterion: a fragile, window-dependent statistical signal.' }
+    ];
+
+    const pipePT = [
+      { a: false, f: 'data/loader.py', d: 'preços ajustados (Adj Close), cache Parquet 24h' },
+      { a: true, f: 'selection/correlation.py', d: 'filtro grosso: correlação de retornos log ≥ 0.80' },
+      { a: true, f: 'selection/cointegration.py', d: 'Engle-Granger + Johansen + half-life + janelas rolantes' },
+      { a: true, f: 'kalman/filter.py', d: 'hedge ratio dinâmico (Kalman + EM), spread, z-score' },
+      { a: true, f: 'signals/zscore.py', d: 'máquina de estados: entry / exit / stop → ±1 / 0' },
+      { a: true, f: 'backtest/engine.py', d: 'simulação com custos reais → métricas in-sample' },
+      { a: true, f: 'backtest/walk_forward.py', d: 'Kalman re-treinado por janela → métricas OOS' }
+    ];
+    const pipeEN = [
+      { a: false, f: 'data/loader.py', d: 'adjusted prices (Adj Close), 24h Parquet cache' },
+      { a: true, f: 'selection/correlation.py', d: 'coarse filter: log-return correlation ≥ 0.80' },
+      { a: true, f: 'selection/cointegration.py', d: 'Engle-Granger + Johansen + half-life + rolling windows' },
+      { a: true, f: 'kalman/filter.py', d: 'dynamic hedge ratio (Kalman + EM), spread, z-score' },
+      { a: true, f: 'signals/zscore.py', d: 'state machine: entry / exit / stop → ±1 / 0' },
+      { a: true, f: 'backtest/engine.py', d: 'simulation with real costs → in-sample metrics' },
+      { a: true, f: 'backtest/walk_forward.py', d: 'Kalman re-trained per window → OOS metrics' }
+    ];
+
+    const libsPT = [
+      { l: 'pandas', d: 'Manipulação de séries temporais e DataFrames' },
+      { l: 'numpy', d: 'Operações numéricas e álgebra linear' },
+      { l: 'yfinance', d: 'Download de preços históricos' },
+      { l: 'pyarrow', d: 'Leitura/escrita do cache em Parquet' },
+      { l: 'matplotlib', d: 'Visualizações (heatmaps, equity curve, sinais)' },
+      { l: 'statsmodels', d: 'OLS, Engle-Granger, Johansen, ADF' },
+      { l: 'pykalman', d: 'Kalman Filter com EM para hedge ratio dinâmico' }
+    ];
+    const libsEN = [
+      { l: 'pandas', d: 'Time series and DataFrame manipulation' },
+      { l: 'numpy', d: 'Numerical operations and linear algebra' },
+      { l: 'yfinance', d: 'Download of historical prices' },
+      { l: 'pyarrow', d: 'Read/write of the Parquet cache' },
+      { l: 'matplotlib', d: 'Visualizations (heatmaps, equity curve, signals)' },
+      { l: 'statsmodels', d: 'OLS, Engle-Granger, Johansen, ADF' },
+      { l: 'pykalman', d: 'Kalman Filter with EM for the dynamic hedge ratio' }
+    ];
+
+    return {
+      themeClass: 'theme-' + theme,
+      isPT: lang === 'pt',
+      isEN: lang === 'en',
+      t: STR[lang],
+      smileyIcon: this.icon('smiley'),
+      figFilter: (this.props.invertFigures ?? false) ? 'invert(0.9) hue-rotate(180deg)' : 'none',
+      cardProps: { style: { cursor: 'default' } },
+      pairs: [
+        { p: 'XOM / CVX', pv: '0.081', hl: '87.7' },
+        { p: 'BAC / GS', pv: '0.085', hl: '81.4' },
+        { p: 'COP / EOG', pv: '0.119', hl: '104.5' },
+        { p: 'BAC / MS', pv: '0.123', hl: '83.7' },
+        { p: 'GS / MS', pv: '0.367', hl: '82.1' }
+      ],
+      rolling: lang === 'en' ? rollingEN : rollingPT,
+      metrics: [
+        { k: 'Gross return', v: '13.21%', c: 'inherit' },
+        { k: 'Net return', v: '5.03%', c: 'var(--pos)' },
+        { k: 'Sharpe ratio', v: '1.01', c: 'inherit' },
+        { k: 'Sortino ratio', v: '4.77', c: 'inherit' },
+        { k: 'Max drawdown', v: '-0.28%', c: 'inherit' },
+        { k: 'Win rate', v: '70.3%', c: 'inherit' },
+        { k: 'Profit factor', v: '8.24', c: 'inherit' },
+        { k: 'Total costs', v: '$8,175', c: 'var(--neg)' }
+      ],
+      wf: [
+        { a: '2020-01-02', b: '2020-01-03', c: '2020-07-02', sh: '1.20', ret: '0.56%', w: '81.8%', n: '11', cc: 'inherit' },
+        { a: '2020-07-02', b: '2020-07-06', c: '2020-12-31', sh: '2.05', ret: '0.47%', w: '100.0%', n: '5', cc: 'inherit' },
+        { a: '2020-12-31', b: '2021-01-04', c: '2021-07-02', sh: '0.52', ret: '0.05%', w: '100.0%', n: '2', cc: 'inherit' },
+        { a: '2021-07-02', b: '2021-07-06', c: '2021-12-31', sh: '-0.32', ret: '-0.02%', w: '0.0%', n: '1', cc: 'var(--neg)' },
+        { a: '2021-12-31', b: '2022-01-03', c: '2022-07-05', sh: '1.90', ret: '0.51%', w: '100.0%', n: '5', cc: 'inherit' },
+        { a: '2022-07-05', b: '2022-07-06', c: '2023-01-03', sh: '1.04', ret: '0.17%', w: '100.0%', n: '4', cc: 'inherit' },
+        { a: '2023-01-03', b: '2023-01-04', c: '2023-07-06', sh: '0.23', ret: '0.01%', w: '100.0%', n: '1', cc: 'inherit' },
+        { a: '2023-07-06', b: '2023-07-07', c: '2024-01-04', sh: '0.10', ret: '0.01%', w: '33.3%', n: '3', cc: 'inherit' },
+        { a: '2024-01-04', b: '2024-01-05', c: '2024-07-08', sh: '0.17', ret: '0.02%', w: '66.7%', n: '3', cc: 'inherit' },
+        { a: '2024-07-08', b: '2024-07-09', c: '2025-01-06', sh: '1.00', ret: '0.19%', w: '85.7%', n: '7', cc: 'inherit' },
+        { a: '2025-01-06', b: '2025-01-07', c: '2025-07-10', sh: '1.07', ret: '0.24%', w: '57.1%', n: '7', cc: 'inherit' },
+        { a: '2025-07-10', b: '2025-07-11', c: '2026-01-08', sh: '0.48', ret: '0.03%', w: '100.0%', n: '1', cc: 'inherit' }
+      ],
+      lims: lang === 'en' ? limsEN : limsPT,
+      pipe: lang === 'en' ? pipeEN : pipePT,
+      libs: lang === 'en' ? libsEN : libsPT
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+/* Psyche effects & spacing conventions */
+:root {
+	/* bevel: chunky retro inset — used by Button, InfoChit */
+	--bevel-out: inset -1px -1px 0px rgba(0, 0, 0, 0.5), inset 1px 1px 0px rgba(255, 255, 255, 0.5); /* @kind shadow */
+	--bevel-in: inset -1px -1px 0px rgba(255, 255, 255, 0.5), inset 1px 1px 0px rgba(0, 0, 0, 0.5); /* @kind shadow */
+
+	/* borders — everything is 2px solid, radius 0 */
+	--border-width: 2px;
+	--radius: 0px;
+
+	/* hard-offset card shadow (ShadowCard/MiniCard) */
+	--card-shadow-offset: 8px;
+
+	/* spacing steps observed in source: 2 4 8 12 16 24 36 48 */
+	--space-1: 2px;
+	--space-2: 4px;
+	--space-3: 8px;
+	--space-4: 12px;
+	--space-5: 16px;
+	--space-6: 24px;
+	--space-7: 36px;
+	--space-8: 48px;
+}
+
+/* base document defaults matching themes.ts sharedTheme */
+* { box-sizing: border-box; }
+html { overflow-x: hidden; }
+body {
+	margin: 0;
+	min-height: 100vh;
+	background: var(--color-bg);
+	color: var(--color-fg);
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--color-fg); }
+a:hover { color: var(--forest-400); }
+.theme-dark a:hover { color: var(--forest-300); }

@@ -1,0 +1,41 @@
+/* Psyche type system — from website/frontend/src/fonts.ts */
+:root {
+	/* families */
+	--font-display: 'Soufflet Vert Hybrid 106R', serif; /* always lowercase! */
+	--font-headline: 'Geist Mono', monospace;
+	--font-body: 'Geist Mono', monospace; /* letter-spacing: -0.25px */
+	--font-aux: 'Geist', sans-serif;
+	--font-button: 'Geist Mono', monospace; /* letter-spacing: 0.5px; uppercase */
+
+	/* size scale (rem) with paired line-heights */
+	--text-xs: 0.75rem;    --leading-xs: 1rem;
+	--text-sm: 0.875rem;   --leading-sm: 1.25rem;
+	--text-base: 1rem;     --leading-base: 1.5rem;
+	--text-lg: 1.125rem;   --leading-lg: 1.75rem;
+	--text-xl: 1.25rem;    --leading-xl: 1.75rem;
+	--text-2xl: 1.5rem;    --leading-2xl: 2rem;
+	--text-3xl: 1.875rem;  --leading-3xl: 2.25rem;
+	--text-4xl: 2.25rem;   --leading-4xl: 2.5rem;
+	--text-5xl: 3rem;      --leading-5xl: 1;
+	--text-6xl: 3.75rem;   --leading-6xl: 1;
+	--text-7xl: 4.5rem;    --leading-7xl: 1;
+}
+
+/* utility classes mirroring fonts.ts `text[...]` combos */
+.t-display { font-family: var(--font-display); text-transform: lowercase; font-weight: 400; }
+.t-headline { font-family: var(--font-headline); }
+.t-body { font-family: var(--font-body); letter-spacing: -0.25px; }
+.t-aux { font-family: var(--font-aux); }
+.t-button { font-family: var(--font-button); letter-spacing: 0.5px; text-transform: uppercase; }
+
+.t-xs { font-size: var(--text-xs); line-height: var(--leading-xs); }
+.t-sm { font-size: var(--text-sm); line-height: var(--leading-sm); }
+.t-base { font-size: var(--text-base); line-height: var(--leading-base); }
+.t-lg { font-size: var(--text-lg); line-height: var(--leading-lg); }
+.t-xl { font-size: var(--text-xl); line-height: var(--leading-xl); }
+.t-2xl { font-size: var(--text-2xl); line-height: var(--leading-2xl); }
+.t-3xl { font-size: var(--text-3xl); line-height: var(--leading-3xl); }
+.t-4xl { font-size: var(--text-4xl); line-height: var(--leading-4xl); }
+.t-5xl { font-size: var(--text-5xl); line-height: var(--leading-5xl); }
+.t-6xl { font-size: var(--text-6xl); line-height: var(--leading-6xl); }
+.t-7xl { font-size: var(--text-7xl); line-height: var(--leading-7xl); }

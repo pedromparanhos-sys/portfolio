@@ -1,0 +1,92 @@
+/* Psyche color system — exact values from website/frontend/src/colors.ts */
+:root {
+	/* slate — neutral, slightly green-tinted */
+	--slate-0: #fcfdfc;
+	--slate-100: #f7f8f7;
+	--slate-200: #ecf0eb;
+	--slate-300: #dfe3de;
+	--slate-400: #b9beb6;
+	--slate-500: #90968d;
+	--slate-600: #676d64;
+	--slate-700: #464b44;
+	--slate-800: #313630;
+	--slate-900: #20241e;
+	--slate-1000: #0c100a;
+
+	/* forest — brand green */
+	--forest-100: #dcf4de;
+	--forest-200: #c0edc0;
+	--forest-300: #90d596;
+	--forest-400: #4b9551;
+	--forest-500: #396a3d;
+	--forest-600: #2a462d;
+	--forest-700: #1f3320;
+
+	/* gold — primary action */
+	--gold-100: #faecc6;
+	--gold-200: #fcde92;
+	--gold-300: #f6c955;
+	--gold-400: #ecae13;
+	--gold-500: #c49212;
+	--gold-600: #956f0e;
+
+	/* lime — progress / funding accents */
+	--lime-100: #e6ffd1;
+	--lime-200: #cdffa3;
+	--lime-300: #90f53d;
+	--lime-400: #61cb0b;
+	--lime-500: #4b970c;
+	--lime-600: #2f5e08;
+
+	/* success — teal */
+	--success-100: #e3fcfc;
+	--success-200: #c2f0f0;
+	--success-300: #6ed8d8;
+	--success-400: #23b3b3;
+	--success-500: #188181;
+	--success-600: #0c5555;
+
+	/* error — rust orange */
+	--error-100: #feede7;
+	--error-200: #fdcebe;
+	--error-300: #f7906e;
+	--error-400: #dd5c31;
+	--error-500: #a5360d;
+	--error-600: #5e2308;
+
+	/* status dot colors (StatusChip) */
+	--status-active: var(--success-400);
+	--status-funding: var(--lime-300);
+	--status-completed: var(--forest-500);
+	--status-paused: var(--slate-400);
+	--status-waiting: var(--gold-300);
+}
+
+/* Light theme (default) — matches .theme-light */
+:root,
+.theme-light {
+	--color-bg: var(--slate-200);
+	--color-fg: var(--forest-700);
+	--color-border: var(--slate-500);
+	--color-border-strong: var(--forest-700);
+	--color-accent-text: var(--forest-700);
+	--color-muted: var(--slate-600);
+	--surface-header: var(--slate-300);
+	--color-card-shadow: var(--forest-700);
+	--bg-svg: url("data:image/svg+xml;charset=UTF-8, <svg width='347.7' height='260.8' xmlns='http://www.w3.org/2000/svg'><path style='opacity:0.3;fill:%23dfe3de;stroke:none' d='M65-1s48 0 53 65C-2 64-2 11-2 11v129s0-54 120-54c-5 65-53 65-53 65h129s-48 0-53-65c120 1 120 54 120 54V11s0 53-120 53c5-65 53-65 53-65h-64Z' transform='translate(2 1)'/></svg>");
+}
+
+/* Dark theme — matches .theme-dark */
+.theme-dark {
+	--color-bg: var(--forest-700);
+	--color-fg: var(--slate-0);
+	--color-border: var(--forest-500);
+	--color-border-strong: var(--forest-500);
+	--color-accent-text: var(--forest-300);
+	--color-muted: var(--forest-300);
+	--surface-header: var(--forest-600);
+	--color-card-shadow: var(--forest-500);
+	--bg-svg: url("data:image/svg+xml;charset=UTF-8, <svg width='347.7' height='260.8' xmlns='http://www.w3.org/2000/svg'><path style='opacity:0.5;fill:%232a462d;stroke:none' d='M65-1s48 0 53 65C-2 64-2 11-2 11v129s0-54 120-54c-5 65-53 65-53 65h129s-48 0-53-65c120 1 120 54 120 54V11s0 53-120 53c5-65 53-65 53-65h-64Z' transform='translate(2 1)'/></svg>");
+	background: var(--color-bg);
+	color: var(--color-fg);
+}
