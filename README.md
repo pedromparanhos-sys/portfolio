@@ -12,6 +12,7 @@ Site estático de página única com quatro seções — *sobre mim*, *projetos*
 
 - **pairs trading** — arbitragem estatística sobre pares cointegrados (QQQ/XLK) com hedge ratio dinâmico via Kalman Filter e validação walk-forward.
 - **orderbook signal** — order book imbalance como sinal preditivo de preço em BTC/USDT, com signal decay e backtest de microestrutura.
+- **lbo fleury** — análise de leveraged buyout (take-private) da Fleury (FLRY3), com modelagem determinística em Excel e simulação de Monte Carlo.
 
 Recursos:
 

@@ -289,7 +289,7 @@ body { margin: 0; background: var(--slate-200); }
   </div>
 
   <div style="border-top: 2px solid var(--color-border); background: var(--color-bg); padding: 36px 24px 48px; display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center;">
-    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Button" variant="primary" icon="{{ smileyIcon }}" href="https://github.com/pedromparanhos-sys/pairs-trading" hint-size="auto,28px">{{ t.footBtn }}</x-import>
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Button" variant="primary" icon="{{ smileyIcon }}" href="https://github.com/pedromparanhos-sys/pairs-trading" target="_blank" rel="noopener noreferrer" hint-size="auto,28px">{{ t.footBtn }}</x-import>
     <span style="font-size: 0.875rem; font-weight: 500;">{{ t.footLine }}</span>
     <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.SymbolSeparatedItems" hint-size="auto,24px"><span>python</span><span>pandas</span><span>statsmodels</span><span>pykalman</span><span>matplotlib</span><span>yfinance</span></x-import>
     <span style="font-family: var(--font-aux); font-size: 0.75rem; color: var(--color-muted);">{{ t.footCopy }}</span>

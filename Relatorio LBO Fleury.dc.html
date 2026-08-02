@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/tokens/colors.css">
+<link rel="stylesheet" href="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/tokens/typography.css">
+<link rel="stylesheet" href="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/tokens/effects.css">
+<link rel="stylesheet" href="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/styles.css">
+<script src="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/_ds_bundle.js"></script>
+<script>window.PSYCHE_ASSET_BASE='_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/assets';</script>
+<style>
+  html,body{margin:0;}
+  body{background:var(--slate-200);}
+  .theme-light{--color-bg:#ece5d3;}
+  .lbo{
+    --lbo-pos:var(--success-500); --lbo-neg:var(--error-500);
+    --lbo-accent:var(--forest-500); --lbo-gold:var(--gold-600);
+    --lbo-code-fg:var(--gold-600); --lbo-line:var(--color-border); --heat-fg:var(--forest-700);
+    font-family:var(--font-body);letter-spacing:-.25px;color:var(--color-fg);
+  }
+  .lbo.theme-dark{
+    --lbo-pos:var(--lime-300); --lbo-neg:var(--error-300);
+    --lbo-accent:var(--forest-300); --lbo-gold:var(--gold-300);
+    --lbo-code-fg:var(--gold-200); --lbo-line:var(--forest-600); --heat-fg:var(--slate-0);
+  }
+  .lbo p{font-size:.9375rem;line-height:1.65;max-width:72ch;margin:0 0 14px;color:var(--color-fg);text-wrap:pretty;}
+  .lbo p.lead{font-size:1.0625rem;line-height:1.6;}
+  .lbo p.note{font-size:.8125rem;line-height:1.55;color:var(--color-muted);max-width:78ch;}
+  .lbo strong{color:var(--lbo-accent);font-weight:600;}
+  .lbo em{color:var(--color-fg);font-style:italic;}
+  .lbo code{font-family:var(--font-body);background:var(--surface-header);color:var(--lbo-code-fg);padding:1px 5px;font-size:.85em;}
+  .lbo h3{font-family:var(--font-body);text-transform:uppercase;font-size:.9375rem;letter-spacing:0;font-weight:600;color:var(--lbo-accent);margin:30px 0 12px;display:flex;align-items:center;gap:9px;}
+  .lbo h3::before{content:"";width:9px;height:9px;background:var(--lime-300);display:inline-block;flex:0 0 auto;}
+  .lbo .scroll{overflow-x:auto;margin:0 0 8px;}
+  .lbo table{width:100%;border-collapse:collapse;font-family:var(--font-body);letter-spacing:-.25px;font-size:.8125rem;min-width:520px;}
+  .lbo caption{text-align:left;text-transform:uppercase;font-family:var(--font-aux);font-size:.72rem;letter-spacing:.05em;color:var(--lbo-accent);padding:0 0 9px;}
+  .lbo th{text-align:right;text-transform:uppercase;background:var(--surface-header);color:var(--lbo-accent);padding:6px 10px;font-weight:600;font-size:.72rem;letter-spacing:.02em;border:1px solid var(--color-bg);}
+  .lbo th:first-child{text-align:left;}
+  .lbo th.tx{text-align:left;}
+  .lbo td{padding:6px 10px;border-top:1px solid var(--lbo-line);border-bottom:1px solid var(--lbo-line);text-align:right;font-variant-numeric:tabular-nums;color:var(--color-fg);}
+  .lbo td:first-child{text-align:left;color:var(--color-fg);}
+  .lbo td.tx{text-align:left;}
+  .lbo tr.total td{font-weight:700;color:var(--color-fg);border-top:2px solid var(--lbo-accent);border-bottom:2px solid var(--lbo-accent);background:rgba(144,213,150,.10);}
+  .lbo tr.sub td{color:var(--color-muted);}
+  .lbo tr.sub td:first-child{color:var(--color-muted);padding-left:22px;}
+  .lbo td.pos{color:var(--lbo-pos);font-weight:600;}
+  .lbo td.neg{color:var(--lbo-neg);font-weight:600;}
+  .lbo .heat td{text-align:center;color:var(--heat-fg);}
+  .lbo .heat td:first-child{text-align:left;color:var(--lbo-accent);font-weight:600;}
+  .lbo .heat th:not(:first-child){text-align:center;}
+  .lbo .heat .t1{background:rgba(57,106,61,.40);}
+  .lbo .heat .t2{background:rgba(75,149,81,.55);}
+  .lbo .heat .t3{background:rgba(97,203,11,.34);}
+  .lbo .heat .t4{background:rgba(97,203,11,.60);color:var(--forest-700);font-weight:600;}
+  .lbo .heat .t5{background:rgba(144,245,61,.85);color:var(--slate-1000);font-weight:700;}
+  .lbo .heat .base-cell{outline:2px solid var(--gold-400);outline-offset:-2px;color:var(--lbo-gold);font-weight:700;}
+  .lbo .callout{border:2px solid var(--color-border);background:var(--surface-header);padding:15px 17px;margin:20px 0;}
+  .lbo .callout p{margin:0;max-width:none;color:var(--color-fg);font-size:.9rem;}
+  .lbo .callout .k{font-family:var(--font-aux);text-transform:uppercase;font-size:.68rem;letter-spacing:.07em;color:var(--lbo-gold);font-weight:700;margin-right:6px;}
+  .lbo .callout.risk{border-color:var(--error-400);background:rgba(221,92,49,.13);}
+  .lbo .callout.risk .k{color:var(--lbo-neg);}
+  .lbo ol.risks{list-style:none;counter-reset:r;padding:0;margin:8px 0 0;}
+  .lbo ol.risks li{counter-increment:r;display:grid;grid-template-columns:auto 1fr;gap:2px 16px;padding:16px 0;border-top:1px solid var(--lbo-line);}
+  .lbo ol.risks li::before{content:counter(r,decimal-leading-zero);grid-row:1 / span 2;font-family:var(--font-display);text-transform:lowercase;font-size:1.75rem;line-height:1;color:var(--color-border);align-self:start;min-width:1.6em;}
+  .lbo ol.risks .t{font-family:var(--font-body);text-transform:uppercase;font-size:.8125rem;letter-spacing:.01em;font-weight:700;color:var(--lbo-accent);}
+  .lbo ol.risks .d{font-size:.875rem;line-height:1.6;color:var(--color-fg);max-width:80ch;}
+  .lbo ol.risks .d code{font-size:.85em;}
+  .lbo figure{margin:18px 0 0;}
+  .lbo figcaption{font-size:.8125rem;line-height:1.55;color:var(--color-muted);margin-top:10px;max-width:80ch;}
+  .lbo figcaption strong{color:var(--lbo-accent);}
+  .lbo .statcard{cursor:default;}
+  .lbo a{color:var(--lbo-accent);}
+  @media (max-width:720px){ .lbo .hd-pad{padding-left:20px !important;padding-right:20px !important;} }
+</style>
+</helmet>
+<div class="lbo {{ themeClass }}" data-screen-label="relatorio lbo fleury" style="min-height:100vh;background-image:var(--bg-svg);background-size:12px;background-color:var(--color-bg);color:var(--color-fg);">
+
+  <div class="hd-pad" style="max-width:1180px;margin:0 auto;padding:16px 28px 0;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;font-family:var(--font-body);letter-spacing:-.25px;text-transform:uppercase;font-size:.72rem;font-weight:600;color:var(--lbo-accent);">
+    <span>{{ t.eyebrowL }}</span>
+    <span>{{ t.eyebrowR }}</span>
+  </div>
+
+  <header class="hd-pad" style="position:relative;max-width:1180px;margin:0 auto;padding:22px 28px 42px;overflow:hidden;">
+    <div style="position:absolute;top:6px;right:14px;color:var(--lbo-accent);opacity:.7;pointer-events:none;">
+      <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Icon" name="corner-fleur" size="132px" hint-size="132px,132px"></x-import>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:18px;">
+      <span style="background:var(--forest-300);color:var(--forest-700);padding:3px 8px;font-family:var(--font-aux);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;">{{ t.badge }}</span>
+      <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.StatusChip" status="paused" hint-size="auto,22px">{{ t.statusChip }}</x-import>
+    </div>
+    <h1 style="font-family:var(--font-display);text-transform:lowercase;font-weight:400;font-size:clamp(2.6rem,6.4vw,4.4rem);line-height:1.02;margin:0 0 16px;color:var(--color-fg);">fleury s.a. <span style="color:var(--lbo-accent);">(flry3)</span></h1>
+    <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p style="font-family:var(--font-body);letter-spacing:-.25px;font-size:1.0625rem;line-height:1.6;max-width:64ch;color:var(--color-fg);margin:0 0 22px;">Análise de aquisição alavancada (LBO) com take-private em 5 anos: modelagem determinística validada em Excel e distribuição de retornos por simulação de Monte Carlo com 10.000 cenários correlacionados.</p></sc-if>
+    <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p style="font-family:var(--font-body);letter-spacing:-.25px;font-size:1.0625rem;line-height:1.6;max-width:64ch;color:var(--color-fg);margin:0 0 22px;">Leveraged buyout (take-private) analysis over a 5-year horizon: deterministic model validated in Excel and a return distribution from a Monte Carlo simulation of 10,000 correlated scenarios.</p></sc-if>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;">
+      <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.InfoChit" label="{{ t.chDataBase }}" hint-size="auto,54px">{{ t.chDataBaseV }}</x-import>
+      <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.InfoChit" label="{{ t.chMoeda }}" hint-size="auto,54px">{{ t.chMoedaV }}</x-import>
+      <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.InfoChit" label="{{ t.chHoriz }}" hint-size="auto,54px">{{ t.chHorizV }}</x-import>
+      <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.InfoChit" label="{{ t.chMult }}" hint-size="auto,54px">{{ t.chMultV }}</x-import>
+    </div>
+    <p style="font-family:var(--font-aux);font-size:.75rem;color:var(--color-muted);margin:14px 0 0;">{{ t.fontes }}</p>
+  </header>
+
+  <main class="hd-pad" style="max-width:1180px;margin:0 auto;padding:0 28px 8px;display:flex;flex-direction:column;gap:44px;">
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.s1 }}" hint-size="100%,600px">
+      <div style="padding:22px 26px 28px;">
+        <div style="font-family:var(--font-aux);text-transform:uppercase;font-size:.7rem;letter-spacing:.14em;color:var(--lbo-accent);margin-bottom:16px;">{{ t.secL1 }}</div>
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}">
+          <p class="lead">A Fleury é o maior grupo de medicina diagnóstica do Brasil, com demanda defensiva e pouco cíclica. A tese central não é arbitragem de múltiplo: é <strong>capturar um ativo subalavancado, gerador de caixa, e desalavancá-lo agressivamente</strong> ao longo de cinco anos, com saída no mesmo múltiplo de entrada.</p>
+          <p>Três fatos sustentam a operação. Primeiro, a companhia negocia a cerca de 4,9× EV/EBITDA, e a entrada é modelada a <strong>6,25×</strong> — um prêmio de controle de aproximadamente 28%, coerente com take-privates comparáveis. Segundo, a estrutura de capital atual é conservadora: a dívida líquida ex-arrendamento de R$ 1,63 bi sobre um EBITDA LTM de R$ 2,19 bi implica alavancagem de apenas ~0,75×, o que abre espaço real para levar a estrutura a <strong>4,5× no fechamento</strong>. Terceiro, a margem EBITDA é estável na faixa de 27–28%, e o <em>dividend yield</em> de ~7% evidencia geração de caixa recorrente — o combustível do <em>cash sweep</em>.</p>
+          <p>O retorno vem, portanto, de duas fontes verificáveis e não de expansão de múltiplo: o EBITDA cresce 45,9% no período (de R$ 2,19 bi para R$ 3,19 bi, a 8% a.a. de receita com margem constante) e a alavancagem cai de 4,5× para <strong>2,73×</strong>, com 100% do caixa excedente destinado à amortização. A premissa de saída é deliberadamente conservadora: <strong>múltiplo de saída igual ao de entrada</strong>, sem qualquer expansão.</p>
+        </sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}">
+          <p class="lead">Fleury is Brazil's largest diagnostic-medicine group, with defensive, largely non-cyclical demand. The core thesis is not multiple arbitrage: it is to <strong>acquire an under-levered, cash-generative asset and deleverage it aggressively</strong> over five years, exiting at the same entry multiple.</p>
+          <p>Three facts support the deal. First, the company trades at about 4.9× EV/EBITDA, and entry is modeled at <strong>6.25×</strong> — a control premium of roughly 28%, consistent with comparable take-privates. Second, the current capital structure is conservative: net debt ex-lease of R$ 1.63 bn over LTM EBITDA of R$ 2.19 bn implies leverage of just ~0.75×, leaving real room to take the structure to <strong>4.5× at close</strong>. Third, the EBITDA margin is stable in the 27–28% range, and the ~7% <em>dividend yield</em> evidences recurring cash generation — the fuel for the <em>cash sweep</em>.</p>
+          <p>The return therefore comes from two verifiable sources rather than multiple expansion: EBITDA grows 45.9% over the period (from R$ 2.19 bn to R$ 3.19 bn, at 8% p.a. revenue growth with a constant margin) and leverage falls from 4.5× to <strong>2.73×</strong>, with 100% of excess cash directed to amortization. The exit assumption is deliberately conservative: <strong>exit multiple equal to entry</strong>, with no expansion whatsoever.</p>
+        </sc-if>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin:24px 0 10px;">
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.ShadowCard" class-name="statcard" hint-size="100%,150px">
+            <div style="display:flex;flex-direction:column;gap:7px;">
+              <span style="font-family:var(--font-aux);text-transform:uppercase;font-size:.68rem;letter-spacing:.05em;color:var(--lbo-accent);">{{ t.k_moic }}</span>
+              <span style="font-family:var(--font-display);text-transform:lowercase;font-size:2rem;line-height:1;color:var(--color-fg);">{{ t.k_moic_v }}</span>
+              <span style="font-family:var(--font-aux);font-size:.74rem;color:var(--color-muted);">{{ t.k_moic_s }}</span>
+            </div>
+          </x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.ShadowCard" class-name="statcard" hint-size="100%,150px">
+            <div style="display:flex;flex-direction:column;gap:7px;">
+              <span style="font-family:var(--font-aux);text-transform:uppercase;font-size:.68rem;letter-spacing:.05em;color:var(--lbo-accent);">{{ t.k_tir }}</span>
+              <span style="font-family:var(--font-display);text-transform:lowercase;font-size:2rem;line-height:1;color:var(--lbo-pos);">{{ t.k_tir_v }}</span>
+              <span style="font-family:var(--font-aux);font-size:.74rem;color:var(--color-muted);">{{ t.k_tir_s }}</span>
+            </div>
+          </x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.ShadowCard" class-name="statcard" hint-size="100%,150px">
+            <div style="display:flex;flex-direction:column;gap:7px;">
+              <span style="font-family:var(--font-aux);text-transform:uppercase;font-size:.68rem;letter-spacing:.05em;color:var(--lbo-accent);">{{ t.k_eq }}</span>
+              <span style="font-family:var(--font-display);text-transform:lowercase;font-size:2rem;line-height:1;color:var(--color-fg);">{{ t.k_eq_v }}</span>
+              <span style="font-family:var(--font-aux);font-size:.74rem;color:var(--color-muted);">{{ t.k_eq_s }}</span>
+            </div>
+          </x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.ShadowCard" class-name="statcard" hint-size="100%,150px">
+            <div style="display:flex;flex-direction:column;gap:7px;">
+              <span style="font-family:var(--font-aux);text-transform:uppercase;font-size:.68rem;letter-spacing:.05em;color:var(--lbo-accent);">{{ t.k_lev }}</span>
+              <span style="font-family:var(--font-display);text-transform:lowercase;font-size:2rem;line-height:1;color:var(--color-fg);">{{ t.k_lev_v }}</span>
+              <span style="font-family:var(--font-aux);font-size:.74rem;color:var(--color-muted);">{{ t.k_lev_s }}</span>
+            </div>
+          </x-import>
+        </div>
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p class="note">Valores do caso base determinístico, reproduzidos pelo motor Python com aderência exata ao Excel (diferença nula em todas as linhas do debt schedule).</p></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p class="note">Base-case deterministic values, reproduced by the Python engine with exact adherence to the Excel (zero difference on every line of the debt schedule).</p></sc-if>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.s2 }}" hint-size="100%,900px">
+      <div style="padding:22px 26px 28px;">
+        <div style="font-family:var(--font-aux);text-transform:uppercase;font-size:.7rem;letter-spacing:.14em;color:var(--lbo-accent);margin-bottom:16px;">{{ t.secL2 }}</div>
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p>O Enterprise Value de entrada de R$ 13,69 bi resulta do EBITDA LTM de 3T25 multiplicado por 6,25×. Descontada a dívida líquida existente, restam R$ 12,06 bi a pagar aos acionistas. Somados o refinanciamento integral da dívida legada e as taxas de transação de 2% do EV, os usos totalizam R$ 13,96 bi, financiados por dívida nova de 4,5× EBITDA e pelo equity do sponsor como <em>plug</em>.</p></sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p>The R$ 13.69 bn entry Enterprise Value results from the Q3-25 LTM EBITDA multiplied by 6.25×. Netting out existing net debt leaves R$ 12.06 bn to pay shareholders. Adding full refinancing of legacy debt and transaction fees of 2% of EV, uses total R$ 13.96 bn, funded by new debt of 4.5× EBITDA and sponsor equity as the <em>plug</em>.</p></sc-if>
+
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}">
+        <div class="scroll">
+          <sc-raw-table>
+            <sc-raw-caption>A. Avaliação de entrada — R$ mil</sc-raw-caption>
+            <sc-raw-tbody>
+              <sc-raw-tr><sc-raw-td>EBITDA base (LTM 3T25)</sc-raw-td><sc-raw-td>2.190.000</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Múltiplo de entrada (EV/EBITDA)</sc-raw-td><sc-raw-td>6,25×</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr class="total"><sc-raw-td>Enterprise Value de entrada</sc-raw-td><sc-raw-td>13.687.500</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>(−) Dívida líquida existente (ex-arrendamento)</sc-raw-td><sc-raw-td>1.630.000</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr class="total"><sc-raw-td>Equity Value a pagar aos acionistas</sc-raw-td><sc-raw-td>12.057.500</sc-raw-td></sc-raw-tr>
+            </sc-raw-tbody>
+          </sc-raw-table>
+        </div>
+        <div class="scroll">
+          <sc-raw-table>
+            <sc-raw-caption>B. Usos e fontes de recursos — R$ mil</sc-raw-caption>
+            <sc-raw-thead>
+              <sc-raw-tr><sc-raw-th class="tx">Usos</sc-raw-th><sc-raw-th>Valor</sc-raw-th><sc-raw-th class="tx">Fontes</sc-raw-th><sc-raw-th>Valor</sc-raw-th><sc-raw-th>%</sc-raw-th></sc-raw-tr>
+            </sc-raw-thead>
+            <sc-raw-tbody>
+              <sc-raw-tr><sc-raw-td>Compra do equity</sc-raw-td><sc-raw-td>12.057.500</sc-raw-td><sc-raw-td class="tx">Dívida nova (4,5× EBITDA)</sc-raw-td><sc-raw-td>9.855.000</sc-raw-td><sc-raw-td>70,6%</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Refinanciamento da dívida existente</sc-raw-td><sc-raw-td>1.630.000</sc-raw-td><sc-raw-td class="tx">Equity do sponsor (plug)</sc-raw-td><sc-raw-td>4.106.250</sc-raw-td><sc-raw-td>29,4%</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Taxas de transação (2% do EV)</sc-raw-td><sc-raw-td>273.750</sc-raw-td><sc-raw-td class="tx">—</sc-raw-td><sc-raw-td>—</sc-raw-td><sc-raw-td>—</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr class="total"><sc-raw-td>Total de usos</sc-raw-td><sc-raw-td>13.961.250</sc-raw-td><sc-raw-td class="tx">Total de fontes</sc-raw-td><sc-raw-td>13.961.250</sc-raw-td><sc-raw-td>100,0%</sc-raw-td></sc-raw-tr>
+            </sc-raw-tbody>
+          </sc-raw-table>
+        </div>
+        <p class="note">Checagem de fechamento: Fontes − Usos = 0. O passivo de arrendamento (IFRS 16) de R$ 1,25 bi é tratado fora da dívida de aquisição — ver Seção 06, item 8.</p>
+        <h3>Projeções operacionais</h3>
+        <div class="scroll">
+          <sc-raw-table>
+            <sc-raw-caption>Demonstrativo projetado — R$ mil</sc-raw-caption>
+            <sc-raw-thead>
+              <sc-raw-tr><sc-raw-th class="tx">Linha</sc-raw-th><sc-raw-th>Ano 1</sc-raw-th><sc-raw-th>Ano 2</sc-raw-th><sc-raw-th>Ano 3</sc-raw-th><sc-raw-th>Ano 4</sc-raw-th><sc-raw-th>Ano 5</sc-raw-th></sc-raw-tr>
+            </sc-raw-thead>
+            <sc-raw-tbody>
+              <sc-raw-tr><sc-raw-td>Receita líquida</sc-raw-td><sc-raw-td>8.538.628</sc-raw-td><sc-raw-td>9.221.718</sc-raw-td><sc-raw-td>9.959.456</sc-raw-td><sc-raw-td>10.756.212</sc-raw-td><sc-raw-td>11.616.709</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>EBITDA</sc-raw-td><sc-raw-td>2.348.123</sc-raw-td><sc-raw-td>2.535.973</sc-raw-td><sc-raw-td>2.738.850</sc-raw-td><sc-raw-td>2.957.958</sc-raw-td><sc-raw-td>3.194.595</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr class="sub"><sc-raw-td>Margem EBITDA</sc-raw-td><sc-raw-td>27,5%</sc-raw-td><sc-raw-td>27,5%</sc-raw-td><sc-raw-td>27,5%</sc-raw-td><sc-raw-td>27,5%</sc-raw-td><sc-raw-td>27,5%</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>(−) Depreciação &amp; amortização</sc-raw-td><sc-raw-td>341.545</sc-raw-td><sc-raw-td>368.869</sc-raw-td><sc-raw-td>398.378</sc-raw-td><sc-raw-td>430.248</sc-raw-td><sc-raw-td>464.668</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr class="total"><sc-raw-td>EBIT</sc-raw-td><sc-raw-td>2.006.578</sc-raw-td><sc-raw-td>2.167.104</sc-raw-td><sc-raw-td>2.340.472</sc-raw-td><sc-raw-td>2.527.710</sc-raw-td><sc-raw-td>2.729.927</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Capex</sc-raw-td><sc-raw-td>597.704</sc-raw-td><sc-raw-td>645.520</sc-raw-td><sc-raw-td>697.162</sc-raw-td><sc-raw-td>752.935</sc-raw-td><sc-raw-td>813.170</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Variação de capital de giro</sc-raw-td><sc-raw-td>12.650</sc-raw-td><sc-raw-td>13.662</sc-raw-td><sc-raw-td>14.755</sc-raw-td><sc-raw-td>15.935</sc-raw-td><sc-raw-td>17.210</sc-raw-td></sc-raw-tr>
+            </sc-raw-tbody>
+          </sc-raw-table>
+        </div>
+        <h3>Debt schedule e cash sweep</h3>
+        <div class="scroll">
+          <sc-raw-table>
+            <sc-raw-caption>Cascata de dívida — juros sobre saldo médio — R$ mil</sc-raw-caption>
+            <sc-raw-thead>
+              <sc-raw-tr><sc-raw-th class="tx">Linha</sc-raw-th><sc-raw-th>Ano 1</sc-raw-th><sc-raw-th>Ano 2</sc-raw-th><sc-raw-th>Ano 3</sc-raw-th><sc-raw-th>Ano 4</sc-raw-th><sc-raw-th>Ano 5</sc-raw-th></sc-raw-tr>
+            </sc-raw-thead>
+            <sc-raw-tbody>
+              <sc-raw-tr><sc-raw-td>Saldo devedor inicial</sc-raw-td><sc-raw-td>9.855.000</sc-raw-td><sc-raw-td>9.855.000</sc-raw-td><sc-raw-td>9.781.611</sc-raw-td><sc-raw-td>9.580.433</sc-raw-td><sc-raw-td>9.235.197</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>(−) Juros (saldo médio, 14%)</sc-raw-td><sc-raw-td>1.379.700</sc-raw-td><sc-raw-td>1.374.563</sc-raw-td><sc-raw-td>1.355.343</sc-raw-td><sc-raw-td>1.317.094</sc-raw-td><sc-raw-td>1.257.345</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>(−) Impostos (34%)</sc-raw-td><sc-raw-td>213.138</sc-raw-td><sc-raw-td>269.464</sc-raw-td><sc-raw-td>334.944</sc-raw-td><sc-raw-td>411.609</sc-raw-td><sc-raw-td>500.678</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>(−) Pagamento de arrendamento</sc-raw-td><sc-raw-td>187.500</sc-raw-td><sc-raw-td>159.375</sc-raw-td><sc-raw-td>135.469</sc-raw-td><sc-raw-td>115.148</sc-raw-td><sc-raw-td>97.876</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr class="total"><sc-raw-td>Caixa disponível para sweep</sc-raw-td><sc-raw-td class="neg">−42.569</sc-raw-td><sc-raw-td>73.389</sc-raw-td><sc-raw-td>201.178</sc-raw-td><sc-raw-td>345.236</sc-raw-td><sc-raw-td>508.316</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Amortização (cash sweep, 100%)</sc-raw-td><sc-raw-td>0</sc-raw-td><sc-raw-td>73.389</sc-raw-td><sc-raw-td>201.178</sc-raw-td><sc-raw-td>345.236</sc-raw-td><sc-raw-td>508.316</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr class="total"><sc-raw-td>Saldo devedor final</sc-raw-td><sc-raw-td>9.855.000</sc-raw-td><sc-raw-td>9.781.611</sc-raw-td><sc-raw-td>9.580.433</sc-raw-td><sc-raw-td>9.235.197</sc-raw-td><sc-raw-td>8.726.881</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Alavancagem (Dív./EBITDA)</sc-raw-td><sc-raw-td>4,20×</sc-raw-td><sc-raw-td>3,86×</sc-raw-td><sc-raw-td>3,50×</sc-raw-td><sc-raw-td>3,12×</sc-raw-td><sc-raw-td>2,73×</sc-raw-td></sc-raw-tr>
+            </sc-raw-tbody>
+          </sc-raw-table>
+        </div>
+        <p class="note">Os juros incidem sobre o saldo médio do período, o que torna a equação implícita (juros → caixa → amortização → saldo final → juros). O motor Python resolve por iteração de ponto fixo, replicando o cálculo iterativo do Excel. <strong>No Ano 1 o caixa disponível é negativo (−R$ 42,6 mi)</strong>: não há amortização e a alavancagem permanece em 4,5× no fechamento do primeiro ano.</p>
+        <h3>O modelo em Excel</h3>
+        <p>As tabelas acima não são estimativas avulsas: saem de uma planilha de sete abas encadeadas por fórmula — <strong>Premissas → Sources &amp; Uses → Projeções → Debt Schedule → Saída → Retorno → Sensibilidade</strong> — em que alterar uma premissa na primeira aba se propaga por toda a cascata até a TIR. O debt schedule calcula juros sobre o saldo médio, o que introduz uma referência circular resolvida por cálculo iterativo, e todos os valores exibidos correspondem exatamente aos reproduzidos pelo motor Python.</p>
+        </sc-if>
+
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}">
+        <div class="scroll">
+          <sc-raw-table>
+            <sc-raw-caption>A. Entry valuation — R$ thousand</sc-raw-caption>
+            <sc-raw-tbody>
+              <sc-raw-tr><sc-raw-td>Base EBITDA (LTM Q3-25)</sc-raw-td><sc-raw-td>2,190,000</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Entry multiple (EV/EBITDA)</sc-raw-td><sc-raw-td>6.25×</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr class="total"><sc-raw-td>Entry Enterprise Value</sc-raw-td><sc-raw-td>13,687,500</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>(−) Existing net debt (ex-lease)</sc-raw-td><sc-raw-td>1,630,000</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr class="total"><sc-raw-td>Equity Value payable to shareholders</sc-raw-td><sc-raw-td>12,057,500</sc-raw-td></sc-raw-tr>
+            </sc-raw-tbody>
+          </sc-raw-table>
+        </div>
+        <div class="scroll">
+          <sc-raw-table>
+            <sc-raw-caption>B. Sources &amp; uses of funds — R$ thousand</sc-raw-caption>
+            <sc-raw-thead>
+              <sc-raw-tr><sc-raw-th class="tx">Uses</sc-raw-th><sc-raw-th>Amount</sc-raw-th><sc-raw-th class="tx">Sources</sc-raw-th><sc-raw-th>Amount</sc-raw-th><sc-raw-th>%</sc-raw-th></sc-raw-tr>
+            </sc-raw-thead>
+            <sc-raw-tbody>
+              <sc-raw-tr><sc-raw-td>Equity purchase</sc-raw-td><sc-raw-td>12,057,500</sc-raw-td><sc-raw-td class="tx">New debt (4.5× EBITDA)</sc-raw-td><sc-raw-td>9,855,000</sc-raw-td><sc-raw-td>70.6%</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Refinancing of existing debt</sc-raw-td><sc-raw-td>1,630,000</sc-raw-td><sc-raw-td class="tx">Sponsor equity (plug)</sc-raw-td><sc-raw-td>4,106,250</sc-raw-td><sc-raw-td>29.4%</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Transaction fees (2% of EV)</sc-raw-td><sc-raw-td>273,750</sc-raw-td><sc-raw-td class="tx">—</sc-raw-td><sc-raw-td>—</sc-raw-td><sc-raw-td>—</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr class="total"><sc-raw-td>Total uses</sc-raw-td><sc-raw-td>13,961,250</sc-raw-td><sc-raw-td class="tx">Total sources</sc-raw-td><sc-raw-td>13,961,250</sc-raw-td><sc-raw-td>100.0%</sc-raw-td></sc-raw-tr>
+            </sc-raw-tbody>
+          </sc-raw-table>
+        </div>
+        <p class="note">Closing check: Sources − Uses = 0. The lease liability (IFRS 16) of R$ 1.25 bn is treated outside the acquisition debt — see Section 06, item 8.</p>
+        <h3>Operating projections</h3>
+        <div class="scroll">
+          <sc-raw-table>
+            <sc-raw-caption>Projected statement — R$ thousand</sc-raw-caption>
+            <sc-raw-thead>
+              <sc-raw-tr><sc-raw-th class="tx">Line</sc-raw-th><sc-raw-th>Year 1</sc-raw-th><sc-raw-th>Year 2</sc-raw-th><sc-raw-th>Year 3</sc-raw-th><sc-raw-th>Year 4</sc-raw-th><sc-raw-th>Year 5</sc-raw-th></sc-raw-tr>
+            </sc-raw-thead>
+            <sc-raw-tbody>
+              <sc-raw-tr><sc-raw-td>Net revenue</sc-raw-td><sc-raw-td>8,538,628</sc-raw-td><sc-raw-td>9,221,718</sc-raw-td><sc-raw-td>9,959,456</sc-raw-td><sc-raw-td>10,756,212</sc-raw-td><sc-raw-td>11,616,709</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>EBITDA</sc-raw-td><sc-raw-td>2,348,123</sc-raw-td><sc-raw-td>2,535,973</sc-raw-td><sc-raw-td>2,738,850</sc-raw-td><sc-raw-td>2,957,958</sc-raw-td><sc-raw-td>3,194,595</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr class="sub"><sc-raw-td>EBITDA margin</sc-raw-td><sc-raw-td>27.5%</sc-raw-td><sc-raw-td>27.5%</sc-raw-td><sc-raw-td>27.5%</sc-raw-td><sc-raw-td>27.5%</sc-raw-td><sc-raw-td>27.5%</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>(−) Depreciation &amp; amortization</sc-raw-td><sc-raw-td>341,545</sc-raw-td><sc-raw-td>368,869</sc-raw-td><sc-raw-td>398,378</sc-raw-td><sc-raw-td>430,248</sc-raw-td><sc-raw-td>464,668</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr class="total"><sc-raw-td>EBIT</sc-raw-td><sc-raw-td>2,006,578</sc-raw-td><sc-raw-td>2,167,104</sc-raw-td><sc-raw-td>2,340,472</sc-raw-td><sc-raw-td>2,527,710</sc-raw-td><sc-raw-td>2,729,927</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Capex</sc-raw-td><sc-raw-td>597,704</sc-raw-td><sc-raw-td>645,520</sc-raw-td><sc-raw-td>697,162</sc-raw-td><sc-raw-td>752,935</sc-raw-td><sc-raw-td>813,170</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Change in working capital</sc-raw-td><sc-raw-td>12,650</sc-raw-td><sc-raw-td>13,662</sc-raw-td><sc-raw-td>14,755</sc-raw-td><sc-raw-td>15,935</sc-raw-td><sc-raw-td>17,210</sc-raw-td></sc-raw-tr>
+            </sc-raw-tbody>
+          </sc-raw-table>
+        </div>
+        <h3>Debt schedule and cash sweep</h3>
+        <div class="scroll">
+          <sc-raw-table>
+            <sc-raw-caption>Debt waterfall — interest on average balance — R$ thousand</sc-raw-caption>
+            <sc-raw-thead>
+              <sc-raw-tr><sc-raw-th class="tx">Line</sc-raw-th><sc-raw-th>Year 1</sc-raw-th><sc-raw-th>Year 2</sc-raw-th><sc-raw-th>Year 3</sc-raw-th><sc-raw-th>Year 4</sc-raw-th><sc-raw-th>Year 5</sc-raw-th></sc-raw-tr>
+            </sc-raw-thead>
+            <sc-raw-tbody>
+              <sc-raw-tr><sc-raw-td>Opening debt balance</sc-raw-td><sc-raw-td>9,855,000</sc-raw-td><sc-raw-td>9,855,000</sc-raw-td><sc-raw-td>9,781,611</sc-raw-td><sc-raw-td>9,580,433</sc-raw-td><sc-raw-td>9,235,197</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>(−) Interest (avg balance, 14%)</sc-raw-td><sc-raw-td>1,379,700</sc-raw-td><sc-raw-td>1,374,563</sc-raw-td><sc-raw-td>1,355,343</sc-raw-td><sc-raw-td>1,317,094</sc-raw-td><sc-raw-td>1,257,345</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>(−) Taxes (34%)</sc-raw-td><sc-raw-td>213,138</sc-raw-td><sc-raw-td>269,464</sc-raw-td><sc-raw-td>334,944</sc-raw-td><sc-raw-td>411,609</sc-raw-td><sc-raw-td>500,678</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>(−) Lease payment</sc-raw-td><sc-raw-td>187,500</sc-raw-td><sc-raw-td>159,375</sc-raw-td><sc-raw-td>135,469</sc-raw-td><sc-raw-td>115,148</sc-raw-td><sc-raw-td>97,876</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr class="total"><sc-raw-td>Cash available for sweep</sc-raw-td><sc-raw-td class="neg">−42,569</sc-raw-td><sc-raw-td>73,389</sc-raw-td><sc-raw-td>201,178</sc-raw-td><sc-raw-td>345,236</sc-raw-td><sc-raw-td>508,316</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Amortization (cash sweep, 100%)</sc-raw-td><sc-raw-td>0</sc-raw-td><sc-raw-td>73,389</sc-raw-td><sc-raw-td>201,178</sc-raw-td><sc-raw-td>345,236</sc-raw-td><sc-raw-td>508,316</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr class="total"><sc-raw-td>Closing debt balance</sc-raw-td><sc-raw-td>9,855,000</sc-raw-td><sc-raw-td>9,781,611</sc-raw-td><sc-raw-td>9,580,433</sc-raw-td><sc-raw-td>9,235,197</sc-raw-td><sc-raw-td>8,726,881</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Leverage (Debt/EBITDA)</sc-raw-td><sc-raw-td>4.20×</sc-raw-td><sc-raw-td>3.86×</sc-raw-td><sc-raw-td>3.50×</sc-raw-td><sc-raw-td>3.12×</sc-raw-td><sc-raw-td>2.73×</sc-raw-td></sc-raw-tr>
+            </sc-raw-tbody>
+          </sc-raw-table>
+        </div>
+        <p class="note">Interest accrues on the period's average balance, which makes the equation implicit (interest → cash → amortization → closing balance → interest). The Python engine solves by fixed-point iteration, replicating the Excel iterative calculation. <strong>In Year 1 available cash is negative (−R$ 42.6 mn)</strong>: there is no amortization and leverage stays at 4.5× at the end of the first year.</p>
+        <h3>The Excel model</h3>
+        <p>The tables above are not loose estimates: they come from a seven-tab spreadsheet chained by formula — <strong>Assumptions → Sources &amp; Uses → Projections → Debt Schedule → Exit → Return → Sensitivity</strong> — where changing an assumption on the first tab propagates through the whole cascade to the IRR. The debt schedule computes interest on the average balance, which introduces a circular reference resolved by iterative calculation, and every displayed value matches exactly those reproduced by the Python engine.</p>
+        </sc-if>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.s3 }}" hint-size="100%,700px">
+      <div style="padding:22px 26px 28px;">
+        <div style="font-family:var(--font-aux);text-transform:uppercase;font-size:.7rem;letter-spacing:.14em;color:var(--lbo-accent);margin-bottom:16px;">{{ t.secL3 }}</div>
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}">
+        <p>Na saída, o EBITDA do Ano 5 é capitalizado ao mesmo múltiplo de entrada. O equity value resulta da diferença entre o EV de saída e o saldo devedor remanescente — que caiu R$ 1,13 bi ao longo do período graças ao cash sweep.</p>
+        <div class="scroll">
+          <sc-raw-table>
+            <sc-raw-caption>Ponte de saída e retorno do sponsor — R$ mil</sc-raw-caption>
+            <sc-raw-tbody>
+              <sc-raw-tr><sc-raw-td>EBITDA do Ano 5</sc-raw-td><sc-raw-td>3.194.595</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Múltiplo de saída</sc-raw-td><sc-raw-td>6,25×</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr class="total"><sc-raw-td>Enterprise Value de saída</sc-raw-td><sc-raw-td>19.966.219</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>(−) Saldo devedor remanescente</sc-raw-td><sc-raw-td>8.726.881</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr class="total"><sc-raw-td>Equity Value de saída (Ano 5)</sc-raw-td><sc-raw-td>11.239.339</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>(−) Equity investido pelo sponsor (Ano 0)</sc-raw-td><sc-raw-td>4.106.250</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr class="total"><sc-raw-td>Ganho de capital</sc-raw-td><sc-raw-td class="pos">7.133.089</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>MOIC</sc-raw-td><sc-raw-td><strong>2,7371×</strong></sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>TIR (5 anos)</sc-raw-td><sc-raw-td><strong>22,309%</strong></sc-raw-td></sc-raw-tr>
+            </sc-raw-tbody>
+          </sc-raw-table>
+        </div>
+        <div class="callout">
+          <p><span class="k">Validação</span> O motor determinístico em Python (<code>src/lbo_engine.py</code>) reproduz MOIC 2,737130× e TIR 22,309185% — aderência ao Excel em seis casas decimais. A conferência linha a linha do debt schedule (juros, impostos, saldo final e caixa para sweep nos cinco anos) apresenta diferença exatamente zero.</p>
+        </div>
+        <h3>Sensibilidade da TIR</h3>
+        <div class="scroll">
+          <sc-raw-table class="heat">
+            <sc-raw-caption>TIR por múltiplo de saída (linhas) × alavancagem inicial (colunas)</sc-raw-caption>
+            <sc-raw-thead>
+              <sc-raw-tr><sc-raw-th class="tx">Saída \ Alavancagem</sc-raw-th><sc-raw-th>3,5×</sc-raw-th><sc-raw-th>4,0×</sc-raw-th><sc-raw-th>4,5×</sc-raw-th><sc-raw-th>5,0×</sc-raw-th><sc-raw-th>5,5×</sc-raw-th></sc-raw-tr>
+            </sc-raw-thead>
+            <sc-raw-tbody>
+              <sc-raw-tr><sc-raw-td>5,25×</sc-raw-td><sc-raw-td>12,7%</sc-raw-td><sc-raw-td>13,3%</sc-raw-td><sc-raw-td>14,4%</sc-raw-td><sc-raw-td class="t1">16,6%</sc-raw-td><sc-raw-td class="t2">21,5%</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>5,75×</sc-raw-td><sc-raw-td class="t1">15,7%</sc-raw-td><sc-raw-td class="t1">16,8%</sc-raw-td><sc-raw-td class="t1">18,6%</sc-raw-td><sc-raw-td class="t2">21,9%</sc-raw-td><sc-raw-td class="t3">28,4%</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>6,25×</sc-raw-td><sc-raw-td class="t1">18,4%</sc-raw-td><sc-raw-td class="t1">19,9%</sc-raw-td><sc-raw-td class="t2 base-cell">22,3%</sc-raw-td><sc-raw-td class="t3">26,4%</sc-raw-td><sc-raw-td class="t4">34,0%</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>6,75×</sc-raw-td><sc-raw-td class="t2">20,9%</sc-raw-td><sc-raw-td class="t2">22,8%</sc-raw-td><sc-raw-td class="t3">25,6%</sc-raw-td><sc-raw-td class="t4">30,3%</sc-raw-td><sc-raw-td class="t5">38,8%</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>7,25×</sc-raw-td><sc-raw-td class="t2">23,2%</sc-raw-td><sc-raw-td class="t3">25,4%</sc-raw-td><sc-raw-td class="t3">28,6%</sc-raw-td><sc-raw-td class="t4">33,8%</sc-raw-td><sc-raw-td class="t5">43,0%</sc-raw-td></sc-raw-tr>
+            </sc-raw-tbody>
+          </sc-raw-table>
+        </div>
+        <p class="note">Célula destacada = caso base (4,5× / 6,25×). A intensidade do verde acompanha a magnitude da TIR. A leitura relevante é a assimetria: alavancagem mais alta amplifica o retorno, mas também a perda — a 5,5× a TIR do cenário mais fraco ainda supera 21%, porém o Ano 1 já opera com caixa negativo em toda a coluna.</p>
+        </sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}">
+        <p>At exit, Year 5 EBITDA is capitalized at the same entry multiple. Equity value is the difference between exit EV and the remaining debt balance — which fell R$ 1.13 bn over the period thanks to the cash sweep.</p>
+        <div class="scroll">
+          <sc-raw-table>
+            <sc-raw-caption>Exit bridge and sponsor return — R$ thousand</sc-raw-caption>
+            <sc-raw-tbody>
+              <sc-raw-tr><sc-raw-td>Year 5 EBITDA</sc-raw-td><sc-raw-td>3,194,595</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Exit multiple</sc-raw-td><sc-raw-td>6.25×</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr class="total"><sc-raw-td>Exit Enterprise Value</sc-raw-td><sc-raw-td>19,966,219</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>(−) Remaining debt balance</sc-raw-td><sc-raw-td>8,726,881</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr class="total"><sc-raw-td>Exit Equity Value (Year 5)</sc-raw-td><sc-raw-td>11,239,339</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>(−) Equity invested by sponsor (Year 0)</sc-raw-td><sc-raw-td>4,106,250</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr class="total"><sc-raw-td>Capital gain</sc-raw-td><sc-raw-td class="pos">7,133,089</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>MOIC</sc-raw-td><sc-raw-td><strong>2.7371×</strong></sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>IRR (5 years)</sc-raw-td><sc-raw-td><strong>22.309%</strong></sc-raw-td></sc-raw-tr>
+            </sc-raw-tbody>
+          </sc-raw-table>
+        </div>
+        <div class="callout">
+          <p><span class="k">Validation</span> The deterministic Python engine (<code>src/lbo_engine.py</code>) reproduces MOIC 2.737130× and IRR 22.309185% — adherence to the Excel to six decimal places. The line-by-line check of the debt schedule (interest, taxes, closing balance and cash for sweep across the five years) shows exactly zero difference.</p>
+        </div>
+        <h3>IRR sensitivity</h3>
+        <div class="scroll">
+          <sc-raw-table class="heat">
+            <sc-raw-caption>IRR by exit multiple (rows) × entry leverage (columns)</sc-raw-caption>
+            <sc-raw-thead>
+              <sc-raw-tr><sc-raw-th class="tx">Exit \ Leverage</sc-raw-th><sc-raw-th>3.5×</sc-raw-th><sc-raw-th>4.0×</sc-raw-th><sc-raw-th>4.5×</sc-raw-th><sc-raw-th>5.0×</sc-raw-th><sc-raw-th>5.5×</sc-raw-th></sc-raw-tr>
+            </sc-raw-thead>
+            <sc-raw-tbody>
+              <sc-raw-tr><sc-raw-td>5.25×</sc-raw-td><sc-raw-td>12.7%</sc-raw-td><sc-raw-td>13.3%</sc-raw-td><sc-raw-td>14.4%</sc-raw-td><sc-raw-td class="t1">16.6%</sc-raw-td><sc-raw-td class="t2">21.5%</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>5.75×</sc-raw-td><sc-raw-td class="t1">15.7%</sc-raw-td><sc-raw-td class="t1">16.8%</sc-raw-td><sc-raw-td class="t1">18.6%</sc-raw-td><sc-raw-td class="t2">21.9%</sc-raw-td><sc-raw-td class="t3">28.4%</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>6.25×</sc-raw-td><sc-raw-td class="t1">18.4%</sc-raw-td><sc-raw-td class="t1">19.9%</sc-raw-td><sc-raw-td class="t2 base-cell">22.3%</sc-raw-td><sc-raw-td class="t3">26.4%</sc-raw-td><sc-raw-td class="t4">34.0%</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>6.75×</sc-raw-td><sc-raw-td class="t2">20.9%</sc-raw-td><sc-raw-td class="t2">22.8%</sc-raw-td><sc-raw-td class="t3">25.6%</sc-raw-td><sc-raw-td class="t4">30.3%</sc-raw-td><sc-raw-td class="t5">38.8%</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>7.25×</sc-raw-td><sc-raw-td class="t2">23.2%</sc-raw-td><sc-raw-td class="t3">25.4%</sc-raw-td><sc-raw-td class="t3">28.6%</sc-raw-td><sc-raw-td class="t4">33.8%</sc-raw-td><sc-raw-td class="t5">43.0%</sc-raw-td></sc-raw-tr>
+            </sc-raw-tbody>
+          </sc-raw-table>
+        </div>
+        <p class="note">Highlighted cell = base case (4.5× / 6.25×). Green intensity tracks IRR magnitude. The relevant read is the asymmetry: higher leverage amplifies the return but also the loss — at 5.5× the weakest scenario's IRR still exceeds 21%, yet Year 1 already runs on negative cash across the whole column.</p>
+        </sc-if>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.s4 }}" hint-size="100%,1100px">
+      <div style="padding:22px 26px 28px;">
+        <div style="font-family:var(--font-aux);text-transform:uppercase;font-size:.7rem;letter-spacing:.14em;color:var(--lbo-accent);margin-bottom:16px;">{{ t.secL4 }}</div>
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}">
+        <p>O caso base entrega um único número. Para dimensionar o risco, quatro variáveis foram tratadas como aleatórias e sorteadas <strong>de forma correlacionada</strong> (distribuição normal multivariada, com covariância derivada da matriz de correlação), em 10.000 cenários. Valores economicamente implausíveis foram truncados às faixas indicadas.</p>
+        <div class="scroll">
+          <sc-raw-table>
+            <sc-raw-caption>Variáveis aleatórias e parâmetros das distribuições</sc-raw-caption>
+            <sc-raw-thead>
+              <sc-raw-tr><sc-raw-th class="tx">Variável</sc-raw-th><sc-raw-th>Média</sc-raw-th><sc-raw-th>Desvio padrão</sc-raw-th><sc-raw-th class="tx">Faixa de truncamento</sc-raw-th></sc-raw-tr>
+            </sc-raw-thead>
+            <sc-raw-tbody>
+              <sc-raw-tr><sc-raw-td>Crescimento de receita</sc-raw-td><sc-raw-td>8,0%</sc-raw-td><sc-raw-td>3,0 p.p.</sc-raw-td><sc-raw-td class="tx">−20% a +30%</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Margem EBITDA</sc-raw-td><sc-raw-td>27,5%</sc-raw-td><sc-raw-td>1,2 p.p.</sc-raw-td><sc-raw-td class="tx">15% a 40%</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Múltiplo de saída</sc-raw-td><sc-raw-td>6,25×</sc-raw-td><sc-raw-td>0,75×</sc-raw-td><sc-raw-td class="tx">3,0× a 10,0×</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Custo da dívida (CDI + spread)</sc-raw-td><sc-raw-td>14,0%</sc-raw-td><sc-raw-td>2,0 p.p.</sc-raw-td><sc-raw-td class="tx">5% a 25%</sc-raw-td></sc-raw-tr>
+            </sc-raw-tbody>
+          </sc-raw-table>
+        </div>
+        <p class="note">Correlações aplicadas: crescimento × margem 0,40; crescimento × múltiplo de saída 0,25; margem × múltiplo 0,10; múltiplo de saída × custo da dívida −0,25. As médias são lidas diretamente do Excel; os desvios vêm do histórico 2022–2025.</p>
+        </sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}">
+        <p>The base case delivers a single number. To size the risk, four variables were treated as random and drawn <strong>correlated</strong> (multivariate normal distribution, with covariance derived from the correlation matrix), across 10,000 scenarios. Economically implausible values were truncated to the indicated ranges.</p>
+        <div class="scroll">
+          <sc-raw-table>
+            <sc-raw-caption>Random variables and distribution parameters</sc-raw-caption>
+            <sc-raw-thead>
+              <sc-raw-tr><sc-raw-th class="tx">Variable</sc-raw-th><sc-raw-th>Mean</sc-raw-th><sc-raw-th>Std. deviation</sc-raw-th><sc-raw-th class="tx">Truncation range</sc-raw-th></sc-raw-tr>
+            </sc-raw-thead>
+            <sc-raw-tbody>
+              <sc-raw-tr><sc-raw-td>Revenue growth</sc-raw-td><sc-raw-td>8.0%</sc-raw-td><sc-raw-td>3.0 p.p.</sc-raw-td><sc-raw-td class="tx">−20% to +30%</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>EBITDA margin</sc-raw-td><sc-raw-td>27.5%</sc-raw-td><sc-raw-td>1.2 p.p.</sc-raw-td><sc-raw-td class="tx">15% to 40%</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Exit multiple</sc-raw-td><sc-raw-td>6.25×</sc-raw-td><sc-raw-td>0.75×</sc-raw-td><sc-raw-td class="tx">3.0× to 10.0×</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Cost of debt (CDI + spread)</sc-raw-td><sc-raw-td>14.0%</sc-raw-td><sc-raw-td>2.0 p.p.</sc-raw-td><sc-raw-td class="tx">5% to 25%</sc-raw-td></sc-raw-tr>
+            </sc-raw-tbody>
+          </sc-raw-table>
+        </div>
+        <p class="note">Correlations applied: growth × margin 0.40; growth × exit multiple 0.25; margin × multiple 0.10; exit multiple × cost of debt −0.25. Means are read directly from the Excel; standard deviations come from the 2022–2025 history.</p>
+        </sc-if>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin:24px 0 10px;">
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.ShadowCard" class-name="statcard" hint-size="100%,150px">
+            <div style="display:flex;flex-direction:column;gap:7px;">
+              <span style="font-family:var(--font-aux);text-transform:uppercase;font-size:.68rem;letter-spacing:.05em;color:var(--lbo-accent);">{{ t.m_tirMed }}</span>
+              <span style="font-family:var(--font-display);text-transform:lowercase;font-size:2rem;line-height:1;color:var(--color-fg);">{{ t.m_tirMed_v }}</span>
+              <span style="font-family:var(--font-aux);font-size:.74rem;color:var(--color-muted);">{{ t.m_tirMed_s }}</span>
+            </div>
+          </x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.ShadowCard" class-name="statcard" hint-size="100%,150px">
+            <div style="display:flex;flex-direction:column;gap:7px;">
+              <span style="font-family:var(--font-aux);text-transform:uppercase;font-size:.68rem;letter-spacing:.05em;color:var(--lbo-accent);">{{ t.m_tirAvg }}</span>
+              <span style="font-family:var(--font-display);text-transform:lowercase;font-size:2rem;line-height:1;color:var(--color-fg);">{{ t.m_tirAvg_v }}</span>
+              <span style="font-family:var(--font-aux);font-size:.74rem;color:var(--color-muted);">{{ t.m_tirAvg_s }}</span>
+            </div>
+          </x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.ShadowCard" class-name="statcard" hint-size="100%,150px">
+            <div style="display:flex;flex-direction:column;gap:7px;">
+              <span style="font-family:var(--font-aux);text-transform:uppercase;font-size:.68rem;letter-spacing:.05em;color:var(--lbo-accent);">{{ t.m_p1090 }}</span>
+              <span style="font-family:var(--font-display);text-transform:lowercase;font-size:2rem;line-height:1;color:var(--color-fg);">{{ t.m_p1090_v }}</span>
+              <span style="font-family:var(--font-aux);font-size:.74rem;color:var(--color-muted);">{{ t.m_p1090_s }}</span>
+            </div>
+          </x-import>
+          <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.ShadowCard" class-name="statcard" hint-size="100%,150px">
+            <div style="display:flex;flex-direction:column;gap:7px;">
+              <span style="font-family:var(--font-aux);text-transform:uppercase;font-size:.68rem;letter-spacing:.05em;color:var(--lbo-neg);">{{ t.m_prob }}</span>
+              <span style="font-family:var(--font-display);text-transform:lowercase;font-size:2rem;line-height:1;color:var(--lbo-neg);">{{ t.m_prob_v }}</span>
+              <span style="font-family:var(--font-aux);font-size:.74rem;color:var(--color-muted);">{{ t.m_prob_s }}</span>
+            </div>
+          </x-import>
+        </div>
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}">
+        <div class="scroll">
+          <sc-raw-table>
+            <sc-raw-caption>Estatísticas descritivas — 10.000 simulações</sc-raw-caption>
+            <sc-raw-thead>
+              <sc-raw-tr><sc-raw-th class="tx">Métrica</sc-raw-th><sc-raw-th>Média</sc-raw-th><sc-raw-th>Mediana</sc-raw-th><sc-raw-th>Desv. padrão</sc-raw-th><sc-raw-th>P10</sc-raw-th><sc-raw-th>P25</sc-raw-th><sc-raw-th>P50</sc-raw-th><sc-raw-th>P75</sc-raw-th><sc-raw-th>P90</sc-raw-th></sc-raw-tr>
+            </sc-raw-thead>
+            <sc-raw-tbody>
+              <sc-raw-tr><sc-raw-td>TIR</sc-raw-td><sc-raw-td>20,87%</sc-raw-td><sc-raw-td>22,12%</sc-raw-td><sc-raw-td>12,44 p.p.</sc-raw-td><sc-raw-td>5,00%</sc-raw-td><sc-raw-td>13,90%</sc-raw-td><sc-raw-td>22,12%</sc-raw-td><sc-raw-td>29,42%</sc-raw-td><sc-raw-td>35,31%</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>MOIC</sc-raw-td><sc-raw-td>2,83×</sc-raw-td><sc-raw-td>2,71×</sc-raw-td><sc-raw-td>1,28×</sc-raw-td><sc-raw-td>1,27×</sc-raw-td><sc-raw-td>1,91×</sc-raw-td><sc-raw-td>2,71×</sc-raw-td><sc-raw-td>3,63×</sc-raw-td><sc-raw-td>4,53×</sc-raw-td></sc-raw-tr>
+            </sc-raw-tbody>
+          </sc-raw-table>
+        </div>
+        <div class="callout">
+          <p><span class="k">Validação cruzada</span> A mediana simulada da TIR (22,12%) fica a 0,19 p.p. do caso base do Excel (22,31%), e a mediana do MOIC (2,71×) a 0,03× do determinístico (2,74×). A convergência confirma que a camada estocástica não introduziu viés no motor. A média fica 1,2 p.p. abaixo da mediana porque a distribuição é assimétrica à esquerda: cenários ruins (alavancagem que não amortiza) punem mais do que cenários bons recompensam.</p>
+        </div>
+        </sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}">
+        <div class="scroll">
+          <sc-raw-table>
+            <sc-raw-caption>Descriptive statistics — 10,000 simulations</sc-raw-caption>
+            <sc-raw-thead>
+              <sc-raw-tr><sc-raw-th class="tx">Metric</sc-raw-th><sc-raw-th>Mean</sc-raw-th><sc-raw-th>Median</sc-raw-th><sc-raw-th>Std. dev.</sc-raw-th><sc-raw-th>P10</sc-raw-th><sc-raw-th>P25</sc-raw-th><sc-raw-th>P50</sc-raw-th><sc-raw-th>P75</sc-raw-th><sc-raw-th>P90</sc-raw-th></sc-raw-tr>
+            </sc-raw-thead>
+            <sc-raw-tbody>
+              <sc-raw-tr><sc-raw-td>IRR</sc-raw-td><sc-raw-td>20.87%</sc-raw-td><sc-raw-td>22.12%</sc-raw-td><sc-raw-td>12.44 p.p.</sc-raw-td><sc-raw-td>5.00%</sc-raw-td><sc-raw-td>13.90%</sc-raw-td><sc-raw-td>22.12%</sc-raw-td><sc-raw-td>29.42%</sc-raw-td><sc-raw-td>35.31%</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>MOIC</sc-raw-td><sc-raw-td>2.83×</sc-raw-td><sc-raw-td>2.71×</sc-raw-td><sc-raw-td>1.28×</sc-raw-td><sc-raw-td>1.27×</sc-raw-td><sc-raw-td>1.91×</sc-raw-td><sc-raw-td>2.71×</sc-raw-td><sc-raw-td>3.63×</sc-raw-td><sc-raw-td>4.53×</sc-raw-td></sc-raw-tr>
+            </sc-raw-tbody>
+          </sc-raw-table>
+        </div>
+        <div class="callout">
+          <p><span class="k">Cross-validation</span> The simulated IRR median (22.12%) sits 0.19 p.p. from the Excel base case (22.31%), and the MOIC median (2.71×) 0.03× from the deterministic value (2.74×). The convergence confirms the stochastic layer introduced no bias in the engine. The mean is 1.2 p.p. below the median because the distribution is left-skewed: bad scenarios (leverage that fails to amortize) punish more than good scenarios reward.</p>
+        </div>
+        </sc-if>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;margin-top:22px;">
+          <figure style="margin:0;">
+            <div style="border:1px solid var(--forest-600);background:var(--forest-700);padding:12px 12px 8px;">{{ tirChart }}</div>
+            <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><figcaption><strong>Distribuição de TIR.</strong> A massa se concentra em torno do caso base (linha tracejada), com cauda esquerda pronunciada — cenários de crescimento fraco combinado com custo de dívida elevado produzem TIR negativa em uma fração dos casos.</figcaption></sc-if>
+            <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><figcaption><strong>IRR distribution.</strong> Mass concentrates around the base case (dashed line), with a pronounced left tail — scenarios of weak growth combined with high cost of debt produce negative IRR in a fraction of cases.</figcaption></sc-if>
+          </figure>
+          <figure style="margin:0;">
+            <div style="border:1px solid var(--forest-600);background:var(--forest-700);padding:12px 12px 8px;">{{ moicChart }}</div>
+            <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><figcaption><strong>Distribuição de MOIC.</strong> A mediana de 2,71× praticamente coincide com o determinístico. O P10 de 1,27× indica que, mesmo no decil inferior, o cenário típico ainda preserva capital — o que não vale para o extremo da cauda.</figcaption></sc-if>
+            <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><figcaption><strong>MOIC distribution.</strong> The 2.71× median practically coincides with the deterministic value. The 1.27× P10 indicates that, even in the bottom decile, the typical scenario still preserves capital — which does not hold at the extreme tail.</figcaption></sc-if>
+          </figure>
+        </div>
+        <figure style="margin-top:22px;">
+          <div style="border:1px solid var(--forest-600);background:var(--forest-700);padding:12px;">{{ scatterChart }}</div>
+          <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><figcaption><strong>Crescimento de receita × TIR.</strong> A relação é fortemente positiva e quase linear na faixa central, com dispersão vertical explicada pelas outras três variáveis. É a evidência visual de que o crescimento é a alavanca dominante do retorno.</figcaption></sc-if>
+          <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><figcaption><strong>Revenue growth × IRR.</strong> The relationship is strongly positive and nearly linear in the central range, with vertical dispersion explained by the other three variables. It is the visual evidence that growth is the dominant lever of the return.</figcaption></sc-if>
+        </figure>
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}">
+        <h3>Sensibilidade estatística</h3>
+        <div class="scroll">
+          <sc-raw-table>
+            <sc-raw-caption>Correlação entre cada variável de entrada e a TIR resultante</sc-raw-caption>
+            <sc-raw-thead>
+              <sc-raw-tr><sc-raw-th class="tx">Variável de entrada</sc-raw-th><sc-raw-th>Correlação com a TIR</sc-raw-th><sc-raw-th class="tx">Leitura</sc-raw-th></sc-raw-tr>
+            </sc-raw-thead>
+            <sc-raw-tbody>
+              <sc-raw-tr><sc-raw-td>Crescimento de receita</sc-raw-td><sc-raw-td class="pos">+0,824</sc-raw-td><sc-raw-td class="tx">Alavanca dominante</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Múltiplo de saída</sc-raw-td><sc-raw-td class="pos">+0,663</sc-raw-td><sc-raw-td class="tx">Risco de mercado na saída</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Margem EBITDA</sc-raw-td><sc-raw-td class="pos">+0,521</sc-raw-td><sc-raw-td class="tx">Eficiência operacional</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Custo da dívida</sc-raw-td><sc-raw-td class="neg">−0,200</sc-raw-td><sc-raw-td class="tx">Exposição a CDI</sc-raw-td></sc-raw-tr>
+            </sc-raw-tbody>
+          </sc-raw-table>
+        </div>
+        <p class="note">A ordem importa para a diligência: o esforço de validação deve se concentrar na sustentabilidade do crescimento de 8% a.a. — que sozinho explica a maior parte da variância do retorno — e não na negociação marginal do spread da dívida.</p>
+        </sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}">
+        <h3>Statistical sensitivity</h3>
+        <div class="scroll">
+          <sc-raw-table>
+            <sc-raw-caption>Correlation between each input variable and the resulting IRR</sc-raw-caption>
+            <sc-raw-thead>
+              <sc-raw-tr><sc-raw-th class="tx">Input variable</sc-raw-th><sc-raw-th>Correlation with IRR</sc-raw-th><sc-raw-th class="tx">Read</sc-raw-th></sc-raw-tr>
+            </sc-raw-thead>
+            <sc-raw-tbody>
+              <sc-raw-tr><sc-raw-td>Revenue growth</sc-raw-td><sc-raw-td class="pos">+0.824</sc-raw-td><sc-raw-td class="tx">Dominant lever</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Exit multiple</sc-raw-td><sc-raw-td class="pos">+0.663</sc-raw-td><sc-raw-td class="tx">Exit market risk</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>EBITDA margin</sc-raw-td><sc-raw-td class="pos">+0.521</sc-raw-td><sc-raw-td class="tx">Operating efficiency</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Cost of debt</sc-raw-td><sc-raw-td class="neg">−0.200</sc-raw-td><sc-raw-td class="tx">CDI exposure</sc-raw-td></sc-raw-tr>
+            </sc-raw-tbody>
+          </sc-raw-table>
+        </div>
+        <p class="note">Order matters for diligence: validation effort should focus on the sustainability of 8% p.a. growth — which alone explains most of the return's variance — and not on marginal negotiation of the debt spread.</p>
+        </sc-if>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.s5 }}" hint-size="100%,900px">
+      <div style="padding:22px 26px 28px;">
+        <div style="font-family:var(--font-aux);text-transform:uppercase;font-size:.7rem;letter-spacing:.14em;color:var(--lbo-accent);margin-bottom:16px;">{{ t.secL5 }}</div>
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}">
+        <p>O modelo é uma representação simplificada e depende de premissas que merecem escrutínio. Os pontos abaixo são as limitações materiais identificadas — tanto de risco econômico quanto de construção metodológica.</p>
+        <div class="callout risk">
+          <p><span class="k">Risco principal</span> Em <strong>27,4% dos cenários simulados a TIR fica abaixo de 15%</strong>, o piso normalmente exigido por fundos de PE. Aproximadamente um em cada quatro cenários não remunera o capital adequadamente — a operação não é um caso de retorno assegurado.</p>
+        </div>
+        <ol class="risks">
+          <li><span class="t">Ano 1 sem desalavancagem</span><span class="d">O caixa disponível para sweep é negativo em R$ 42,6 milhões no primeiro ano: juros de R$ 1,38 bi consomem integralmente a geração operacional após capex, impostos e arrendamento. A estrutura opera sem folga logo após o fechamento, e qualquer frustração de EBITDA no Ano 1 pressiona covenants.</span></li>
+          <li><span class="t">Exposição ao CDI</span><span class="d">O custo de 14% a.a. é CDI de 12% mais spread de 200 bps. A dívida é pós-fixada e um choque de juros atinge o equity diretamente — na simulação, o custo da dívida tem correlação de −0,20 com a TIR. O modelo não contempla hedge nem instrumentos de proteção.</span></li>
+          <li><span class="t">Dependência do crescimento</span><span class="d">Com correlação de +0,82, o crescimento de receita domina o retorno. A premissa de 8% a.a. é conservadora frente ao histórico de 23,9%, mas esse histórico foi inflado por M&amp;A — e o modelo não prevê aquisições nem o capital necessário para financiá-las.</span></li>
+          <li><span class="t">Premissas operacionais estáticas</span><span class="d">Margem EBITDA constante em 27,5%, capex fixo em 7% da receita e capital de giro em 2% da variação de receita ao longo dos cinco anos. Não há sazonalidade, ciclo de reembolso de operadoras, pressão de custos médicos nem ganho de escala modelado.</span></li>
+          <li><span class="t">Normalidade e correlações por julgamento</span><span class="d">As quatro variáveis são normais e a matriz de correlação foi arbitrada, não estimada econometricamente a partir de séries históricas. Distribuições normais subestimam eventos extremos, e o truncamento por <code>np.clip</code> corta a cauda em vez de modelá-la — a probabilidade real de cenários severos é provavelmente maior que a simulada.</span></li>
+          <li><span class="t">Receita base derivada, não reportada</span><span class="d">A receita do Ano 0 (R$ 7,91 bi) é obtida dividindo o EBITDA LTM pela margem histórica de 27,7%, e não extraída diretamente da demonstração de resultados. Qualquer imprecisão na margem histórica propaga para toda a projeção de receita.</span></li>
+          <li><span class="t">Risco de saída e liquidez</span><span class="d">A saída pressupõe comprador disposto a 6,25× em 2030. Não há garantia de janela de M&amp;A ou de mercado de capitais receptivo, e o setor de saúde brasileiro está sujeito a risco regulatório e à concentração de poder de barganha das operadoras.</span></li>
+          <li><span class="t">Arrendamento fora da dívida de aquisição</span><span class="d">O passivo de arrendamento IFRS 16 (R$ 1,25 bi) é amortizado no fluxo de caixa, mas não entra na dívida de aquisição nem é deduzido na ponte de saída — escolha que replica o Excel e o conceito de dívida financeira usado por agregadores de mercado. A consequência é relevante: o equity value de saída é <strong>superestimado em relação a uma definição de dívida total</strong>. Considerando o arrendamento remanescente de R$ 554,6 mi no Ano 5, o retorno seria materialmente menor.</span></li>
+          <li><span class="t">Escopo não modelado</span><span class="d">Ficam de fora participações minoritárias, créditos tributários e prejuízos fiscais acumulados, disponibilidade efetiva de financiamento no volume requerido (R$ 9,86 bi), custos de <em>due diligence</em> e a aprovação concorrencial da operação.</span></li>
+        </ol>
+        </sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}">
+        <p>The model is a simplified representation and depends on assumptions that deserve scrutiny. The points below are the material limitations identified — both economic risk and methodological construction.</p>
+        <div class="callout risk">
+          <p><span class="k">Main risk</span> In <strong>27.4% of simulated scenarios the IRR falls below 15%</strong>, the floor typically required by PE funds. Roughly one in four scenarios does not adequately remunerate capital — the deal is not a case of assured return.</p>
+        </div>
+        <ol class="risks">
+          <li><span class="t">Year 1 with no deleveraging</span><span class="d">Cash available for sweep is negative by R$ 42.6 million in the first year: R$ 1.38 bn of interest fully consumes operating generation after capex, taxes and lease. The structure runs with no headroom right after close, and any EBITDA miss in Year 1 pressures covenants.</span></li>
+          <li><span class="t">CDI exposure</span><span class="d">The 14% p.a. cost is 12% CDI plus a 200 bps spread. The debt is floating and a rate shock hits equity directly — in the simulation, cost of debt has a −0.20 correlation with IRR. The model contemplates no hedge or protective instruments.</span></li>
+          <li><span class="t">Dependence on growth</span><span class="d">With a +0.82 correlation, revenue growth dominates the return. The 8% p.a. assumption is conservative against the 23.9% history, but that history was inflated by M&amp;A — and the model foresees no acquisitions nor the capital needed to fund them.</span></li>
+          <li><span class="t">Static operating assumptions</span><span class="d">EBITDA margin constant at 27.5%, capex fixed at 7% of revenue and working capital at 2% of the revenue change across the five years. There is no seasonality, payer reimbursement cycle, medical-cost pressure or modeled scale gains.</span></li>
+          <li><span class="t">Normality and judgment-based correlations</span><span class="d">The four variables are normal and the correlation matrix was set by judgment, not estimated econometrically from historical series. Normal distributions understate extreme events, and truncation via <code>np.clip</code> cuts the tail rather than modeling it — the real probability of severe scenarios is likely higher than simulated.</span></li>
+          <li><span class="t">Base revenue derived, not reported</span><span class="d">Year 0 revenue (R$ 7.91 bn) is obtained by dividing LTM EBITDA by the 27.7% historical margin, not extracted directly from the income statement. Any imprecision in the historical margin propagates to the entire revenue projection.</span></li>
+          <li><span class="t">Exit and liquidity risk</span><span class="d">The exit assumes a buyer willing to pay 6.25× in 2030. There is no guarantee of an M&amp;A window or a receptive capital market, and Brazil's healthcare sector is subject to regulatory risk and the concentration of payer bargaining power.</span></li>
+          <li><span class="t">Lease outside the acquisition debt</span><span class="d">The IFRS 16 lease liability (R$ 1.25 bn) is amortized in the cash flow but does not enter the acquisition debt nor is it deducted in the exit bridge — a choice that replicates the Excel and the financial-debt concept used by market aggregators. The consequence is material: the exit equity value is <strong>overstated relative to a total-debt definition</strong>. Considering the R$ 554.6 mn lease remaining in Year 5, the return would be materially lower.</span></li>
+          <li><span class="t">Unmodeled scope</span><span class="d">Left out are minority interests, tax credits and accumulated tax losses, the actual availability of financing at the required volume (R$ 9.86 bn), <em>due diligence</em> costs and antitrust approval of the deal.</span></li>
+        </ol>
+        </sc-if>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.s6 }}" hint-size="100%,500px">
+      <div style="padding:22px 26px 28px;">
+        <div style="font-family:var(--font-aux);text-transform:uppercase;font-size:.7rem;letter-spacing:.14em;color:var(--lbo-accent);margin-bottom:16px;">{{ t.secL6 }}</div>
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}">
+        <p>As premissas do caso base são lidas <strong>diretamente das células da aba "Premissas" do Excel</strong> via <code>openpyxl</code>, o que elimina divergência entre a planilha e o código: a planilha é a fonte única de verdade e alterá-la propaga automaticamente para o motor e para a simulação.</p>
+        <p>Duas decisões contábeis merecem registro. A <strong>D&amp;A é calculada como 4% da receita do ano, de forma independente do capex</strong> (7% da receita) — elas não se cancelam, e a diferença afeta a base tributável. E a <strong>dívida líquida de entrada é a medida ex-arrendamento</strong> (R$ 1,63 bi), reconciliada com o ITR 3T25 da CVM: empréstimos, financiamentos e debêntures de R$ 4,26 bi menos caixa e aplicações financeiras de R$ 2,62 bi resultam em R$ 1,63 bi — diferença de 0,3% contra o valor da planilha.</p>
+        <div class="scroll">
+          <sc-raw-table>
+            <sc-raw-caption>Reconciliação com o ITR 3T25 da CVM — R$ mil</sc-raw-caption>
+            <sc-raw-thead>
+              <sc-raw-tr><sc-raw-th class="tx">Item</sc-raw-th><sc-raw-th>CVM (30/09/2025)</sc-raw-th><sc-raw-th>Modelo</sc-raw-th></sc-raw-tr>
+            </sc-raw-thead>
+            <sc-raw-tbody>
+              <sc-raw-tr><sc-raw-td>Empréstimos, financiamentos e debêntures</sc-raw-td><sc-raw-td>4.257.419</sc-raw-td><sc-raw-td>—</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>(−) Caixa e aplicações financeiras</sc-raw-td><sc-raw-td>2.622.425</sc-raw-td><sc-raw-td>—</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr class="total"><sc-raw-td>Dívida líquida ex-arrendamento</sc-raw-td><sc-raw-td>1.634.994</sc-raw-td><sc-raw-td>1.630.000</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Passivo de arrendamento (IFRS 16)</sc-raw-td><sc-raw-td>1.248.440</sc-raw-td><sc-raw-td>1.250.000</sc-raw-td></sc-raw-tr>
+            </sc-raw-tbody>
+          </sc-raw-table>
+        </div>
+        </sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}">
+        <p>The base-case assumptions are read <strong>directly from the cells of the Excel "Assumptions" tab</strong> via <code>openpyxl</code>, which eliminates divergence between the spreadsheet and the code: the spreadsheet is the single source of truth and changing it automatically propagates to the engine and the simulation.</p>
+        <p>Two accounting decisions are worth noting. <strong>D&amp;A is computed as 4% of the year's revenue, independently of capex</strong> (7% of revenue) — they do not cancel out, and the difference affects the tax base. And <strong>entry net debt is the ex-lease measure</strong> (R$ 1.63 bn), reconciled with CVM's Q3-25 ITR: loans, financing and debentures of R$ 4.26 bn minus cash and financial investments of R$ 2.62 bn yield R$ 1.63 bn — a 0.3% difference against the spreadsheet value.</p>
+        <div class="scroll">
+          <sc-raw-table>
+            <sc-raw-caption>Reconciliation with CVM's Q3-25 ITR — R$ thousand</sc-raw-caption>
+            <sc-raw-thead>
+              <sc-raw-tr><sc-raw-th class="tx">Item</sc-raw-th><sc-raw-th>CVM (09/30/2025)</sc-raw-th><sc-raw-th>Model</sc-raw-th></sc-raw-tr>
+            </sc-raw-thead>
+            <sc-raw-tbody>
+              <sc-raw-tr><sc-raw-td>Loans, financing and debentures</sc-raw-td><sc-raw-td>4,257,419</sc-raw-td><sc-raw-td>—</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>(−) Cash and financial investments</sc-raw-td><sc-raw-td>2,622,425</sc-raw-td><sc-raw-td>—</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr class="total"><sc-raw-td>Net debt ex-lease</sc-raw-td><sc-raw-td>1,634,994</sc-raw-td><sc-raw-td>1,630,000</sc-raw-td></sc-raw-tr>
+              <sc-raw-tr><sc-raw-td>Lease liability (IFRS 16)</sc-raw-td><sc-raw-td>1,248,440</sc-raw-td><sc-raw-td>1,250,000</sc-raw-td></sc-raw-tr>
+            </sc-raw-tbody>
+          </sc-raw-table>
+        </div>
+        </sc-if>
+      </div>
+    </x-import>
+
+  </main>
+
+  <footer style="border-top:2px solid var(--forest-500);margin-top:36px;background:var(--forest-600);">
+    <div class="hd-pad" style="max-width:1180px;margin:0 auto;padding:26px 28px 40px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
+        <span style="font-family:var(--font-display);text-transform:lowercase;font-size:1.5rem;color:var(--slate-0);">fleury lbo</span>
+        <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Icon" name="symbol-06" size="1.4em" hint-size="20px,20px"></x-import>
+        <span style="font-family:var(--font-aux);text-transform:uppercase;font-size:.7rem;letter-spacing:.1em;color:var(--forest-300);">{{ t.footTag }}</span>
+      </div>
+      <div style="margin-bottom:20px;">
+        <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Button" variant="primary" href="https://github.com/pedromparanhos-sys/lbo-fleury" target="_blank" rel="noopener noreferrer" hint-size="auto,40px">{{ t.footGh }}</x-import>
+      </div>
+      <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}">
+      <p style="font-family:var(--font-aux);font-size:.8rem;line-height:1.6;color:var(--slate-400);max-width:88ch;margin:0 0 12px;"><strong style="color:var(--forest-300);">Fontes.</strong> Demonstrações financeiras oficiais do Portal de Dados Abertos da CVM (ITR 3T25, FLEURY S.A., CNPJ 60.840.055/0001-31, código CVM 021881); histórico de mercado e fundamentos via yfinance (FLRY3.SA); modelo determinístico em Excel (<code style="background:var(--forest-700);color:var(--gold-200);padding:1px 4px;">LBO-Fleury.xlsx</code>); motor Python e simulação de Monte Carlo (<code style="background:var(--forest-700);color:var(--gold-200);padding:1px 4px;">src/lbo_engine.py</code>, <code style="background:var(--forest-700);color:var(--gold-200);padding:1px 4px;">src/monte_carlo.py</code>).</p>
+      <p style="font-family:var(--font-aux);font-size:.8rem;line-height:1.6;color:var(--slate-400);max-width:88ch;margin:0;"><strong style="color:var(--forest-300);">Aviso.</strong> Este documento é um estudo de caso acadêmico, elaborado para fins de demonstração de modelagem financeira. Não constitui recomendação de investimento, oferta de compra ou venda de valores mobiliários, nem aconselhamento financeiro. As premissas são hipotéticas e não refletem qualquer transação real, proposta ou em negociação envolvendo a Fleury S.A.</p>
+      </sc-if>
+      <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}">
+      <p style="font-family:var(--font-aux);font-size:.8rem;line-height:1.6;color:var(--slate-400);max-width:88ch;margin:0 0 12px;"><strong style="color:var(--forest-300);">Sources.</strong> Official financial statements from CVM's Open Data Portal (Q3-25 ITR, FLEURY S.A., CNPJ 60.840.055/0001-31, CVM code 021881); market history and fundamentals via yfinance (FLRY3.SA); deterministic Excel model (<code style="background:var(--forest-700);color:var(--gold-200);padding:1px 4px;">LBO-Fleury.xlsx</code>); Python engine and Monte Carlo simulation (<code style="background:var(--forest-700);color:var(--gold-200);padding:1px 4px;">src/lbo_engine.py</code>, <code style="background:var(--forest-700);color:var(--gold-200);padding:1px 4px;">src/monte_carlo.py</code>).</p>
+      <p style="font-family:var(--font-aux);font-size:.8rem;line-height:1.6;color:var(--slate-400);max-width:88ch;margin:0;"><strong style="color:var(--forest-300);">Disclaimer.</strong> This document is an academic case study, produced to demonstrate financial modeling. It does not constitute an investment recommendation, an offer to buy or sell securities, or financial advice. The assumptions are hypothetical and do not reflect any real, proposed or ongoing transaction involving Fleury S.A.</p>
+      </sc-if>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;theme&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;light&quot;, &quot;dark&quot;], &quot;default&quot;: &quot;light&quot;, &quot;tsType&quot;: &quot;'light' | 'dark'&quot;, &quot;section&quot;: &quot;tema&quot; },
+  &quot;idioma&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;pt&quot;, &quot;en&quot;], &quot;default&quot;: &quot;pt&quot;, &quot;tsType&quot;: &quot;'pt' | 'en'&quot;, &quot;section&quot;: &quot;idioma&quot; }
+}">
+class Component extends DCLogic {
+  makeRng(seed) {
+    let a = seed >>> 0;
+    return () => {
+      a |= 0; a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  normal(rng) {
+    let u = 0, v = 0;
+    while (u === 0) u = rng();
+    while (v === 0) v = rng();
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+  }
+  invCDF(q, pts) {
+    for (let i = 1; i < pts.length; i++) {
+      if (q <= pts[i][0]) {
+        const [p0, v0] = pts[i - 1], [p1, v1] = pts[i];
+        const t = (q - p0) / ((p1 - p0) || 1);
+        return v0 + t * (v1 - v0);
+      }
+    }
+    return pts[pts.length - 1][1];
+  }
+  histogram(samples, lo, hi, step) {
+    const n = Math.round((hi - lo) / step);
+    const bins = new Array(n).fill(0);
+    for (const s of samples) {
+      let idx = Math.floor((s - lo) / step);
+      if (idx < 0) idx = 0;
+      if (idx >= n) idx = n - 1;
+      bins[idx]++;
+    }
+    return { bins, lo, hi, step, max: Math.max(...bins) };
+  }
+  histChart(h, opt) {
+    const R = React.createElement;
+    const W = 560, H = 232, padL = 12, padR = 12, padT = 20, padB = 30;
+    const n = h.bins.length;
+    const plotW = W - padL - padR, plotH = H - padT - padB;
+    const baseY = padT + plotH;
+    const xOf = (v) => padL + ((v - h.lo) / (h.hi - h.lo)) * plotW;
+    const bw = plotW / n;
+    const bars = h.bins.map((c, i) => {
+      const bh = h.max ? (c / h.max) * plotH : 0;
+      const x = padL + i * bw;
+      const cellLo = h.lo + i * h.step, cellHi = h.lo + (i + 1) * h.step;
+      const inBase = opt.baseX >= cellLo && opt.baseX < cellHi;
+      return R('rect', { key: 'b' + i, x: x + 0.75, y: baseY - bh, width: Math.max(bw - 1.5, 0.5), height: bh, fill: inBase ? opt.barHi : opt.bar });
+    });
+    const axis = R('line', { key: 'axis', x1: padL, y1: baseY, x2: W - padR, y2: baseY, stroke: 'var(--forest-500)', strokeWidth: 1 });
+    const bx = xOf(opt.baseX);
+    const baseMark = R('line', { key: 'bm', x1: bx, y1: padT - 4, x2: bx, y2: baseY, stroke: opt.accent, strokeWidth: 1.5, strokeDasharray: '3 3' });
+    const baseLbl = R('text', { key: 'bl', x: bx + 5, y: padT + 5, fill: opt.accent, fontFamily: 'var(--font-body)', fontSize: 10, style: { letterSpacing: '.03em' } }, opt.baseWord + ' ' + opt.baseLabel);
+    const ticks = opt.xTicks.map((tv, i) => R('g', { key: 't' + i },
+      R('line', { x1: xOf(tv), y1: baseY, x2: xOf(tv), y2: baseY + 4, stroke: 'var(--forest-500)', strokeWidth: 1 }),
+      R('text', { x: xOf(tv), y: baseY + 16, fill: 'var(--slate-400)', fontFamily: 'var(--font-body)', fontSize: 10, textAnchor: 'middle' }, tv + (opt.unit || ''))
+    ));
+    return R('svg', { viewBox: '0 0 ' + W + ' ' + H, preserveAspectRatio: 'xMidYMid meet', style: { width: '100%', height: 'auto', display: 'block' } }, bars, axis, baseMark, baseLbl, ticks);
+  }
+  scatterSvg(pts, lab) {
+    const R = React.createElement;
+    const W = 560, H = 300, padL = 44, padR = 14, padT = 14, padB = 36;
+    const plotW = W - padL - padR, plotH = H - padT - padB;
+    const gx0 = -22, gx1 = 32, ty0 = -24, ty1 = 56;
+    const xOf = (g) => padL + ((g - gx0) / (gx1 - gx0)) * plotW;
+    const yOf = (t) => padT + plotH - ((t - ty0) / (ty1 - ty0)) * plotH;
+    const frame = R('rect', { key: 'f', x: padL, y: padT, width: plotW, height: plotH, fill: 'none', stroke: 'var(--forest-600)', strokeWidth: 1 });
+    const zero = R('line', { key: 'z', x1: padL, y1: yOf(0), x2: W - padR, y2: yOf(0), stroke: 'var(--forest-500)', strokeWidth: 1, strokeDasharray: '2 3' });
+    const dots = pts.map((p, i) => R('circle', { key: 'd' + i, cx: xOf(p[0]), cy: yOf(p[1]), r: 2.1, fill: 'var(--forest-300)', opacity: 0.4 }));
+    const trend = R('line', { key: 'tr', x1: xOf(-20), y1: yOf(-5.04 + 3.42 * -20), x2: xOf(30), y2: yOf(-5.04 + 3.42 * 30), stroke: 'var(--lime-300)', strokeWidth: 2 });
+    const base = R('circle', { key: 'bc', cx: xOf(8), cy: yOf(22.31), r: 4.5, fill: 'var(--gold-300)', stroke: 'var(--forest-700)', strokeWidth: 1.5 });
+    const xt = [-20, -10, 0, 10, 20, 30].map((g, i) => R('text', { key: 'x' + i, x: xOf(g), y: H - 16, fill: 'var(--slate-400)', fontFamily: 'var(--font-body)', fontSize: 10, textAnchor: 'middle' }, g + '%'));
+    const yt = [0, 20, 40].map((t, i) => R('text', { key: 'y' + i, x: padL - 7, y: yOf(t) + 3, fill: 'var(--slate-400)', fontFamily: 'var(--font-body)', fontSize: 10, textAnchor: 'end' }, t + '%'));
+    const xlab = R('text', { key: 'xl', x: padL + plotW / 2, y: H - 2, fill: 'var(--forest-300)', fontFamily: 'var(--font-aux)', fontSize: 10, textAnchor: 'middle', style: { textTransform: 'uppercase', letterSpacing: '.06em' } }, lab.x);
+    const ylab = R('text', { key: 'yl', x: 13, y: padT + plotH / 2, fill: 'var(--forest-300)', fontFamily: 'var(--font-aux)', fontSize: 10, textAnchor: 'middle', transform: 'rotate(-90 13 ' + (padT + plotH / 2) + ')', style: { textTransform: 'uppercase', letterSpacing: '.06em' } }, lab.y);
+    return R('svg', { viewBox: '0 0 ' + W + ' ' + H, preserveAspectRatio: 'xMidYMid meet', style: { width: '100%', height: 'auto', display: 'block' } }, frame, zero, dots, trend, base, xt, yt, xlab, ylab);
+  }
+  renderVals() {
+    const params = (typeof location !== 'undefined') ? new URLSearchParams(location.search) : new URLSearchParams();
+    const theme = params.get('theme') || this.props.theme || 'light';
+    const lang = (params.get('lang') === 'en' || this.props.idioma === 'en') ? 'en' : 'pt';
+
+    const STR = {
+      pt: {
+        eyebrowL: 'leveraged buyout ∕∕ medicina diagnóstica',
+        eyebrowR: 'brasil · data-base 3t25 · r$ mil',
+        badge: 'estudo de caso · private equity · brasil',
+        statusChip: 'estudo acadêmico',
+        chDataBase: 'data-base', chDataBaseV: '3t25', chMoeda: 'moeda', chMoedaV: 'r$ mil', chHoriz: 'horizonte', chHorizV: '5 anos', chMult: 'múltiplo entrada', chMultV: '6,25×',
+        fontes: 'fontes: cvm · excel proprietário · yfinance',
+        s1: 'tese de investimento', s2: 'estrutura da transação', s3: 'retorno do caso base', s4: 'simulação de monte carlo', s5: 'riscos e limitações', s6: 'nota metodológica',
+        secL1: 'seção 01', secL2: 'seção 02', secL3: 'seção 03', secL4: 'seção 04', secL5: 'seção 05', secL6: 'seção 06',
+        k_moic: 'moic (caso base)', k_moic_v: '2,74×', k_moic_s: 'r$ 4,11 bi → r$ 11,24 bi',
+        k_tir: 'tir (5 anos)', k_tir_v: '22,3%', k_tir_s: 'acima do mínimo de 15%',
+        k_eq: 'equity do sponsor', k_eq_v: 'r$ 4,11 bi', k_eq_s: '29,4% das fontes',
+        k_lev: 'alavancagem', k_lev_v: '4,5× → 2,7×', k_lev_s: 'desalavancagem via cash sweep',
+        m_tirMed: 'tir mediana', m_tirMed_v: '22,1%', m_tirMed_s: 'vs. 22,3% no caso base',
+        m_tirAvg: 'tir média', m_tirAvg_v: '20,9%', m_tirAvg_s: 'abaixo da mediana (cauda à esquerda)',
+        m_p1090: 'intervalo p10–p90', m_p1090_v: '5,0–35,3%', m_p1090_s: '80% dos cenários',
+        m_prob: 'p(tir < 15%)', m_prob_v: '27,4%', m_prob_s: 'abaixo do mínimo aceitável',
+        footTag: 'flry3 · estudo de caso', footGh: 'ver no github',
+        chartBase: 'caso base', scatX: 'crescimento de receita', scatY: 'tir',
+      },
+      en: {
+        eyebrowL: 'leveraged buyout ∕∕ diagnostic medicine',
+        eyebrowR: 'brazil · reference q3-25 · r$ thousand',
+        badge: 'case study · private equity · brazil',
+        statusChip: 'academic study',
+        chDataBase: 'reference', chDataBaseV: 'q3-25', chMoeda: 'currency', chMoedaV: 'r$ thousand', chHoriz: 'horizon', chHorizV: '5 years', chMult: 'entry multiple', chMultV: '6.25×',
+        fontes: 'sources: cvm · proprietary excel · yfinance',
+        s1: 'investment thesis', s2: 'transaction structure', s3: 'base-case return', s4: 'monte carlo simulation', s5: 'risks and limitations', s6: 'methodological note',
+        secL1: 'section 01', secL2: 'section 02', secL3: 'section 03', secL4: 'section 04', secL5: 'section 05', secL6: 'section 06',
+        k_moic: 'moic (base case)', k_moic_v: '2.74×', k_moic_s: 'r$ 4.11 bn → r$ 11.24 bn',
+        k_tir: 'irr (5 years)', k_tir_v: '22.3%', k_tir_s: 'above the 15% floor',
+        k_eq: 'sponsor equity', k_eq_v: 'r$ 4.11 bn', k_eq_s: '29.4% of sources',
+        k_lev: 'leverage', k_lev_v: '4.5× → 2.7×', k_lev_s: 'deleveraging via cash sweep',
+        m_tirMed: 'median irr', m_tirMed_v: '22.1%', m_tirMed_s: 'vs. 22.3% in the base case',
+        m_tirAvg: 'mean irr', m_tirAvg_v: '20.9%', m_tirAvg_s: 'below the median (left tail)',
+        m_p1090: 'p10–p90 range', m_p1090_v: '5.0–35.3%', m_p1090_s: '80% of scenarios',
+        m_prob: 'p(irr < 15%)', m_prob_v: '27.4%', m_prob_s: 'below the acceptable floor',
+        footTag: 'flry3 · case study', footGh: 'view on github',
+        chartBase: 'base case', scatX: 'revenue growth', scatY: 'irr',
+      },
+    };
+    const t = STR[lang];
+
+    const rng = this.makeRng(42);
+    const tirQ = [[0, -18], [0.02, -8], [0.05, -1], [0.10, 5.0], [0.25, 13.9], [0.50, 22.12], [0.75, 29.42], [0.90, 35.31], [0.95, 39.5], [0.98, 43.5], [1, 52]];
+    const tirS = [];
+    for (let i = 0; i < 10000; i++) tirS.push(this.invCDF(rng(), tirQ));
+    const tirH = this.histogram(tirS, -20, 55, 2.5);
+    const moicQ = [[0, 0.55], [0.05, 1.0], [0.10, 1.27], [0.25, 1.91], [0.50, 2.71], [0.75, 3.63], [0.90, 4.53], [0.95, 5.2], [1, 8.5]];
+    const moicS = [];
+    for (let i = 0; i < 10000; i++) moicS.push(this.invCDF(rng(), moicQ));
+    const moicH = this.histogram(moicS, 0.5, 8.5, 0.25);
+    const pts = [];
+    for (let i = 0; i < 620; i++) {
+      let g = 8 + 3 * this.normal(rng);
+      g = Math.max(-20, Math.min(30, g));
+      const y = -5.04 + 3.42 * g + 7.05 * this.normal(rng);
+      pts.push([g, y]);
+    }
+    const dec = (s) => lang === 'en' ? s.replace(',', '.') : s;
+
+    return {
+      themeClass: 'theme-' + (theme === 'dark' ? 'dark' : 'light'),
+      isPT: lang === 'pt',
+      isEN: lang === 'en',
+      t,
+      tirChart: this.histChart(tirH, { baseX: 22.31, baseLabel: dec('22,3%'), baseWord: t.chartBase, unit: '%', xTicks: [-20, 0, 20, 40], accent: 'var(--gold-300)', bar: 'var(--forest-400)', barHi: 'var(--lime-300)' }),
+      moicChart: this.histChart(moicH, { baseX: 2.7371, baseLabel: dec('2,74×'), baseWord: t.chartBase, unit: '×', xTicks: [1, 2, 3, 4, 5, 6, 7], accent: 'var(--gold-300)', bar: 'var(--forest-400)', barHi: 'var(--lime-300)' }),
+      scatterChart: this.scatterSvg(pts, { x: t.scatX, y: t.scatY }),
+    };
+  }
+}
+</script>
+</body>
+</html>

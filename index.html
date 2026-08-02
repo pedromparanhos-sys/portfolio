@@ -4,23 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pedro Muralha Paranhos — Finanças Quantitativas & IA</title>
-<meta name="description" content="Portfólio de Pedro Henrique Muralha Paranhos (Pedro Muralha), estudante de engenharia mecânica na UFRJ atuando em finanças quantitativas, ciência de dados e inteligência artificial. Projetos de pairs trading e order book signal.">
-<meta name="keywords" content="Pedro Muralha, Pedro Paranhos, Pedro Henrique Muralha Paranhos, Pedro Henrique Muralha, Pedro Henrique Paranhos, Pedro Muralha Paranhos, finanças quantitativas, quantitative finance, pairs trading, order book, ciência de dados, IA, UFRJ">
+<meta name="description" content="Portfólio de Pedro Henrique Muralha Paranhos (Pedro Muralha), estudante de engenharia mecânica na UFRJ atuando em finanças quantitativas, ciência de dados e inteligência artificial. Projetos de pairs trading, order book signal e LBO (valuation / private equity).">
+<meta name="keywords" content="Pedro Muralha, Pedro Paranhos, Pedro Henrique Muralha Paranhos, Pedro Henrique Muralha, Pedro Henrique Paranhos, Pedro Muralha Paranhos, finanças quantitativas, quantitative finance, pairs trading, order book, LBO, leveraged buyout, valuation, Fleury, FLRY3, private equity, ciência de dados, IA, UFRJ">
 <meta name="author" content="Pedro Henrique Muralha Paranhos">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://pedromparanhos-sys.github.io/portfolio/">
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="Pedro Muralha Paranhos">
 <meta property="og:title" content="Pedro Muralha Paranhos — Finanças Quantitativas & IA">
-<meta property="og:description" content="Estudante de engenharia mecânica na UFRJ em finanças quantitativas, ciência de dados e IA. Projetos de pairs trading e order book signal.">
+<meta property="og:description" content="Estudante de engenharia mecânica na UFRJ em finanças quantitativas, ciência de dados e IA. Projetos de pairs trading, order book signal e LBO.">
 <meta property="og:url" content="https://pedromparanhos-sys.github.io/portfolio/">
-<meta property="og:image" content="https://pedromparanhos-sys.github.io/portfolio/uploads/PedroMuralhaCV-3_page-0001.jpg">
+<meta property="og:image" content="https://pedromparanhos-sys.github.io/portfolio/uploads/PedroMuralhaCV-EN_page-0001.jpg">
 <meta property="profile:first_name" content="Pedro Henrique">
 <meta property="profile:last_name" content="Muralha Paranhos">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Pedro Muralha Paranhos — Finanças Quantitativas & IA">
 <meta name="twitter:description" content="Estudante de engenharia mecânica na UFRJ em finanças quantitativas, ciência de dados e IA.">
-<meta name="twitter:image" content="https://pedromparanhos-sys.github.io/portfolio/uploads/PedroMuralhaCV-3_page-0001.jpg">
+<meta name="twitter:image" content="https://pedromparanhos-sys.github.io/portfolio/uploads/PedroMuralhaCV-EN_page-0001.jpg">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -31,7 +31,7 @@
   "jobTitle": "Quantitative Finance & AI",
   "description": "Estudante de engenharia mecânica na UFRJ atuando em finanças quantitativas, ciência de dados e inteligência artificial.",
   "alumniOf": { "@type": "CollegeOrUniversity", "name": "Universidade Federal do Rio de Janeiro (UFRJ)" },
-  "knowsAbout": ["Quantitative Finance", "Data Science", "Artificial Intelligence", "Pairs Trading", "Market Microstructure", "Economics"],
+  "knowsAbout": ["Quantitative Finance", "Data Science", "Artificial Intelligence", "Pairs Trading", "Market Microstructure", "Leveraged Buyout (LBO)", "Valuation", "Private Equity", "Economics"],
   "sameAs": ["https://github.com/pedromparanhos-sys"]
 }
 </script>
@@ -163,7 +163,7 @@
                     <div style="display: flex; flex-direction: column; gap: 12px; padding: 20px; min-height: 200px; box-sizing: border-box">
                       <span style="font-family: var(--font-display); text-transform: lowercase; font-size: 1.5rem; line-height: 1.1">{{ pr.titulo }}</span>
                       <span style="font-family: var(--font-aux); font-size: 0.8125rem; color: var(--color-muted); flex: 1; line-height: 1.5">{{ pr.desc }}</span>
-                      <a href="{{ pr.github }}" onClick="{{ segurarClique }}" target="_blank" style="font-family: var(--font-aux); font-size: 0.8125rem; width: fit-content; text-decoration-line: none">github ↗</a>
+                      <sc-if value="{{ pr.hasGithub }}" hint-placeholder-val="{{ true }}"><a href="{{ pr.github }}" onClick="{{ segurarClique }}" target="_blank" style="font-family: var(--font-aux); font-size: 0.8125rem; width: fit-content; text-decoration-line: none">github ↗</a></sc-if>
                       <span style="font-family: var(--font-body); text-transform: uppercase; letter-spacing: -0.25px; font-size: 0.8125rem; font-weight: 600; display: inline-flex; align-items: center; gap: 8px">{{ t.openReport }}
                         <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Icon" name="arrow-right" hint-size="1em,1em"></x-import>
                       </span>
@@ -195,11 +195,17 @@
             <div style="display: flex; flex-direction: column; gap: 16px; padding: 8px 4px">
               <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap">
                 <span style="font-family: var(--font-aux); font-size: 0.8125rem; color: var(--color-muted)">{{ t.resumeCaption }}</span>
-                <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Button" variant="primary" href="uploads/PedroMuralhaCV-3.pdf" download="PedroMuralhaCV.pdf" hint-size="160px,40px">{{ t.downloadPdf }}</x-import>
+                <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Button" variant="primary" href="{{ cvPdf }}" download="{{ cvDownload }}" hint-size="160px,40px">{{ t.downloadPdf }}</x-import>
               </div>
               <div style="display: flex; flex-direction: column; gap: 16px">
-                <img src="uploads/PedroMuralhaCV-3_page-0001.jpg" alt="{{ t.resumeAlt1 }}" style="width: 100%; height: auto; display: block; border: 2px solid var(--color-border); box-sizing: border-box; background: #ffffff">
-                <img src="uploads/PedroMuralhaCV-3_page-0002.jpg" alt="{{ t.resumeAlt2 }}" style="width: 100%; height: auto; display: block; border: 2px solid var(--color-border); box-sizing: border-box; background: #ffffff">
+                <sc-if value="{{ isEN }}" hint-placeholder-val="{{ true }}">
+                <img src="uploads/PedroMuralhaCV-EN_page-0001.jpg" alt="{{ t.resumeAlt1 }}" style="width: 100%; height: auto; display: block; border: 2px solid var(--color-border); box-sizing: border-box; background: #ffffff">
+                <img src="uploads/PedroMuralhaCV-EN_page-0002.jpg" alt="{{ t.resumeAlt2 }}" style="width: 100%; height: auto; display: block; border: 2px solid var(--color-border); box-sizing: border-box; background: #ffffff">
+                </sc-if>
+                <sc-if value="{{ isPT }}" hint-placeholder-val="{{ false }}">
+                <img src="uploads/PedroMuralhaCV-7_page-0001.jpg" alt="{{ t.resumeAlt1 }}" style="width: 100%; height: auto; display: block; border: 2px solid var(--color-border); box-sizing: border-box; background: #ffffff">
+                <img src="uploads/PedroMuralhaCV-7_page-0002.jpg" alt="{{ t.resumeAlt2 }}" style="width: 100%; height: auto; display: block; border: 2px solid var(--color-border); box-sizing: border-box; background: #ffffff">
+                </sc-if>
               </div>
             </div>
           </x-import>
@@ -242,6 +248,8 @@ class Component extends DCLogic {
     try {
       const saved = localStorage.getItem('pf_lang');
       if (saved && saved !== this.state.lang) this.setState({ lang: saved });
+      const savedTab = localStorage.getItem('pf_tab');
+      if (savedTab && ['sobre','projetos','exp','resume'].includes(savedTab) && savedTab !== this.state.tab) this.setState({ tab: savedTab });
     } catch (e) {}
     if (!window.PsycheDesignSystem_d0a47d) {
       this._poll = setInterval(() => {
@@ -260,6 +268,11 @@ class Component extends DCLogic {
   setLang(lang) {
     try { localStorage.setItem('pf_lang', lang); } catch (e) {}
     this.setState({ lang });
+  }
+
+  setTab(tab) {
+    try { localStorage.setItem('pf_tab', tab); } catch (e) {}
+    this.setState({ tab });
   }
 
   renderVals() {
@@ -300,6 +313,7 @@ class Component extends DCLogic {
         projetos: [
           { titulo: 'pairs trading', desc: 'Arbitragem estatística com pares cointegrados: sinais por z-score e backtest completo.' },
           { titulo: 'orderbook signal', desc: 'Order book imbalance como sinal preditivo de preço em BTC/USDT: L2 book, signal decay e backtest de microestrutura.' },
+          { titulo: 'lbo fleury', desc: 'Análise de leveraged buyout (take-private) da Fleury (FLRY3): modelagem determinística em Excel e distribuição de retornos por simulação de Monte Carlo com 10.000 cenários.' },
         ],
         experiencias: [
           { titulo: 'projetos independentes', periodo: '2026 até o presente', desc: 'Estudos autônomos em finanças quantitativas e IA aplicada, com projetos open-source no GitHub.' },
@@ -339,6 +353,7 @@ class Component extends DCLogic {
         projetos: [
           { titulo: 'pairs trading', desc: 'Statistical arbitrage on cointegrated pairs: z-score signals and a full backtest.' },
           { titulo: 'orderbook signal', desc: 'Order book imbalance as a predictive price signal on BTC/USDT: L2 book, signal decay and microstructure backtest.' },
+          { titulo: 'lbo fleury', desc: 'Leveraged buyout (take-private) analysis of Fleury (FLRY3): deterministic Excel modeling and return distribution via Monte Carlo simulation with 10,000 scenarios.' },
         ],
         experiencias: [
           { titulo: 'independent projects', periodo: '2026 to present', desc: 'Self-directed studies in quantitative finance and applied AI, with open-source projects on GitHub.' },
@@ -354,11 +369,13 @@ class Component extends DCLogic {
     const projBase = [
       { relatorio: 'uploads/Pairs Trading HTML/Relatorio Pairs Trading.dc-0cae2306.html', github: 'https://github.com/pedromparanhos-sys/pairs-trading' },
       { relatorio: 'Relatorio Orderbook.dc.html', github: 'https://github.com/pedromparanhos-sys/orderbook-signal' },
+      { relatorio: 'Relatorio LBO Fleury.dc.html', github: 'https://github.com/pedromparanhos-sys/lbo-fleury' },
     ];
     const projetos = projBase.map((p, i) => ({
       ...p,
       titulo: t.projetos[i].titulo,
       desc: t.projetos[i].desc,
+      hasGithub: !!p.github,
       abrir: () => this.setState({ relatorio: p.relatorio }),
     }));
 
@@ -371,6 +388,8 @@ class Component extends DCLogic {
       setLight: () => this.setState({ dark: false }),
       isPT: lang === 'pt',
       isEN: lang === 'en',
+      cvPdf: lang === 'en' ? 'uploads/PedroMuralhaCV-EN.pdf' : 'uploads/PedroMuralhaCV-7.pdf',
+      cvDownload: lang === 'en' ? 'PedroMuralhaParanhos-CV-EN.pdf' : 'PedroMuralhaParanhos-CV-PT.pdf',
       setPT: () => this.setLang('pt'),
       setEN: () => this.setLang('en'),
       iconSun: icon('sun'),
@@ -379,10 +398,10 @@ class Component extends DCLogic {
       email,
       mailtoHref: 'mailto:' + email,
 
-      irSobre: (e) => { e.preventDefault(); this.setState({ tab: 'sobre' }); },
-      irProjetos: (e) => { e.preventDefault(); this.setState({ tab: 'projetos' }); },
-      irExp: (e) => { e.preventDefault(); this.setState({ tab: 'exp' }); },
-      irResume: (e) => { e.preventDefault(); this.setState({ tab: 'resume' }); },
+      irSobre: (e) => { e.preventDefault(); this.setTab('sobre'); },
+      irProjetos: (e) => { e.preventDefault(); this.setTab('projetos'); },
+      irExp: (e) => { e.preventDefault(); this.setTab('exp'); },
+      irResume: (e) => { e.preventDefault(); this.setTab('resume'); },
       pesoSobre: this.state.tab === 'sobre' ? 700 : 500,
       pesoProjetos: this.state.tab === 'projetos' ? 700 : 500,
       pesoExp: this.state.tab === 'exp' ? 700 : 500,
