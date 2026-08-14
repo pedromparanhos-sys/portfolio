@@ -106,7 +106,7 @@
 
       <div style="display: flex; flex-direction: column; gap: 24px; min-width: 0">
         <div style="width: 100%; aspect-ratio: 4 / 5; border: 2px solid var(--color-border); box-sizing: border-box; overflow: hidden; background: var(--color-bg)">
-          <x-import component-from-global-scope="dither-image" from="./dither-image.js" src="uploads/tdlr1xcz8pe71.jpg, uploads/3fa825ee6d567fcf5c1afec93a3ae3ea.jpg, uploads/ec67206b909cb62b9d57278a5db70af8.jpg, uploads/32b005472c899adb6ff627a5f328ecbe.jpg, uploads/Diana_the_Huntress).jpg, uploads/Johannes_Vermeer_(1632-1675)_-_The_Girl_With_The_Pearl_Earring_(1665).jpg" hint-size="100%,100%"></x-import>
+          <x-import component-from-global-scope="dither-image" from="./dither-image.js" src="uploads/tdlr1xcz8pe71.jpg, uploads/tdlr1xcz8pe71.jpg, uploads/tdlr1xcz8pe71.jpg, uploads/tdlr1xcz8pe71.jpg, uploads/tdlr1xcz8pe71.jpg, uploads/3fa825ee6d567fcf5c1afec93a3ae3ea.jpg, uploads/ec67206b909cb62b9d57278a5db70af8.jpg, uploads/32b005472c899adb6ff627a5f328ecbe.jpg, uploads/Diana_the_Huntress).jpg, uploads/Johannes_Vermeer_(1632-1675)_-_The_Girl_With_The_Pearl_Earring_(1665).jpg" hint-size="100%,100%"></x-import>
         </div>
       </div>
 
@@ -284,10 +284,10 @@ class Component extends DCLogic {
     const TT = {
       pt: {
         role: 'Estudante de engenharia mecânica',
-        navAbout: 'sobre mim', navProjects: 'projetos', navExp: 'experiência', navResume: 'resume',
+        navAbout: 'sobre mim', navProjects: 'projetos', navExp: 'experiência', navResume: 'currículo',
         light: 'Claro', dark: 'Escuro',
-        obAbout: 'sobre mim', obProjects: 'projetos', obExp: 'experiência', obResume: 'resume', obReport: 'relatório',
-        aboutP1: 'Sou estudante de Engenharia Mecânica na Universidade Federal do Rio de Janeiro (UFRJ). Ao longo da graduação, desenvolvi uma base sólida em matemática aplicada, modelagem de sistemas e resolução de problemas complexos por meio de disciplinas como Métodos Matemáticos, Métodos Experimentais, Mecânica dos Sólidos, Ciência dos Materiais, Dinâmica, Termodinâmica, Mecânica dos Fluidos, Máquinas Térmicas, Usinagem, Organização Industrial e Economia.',
+        obAbout: 'sobre mim', obProjects: 'projetos', obExp: 'experiência', obResume: 'currículo', obReport: 'relatório',
+        aboutP1: 'Meu nome é Pedro Henrique Muralha Paranhos, sou um estudante de Engenharia Mecânica na Universidade Federal do Rio de Janeiro (UFRJ). Ao longo da graduação, desenvolvi uma base sólida em matemática aplicada, modelagem de sistemas e resolução de problemas complexos por meio de disciplinas como Métodos Matemáticos, Métodos Experimentais, Mecânica dos Sólidos, Ciência dos Materiais, Dinâmica, Termodinâmica, Mecânica dos Fluidos, Máquinas Térmicas, Usinagem, Organização Industrial e Economia.',
         aboutP2: 'Hoje direciono esse raciocínio para problemas orientados por dados. Meus principais interesses estão na interseção entre Ciência de Dados, Inteligência Artificial, Finanças Quantitativas e Economia. Tenho interesse especial em pesquisa quantitativa, gestão de investimentos, modelagem de risco, mercados financeiros e desenvolvimento de soluções baseadas em dados para tomada de decisão.',
         aboutP3: 'Além da engenharia, encontro inspiração na arte, no design, na história e na arquitetura. Acredito que conhecimento técnico e sensibilidade estética se complementam, permitindo construir soluções que sejam ao mesmo tempo rigorosas e elegantes.',
         philH: 'minha filosofia',
@@ -314,6 +314,7 @@ class Component extends DCLogic {
           { titulo: 'pairs trading', desc: 'Arbitragem estatística com pares cointegrados: sinais por z-score e backtest completo.' },
           { titulo: 'orderbook signal', desc: 'Order book imbalance como sinal preditivo de preço em BTC/USDT: L2 book, signal decay e backtest de microestrutura.' },
           { titulo: 'lbo fleury', desc: 'Análise de leveraged buyout (take-private) da Fleury (FLRY3): modelagem determinística em Excel e distribuição de retornos por simulação de Monte Carlo com 10.000 cenários.' },
+          { titulo: 'langgraph agents', desc: 'Curso concluído de agentes de IA com LangGraph e LangChain sobre GPT-4o: dez notebooks e cinco agentes em Python (chatbot, memória, ReAct, human-in-the-loop e RAG).' },
         ],
         experiencias: [
           { titulo: 'projetos independentes', periodo: '2026 até o presente', desc: 'Estudos autônomos em finanças quantitativas e IA aplicada, com projetos open-source no GitHub.' },
@@ -327,7 +328,7 @@ class Component extends DCLogic {
         navAbout: 'about', navProjects: 'projects', navExp: 'experience', navResume: 'resume',
         light: 'Light', dark: 'Dark',
         obAbout: 'about me', obProjects: 'projects', obExp: 'experience', obResume: 'resume', obReport: 'report',
-        aboutP1: "I'm a Mechanical Engineering student at the Federal University of Rio de Janeiro (UFRJ). Throughout my degree, I built a solid foundation in applied mathematics, systems modeling and complex problem-solving through courses such as Mathematical Methods, Experimental Methods, Solid Mechanics, Materials Science, Dynamics, Thermodynamics, Fluid Mechanics, Thermal Machines, Machining, Industrial Organization and Economics.",
+        aboutP1: "My name is Pedro Henrique Muralha Paranhos. I'm a Mechanical Engineering student at the Federal University of Rio de Janeiro (UFRJ). Throughout my degree, I built a solid foundation in applied mathematics, systems modeling and complex problem-solving through courses such as Mathematical Methods, Experimental Methods, Solid Mechanics, Materials Science, Dynamics, Thermodynamics, Fluid Mechanics, Thermal Machines, Machining, Industrial Organization and Economics.",
         aboutP2: "Today I direct that reasoning toward data-driven problems. My main interests lie at the intersection of Data Science, Artificial Intelligence, Quantitative Finance and Economics. I'm especially interested in quantitative research, investment management, risk modeling, financial markets and building data-driven solutions for decision-making.",
         aboutP3: 'Beyond engineering, I find inspiration in art, design, history and architecture. I believe technical knowledge and aesthetic sensibility complement each other, making it possible to build solutions that are both rigorous and elegant.',
         philH: 'my philosophy',
@@ -354,6 +355,7 @@ class Component extends DCLogic {
           { titulo: 'pairs trading', desc: 'Statistical arbitrage on cointegrated pairs: z-score signals and a full backtest.' },
           { titulo: 'orderbook signal', desc: 'Order book imbalance as a predictive price signal on BTC/USDT: L2 book, signal decay and microstructure backtest.' },
           { titulo: 'lbo fleury', desc: 'Leveraged buyout (take-private) analysis of Fleury (FLRY3): deterministic Excel modeling and return distribution via Monte Carlo simulation with 10,000 scenarios.' },
+          { titulo: 'langgraph agents', desc: 'Completed AI-agents course with LangGraph and LangChain on GPT-4o: ten notebooks and five Python agents (chatbot, memory, ReAct, human-in-the-loop and RAG).' },
         ],
         experiencias: [
           { titulo: 'independent projects', periodo: '2026 to present', desc: 'Self-directed studies in quantitative finance and applied AI, with open-source projects on GitHub.' },
@@ -370,6 +372,7 @@ class Component extends DCLogic {
       { relatorio: 'uploads/Pairs Trading HTML/Relatorio Pairs Trading.dc-0cae2306.html', github: 'https://github.com/pedromparanhos-sys/pairs-trading' },
       { relatorio: 'Relatorio Orderbook.dc.html', github: 'https://github.com/pedromparanhos-sys/orderbook-signal' },
       { relatorio: 'Relatorio LBO Fleury.dc.html', github: 'https://github.com/pedromparanhos-sys/lbo-fleury' },
+      { relatorio: 'Relatorio LangGraph.dc.html', github: 'https://github.com/pedromparanhos-sys/complex-ai-agents-langgraph-course' },
     ];
     const projetos = projBase.map((p, i) => ({
       ...p,

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/tokens/colors.css">
+<link rel="stylesheet" href="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/tokens/typography.css">
+<link rel="stylesheet" href="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/tokens/effects.css">
+<link rel="stylesheet" href="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/styles.css">
+<script src="_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/_ds_bundle.js"></script>
+<script>window.PSYCHE_ASSET_BASE='_ds/psyche-design-system-d0a47d44-fe46-4b47-87a1-bf5ced48e60b/assets';</script>
+<style>
+  html,body{margin:0;}
+  body{background:var(--slate-200);}
+  .theme-light{--color-bg:#ece5d3;}
+  .lg{
+    --lg-accent:var(--forest-500); --lg-gold:var(--gold-600); --lg-code-fg:var(--gold-600); --lg-line:var(--color-border);
+    font-family:var(--font-body);letter-spacing:-.25px;color:var(--color-fg);
+  }
+  .lg.theme-dark{
+    --lg-accent:var(--forest-300); --lg-gold:var(--gold-300); --lg-code-fg:var(--gold-200); --lg-line:var(--forest-600);
+  }
+  .lg p{font-size:.9375rem;line-height:1.65;max-width:74ch;margin:0 0 14px;color:var(--color-fg);text-wrap:pretty;}
+  .lg p.lead{font-size:1.0625rem;line-height:1.6;}
+  .lg p.note{font-size:.8125rem;line-height:1.55;color:var(--color-muted);max-width:82ch;}
+  .lg strong{color:var(--lg-accent);font-weight:600;}
+  .lg em{color:var(--color-fg);font-style:normal;font-weight:600;}
+  .lg code{font-family:var(--font-body);background:var(--surface-header);color:var(--lg-code-fg);padding:1px 5px;font-size:.85em;}
+  .lg h3{font-family:var(--font-body);text-transform:uppercase;font-size:.9375rem;letter-spacing:0;font-weight:600;color:var(--lg-accent);margin:30px 0 12px;display:flex;align-items:center;gap:9px;}
+  .lg h3::before{content:"";width:9px;height:9px;background:var(--lime-300);display:inline-block;flex:0 0 auto;}
+  .lg .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,238px),1fr));gap:16px;margin:22px 0 4px;}
+  .lg .ncard{border:2px solid var(--lg-line);background:var(--surface-header);padding:16px 16px 18px;display:flex;flex-direction:column;gap:8px;}
+  .lg .ncard .tag{font-family:var(--font-body);text-transform:uppercase;font-size:.68rem;letter-spacing:.04em;font-weight:700;color:var(--lg-accent);}
+  .lg .ncard h4{font-family:var(--font-body);text-transform:uppercase;letter-spacing:0;font-size:.9rem;font-weight:600;margin:0;color:var(--color-fg);}
+  .lg .ncard p{margin:0;font-size:.85rem;line-height:1.55;color:var(--color-muted);max-width:none;}
+  .lg .alist{display:flex;flex-direction:column;gap:16px;margin:22px 0 4px;}
+  .lg .acard{border:2px solid var(--lg-line);background:var(--color-bg);padding:18px 20px 20px;display:flex;flex-direction:column;gap:11px;}
+  .lg .acard .head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;}
+  .lg .acard h4{font-family:var(--font-display);text-transform:lowercase;font-weight:400;font-size:1.5rem;line-height:1;margin:0;color:var(--color-fg);}
+  .lg .acard .file{font-family:var(--font-body);letter-spacing:-.25px;font-size:.72rem;color:var(--lg-code-fg);background:var(--surface-header);padding:3px 8px;flex:0 0 auto;}
+  .lg .acard p{margin:0;font-size:.9rem;line-height:1.6;color:var(--color-fg);max-width:80ch;}
+  .lg .chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .lg .chip{font-family:var(--font-body);letter-spacing:.01em;text-transform:uppercase;font-size:.68rem;padding:4px 9px;border:1.5px solid var(--lg-line);color:var(--lg-accent);background:var(--surface-header);}
+  .lg .stackrow .chip{font-size:.82rem;padding:8px 14px;color:var(--color-fg);}
+  .lg ul.concepts{list-style:none;padding:0;margin:18px 0 2px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0 32px;}
+  .lg ul.concepts li{display:flex;gap:12px;font-size:.9rem;line-height:1.5;color:var(--color-fg);padding:12px 0;border-top:1px solid var(--lg-line);}
+  .lg ul.concepts li::before{content:"\2192";color:var(--lg-gold);flex:0 0 auto;font-weight:700;}
+  .lg .flow{display:flex;align-items:stretch;gap:0;flex-wrap:nowrap;overflow-x:auto;padding:4px 2px 12px;margin-top:24px;}
+  .lg .flow .arw{display:flex;align-items:center;color:var(--lg-accent);flex:0 0 auto;padding:0 4px;opacity:.7;}
+  .lg .flow .pill{flex:0 0 auto;align-self:center;border:2px solid var(--lg-line);padding:10px 14px;font-family:var(--font-body);font-size:.78rem;color:var(--color-fg);white-space:nowrap;}
+  .lg .flow .pill.end{background:var(--color-fg);color:var(--color-bg);border-color:var(--color-fg);}
+  .lg .flow .node{flex:0 0 auto;border:2px solid var(--lg-line);background:var(--surface-header);padding:14px 18px;display:flex;flex-direction:column;gap:4px;min-width:150px;}
+  .lg .flow .node.hot{border-color:var(--lg-gold);background:rgba(144,213,150,.12);}
+  .lg .flow .node .nt{font-family:var(--font-body);text-transform:uppercase;font-size:.82rem;font-weight:700;color:var(--color-fg);}
+  .lg .flow .node.hot .nt{color:var(--lg-accent);}
+  .lg .flow .node .ns{font-family:var(--font-body);font-size:.72rem;color:var(--color-muted);white-space:nowrap;}
+  .lg figcaption{font-size:.8125rem;line-height:1.55;color:var(--color-muted);margin-top:2px;max-width:82ch;}
+  .lg figcaption strong{color:var(--lg-accent);}
+  .lg a{color:var(--lg-accent);}
+  @media (max-width:720px){ .lg .hd-pad{padding-left:20px !important;padding-right:20px !important;} }
+</style>
+</helmet>
+<div class="lg {{ themeClass }}" data-screen-label="relatorio langgraph" style="min-height:100vh;background-image:var(--bg-svg);background-size:12px;background-color:var(--color-bg);color:var(--color-fg);">
+
+  <div class="hd-pad" style="max-width:1180px;margin:0 auto;padding:16px 28px 0;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;font-family:var(--font-body);letter-spacing:-.25px;text-transform:uppercase;font-size:.72rem;font-weight:600;color:var(--lg-accent);">
+    <span>{{ t.eyebrowL }}</span>
+    <span>{{ t.eyebrowR }}</span>
+  </div>
+
+  <header class="hd-pad" style="position:relative;max-width:1180px;margin:0 auto;padding:22px 28px 42px;overflow:hidden;">
+    <div style="position:absolute;top:6px;right:14px;color:var(--lg-accent);opacity:.7;pointer-events:none;">
+      <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Icon" name="corner-fleur" size="132px" hint-size="132px,132px"></x-import>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:18px;">
+      <span style="background:var(--forest-300);color:var(--forest-700);padding:3px 8px;font-family:var(--font-aux);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;">{{ t.badge }}</span>
+      <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.StatusChip" status="completed" hint-size="auto,22px">{{ t.statusChip }}</x-import>
+    </div>
+    <h1 style="font-family:var(--font-display);text-transform:lowercase;font-weight:400;font-size:clamp(2.5rem,6vw,4.2rem);line-height:1.02;margin:0 0 16px;color:var(--color-fg);">langgraph <span style="color:var(--lg-accent);">complete course</span></h1>
+    <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p class="lead" style="max-width:66ch;margin:0 0 22px;">Curso concluído do zero aos agentes autônomos: de grafos de estado simples a agentes com ferramentas, memória, fluxo humano-no-loop e recuperação de documentos (RAG), todos orquestrados com <em>LangGraph</em> e <em>LangChain</em> sobre GPT-4o.</p></sc-if>
+    <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p class="lead" style="max-width:66ch;margin:0 0 22px;">Completed course from zero to autonomous agents: from simple state graphs to agents with tools, memory, human-in-the-loop flow and document retrieval (RAG), all orchestrated with <em>LangGraph</em> and <em>LangChain</em> on GPT-4o.</p></sc-if>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;">
+      <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.InfoChit" label="{{ t.chNb }}" hint-size="auto,54px">{{ t.chNbV }}</x-import>
+      <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.InfoChit" label="{{ t.chAg }}" hint-size="auto,54px">{{ t.chAgV }}</x-import>
+      <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.InfoChit" label="{{ t.chLoc }}" hint-size="auto,54px">{{ t.chLocV }}</x-import>
+      <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.InfoChit" label="{{ t.chRag }}" hint-size="auto,54px">{{ t.chRagV }}</x-import>
+    </div>
+
+    <figure style="margin:0;">
+      <div class="flow">
+        <span class="pill">{{ t.flowStart }}</span>
+        <span class="arw"><x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Icon" name="arrow-right" size="20px" hint-size="20px,20px"></x-import></span>
+        <div class="node"><span class="nt">{{ t.n1 }}</span><span class="ns">{{ t.n1s }}</span></div>
+        <span class="arw"><x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Icon" name="arrow-right" size="20px" hint-size="20px,20px"></x-import></span>
+        <div class="node"><span class="nt">{{ t.n2 }}</span><span class="ns">{{ t.n2s }}</span></div>
+        <span class="arw"><x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Icon" name="arrow-right" size="20px" hint-size="20px,20px"></x-import></span>
+        <div class="node hot"><span class="nt">{{ t.n3 }}</span><span class="ns">{{ t.n3s }}</span></div>
+        <span class="arw"><x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Icon" name="arrow-right" size="20px" hint-size="20px,20px"></x-import></span>
+        <span class="pill end">{{ t.flowEnd }}</span>
+      </div>
+      <figcaption>{{ t.diagCap }}</figcaption>
+    </figure>
+  </header>
+
+  <main class="hd-pad" style="max-width:1180px;margin:0 auto;padding:0 28px 8px;display:flex;flex-direction:column;gap:44px;">
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.s1 }}" hint-size="100%,560px">
+      <div style="padding:22px 26px 28px;">
+        <div style="font-family:var(--font-aux);text-transform:uppercase;font-size:.7rem;letter-spacing:.14em;color:var(--lg-accent);margin-bottom:16px;">{{ t.secL1 }}</div>
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}">
+          <p>Cinco notebooks constroem, um conceito por vez, o vocabulário do LangGraph: estado tipado, nós, arestas simples, roteamento condicional e laços controlados.</p>
+          <div class="grid">
+            <div class="ncard"><span class="tag">graph i</span><h4>hello world</h4><p>Primeiro grafo: um único nó que lê e transforma o estado, do START ao END.</p></div>
+            <div class="ncard"><span class="tag">graph ii</span><h4>múltiplas entradas</h4><p>Estado com vários campos (<code>values</code>, <code>name</code>) processados em um mesmo nó.</p></div>
+            <div class="ncard"><span class="tag">graph iii</span><h4>agente sequencial</h4><p>Encadeamento de dois nós, cada um lendo e ampliando o resultado do anterior.</p></div>
+            <div class="ncard"><span class="tag">graph iv</span><h4>roteamento condicional</h4><p><code>add_conditional_edges</code> decide entre soma e subtração a partir do estado.</p></div>
+            <div class="ncard"><span class="tag">graph v</span><h4>laços</h4><p>Um nó reentra em si mesmo até uma condição de parada baseada em contador.</p></div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}">
+          <p>Five notebooks build the LangGraph vocabulary one concept at a time: typed state, nodes, simple edges, conditional routing and controlled loops.</p>
+          <div class="grid">
+            <div class="ncard"><span class="tag">graph i</span><h4>hello world</h4><p>First graph: a single node that reads and transforms the state, from START to END.</p></div>
+            <div class="ncard"><span class="tag">graph ii</span><h4>multiple inputs</h4><p>State with several fields (<code>values</code>, <code>name</code>) processed in a single node.</p></div>
+            <div class="ncard"><span class="tag">graph iii</span><h4>sequential agent</h4><p>Chaining of two nodes, each reading and extending the previous one's result.</p></div>
+            <div class="ncard"><span class="tag">graph iv</span><h4>conditional routing</h4><p><code>add_conditional_edges</code> decides between addition and subtraction from the state.</p></div>
+            <div class="ncard"><span class="tag">graph v</span><h4>loops</h4><p>A node re-enters itself until a counter-based stopping condition is met.</p></div>
+          </div>
+        </sc-if>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.s2 }}" hint-size="100%,440px">
+      <div style="padding:22px 26px 28px;">
+        <div style="font-family:var(--font-aux);text-transform:uppercase;font-size:.7rem;letter-spacing:.14em;color:var(--lg-accent);margin-bottom:16px;">{{ t.secL2 }}</div>
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}">
+          <p>Cinco exercícios de fixação, encerrando em um jogo de adivinhação de números: o agente estreita o intervalo de busca a cada palpite usando arestas condicionais e um laço com critério de parada duplo (acerto ou 7 tentativas).</p>
+          <div class="grid">
+            <div class="ncard"><span class="tag">ex. 01&ndash;02</span><h4>estado e operações</h4><p>Nó único com mensagens personalizadas e operações aritméticas configuráveis.</p></div>
+            <div class="ncard"><span class="tag">ex. 03&ndash;04</span><h4>sequência e ramificação</h4><p>Três nós encadeados e duas ramificações condicionais compostas em um mesmo grafo.</p></div>
+            <div class="ncard"><span class="tag">ex. 05</span><h4>jogo de adivinhação</h4><p><code>GameState</code> com limites dinâmicos, dicas e loop guiado por <code>should_continue</code>.</p></div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}">
+          <p>Five reinforcement exercises, closing on a number-guessing game: the agent narrows the search range with each guess using conditional edges and a loop with a dual stopping criterion (correct guess or 7 attempts).</p>
+          <div class="grid">
+            <div class="ncard"><span class="tag">ex. 01&ndash;02</span><h4>state and operations</h4><p>Single node with custom messages and configurable arithmetic operations.</p></div>
+            <div class="ncard"><span class="tag">ex. 03&ndash;04</span><h4>sequence and branching</h4><p>Three chained nodes and two conditional branches composed in a single graph.</p></div>
+            <div class="ncard"><span class="tag">ex. 05</span><h4>guessing game</h4><p><code>GameState</code> with dynamic bounds, hints and a loop driven by <code>should_continue</code>.</p></div>
+          </div>
+        </sc-if>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.s3 }}" hint-size="100%,900px">
+      <div style="padding:22px 26px 28px;">
+        <div style="font-family:var(--font-aux);text-transform:uppercase;font-size:.7rem;letter-spacing:.14em;color:var(--lg-accent);margin-bottom:16px;">{{ t.secL3 }}</div>
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}">
+          <p class="lead">O módulo principal do curso: cinco agentes completos, cada um introduzindo um padrão de arquitetura diferente sobre GPT-4o.</p>
+          <div class="alist">
+            <div class="acard"><div class="head"><h4>agent bot</h4><span class="file">Agent_Bot.py</span></div><p>Chatbot conversacional simples: mantém o histórico da sessão em memória e grava a conversa completa em <code>logging.txt</code> ao final.</p><div class="chips"><span class="chip">stategraph</span><span class="chip">histórico de conversa</span></div></div>
+            <div class="acard"><div class="head"><h4>memory agent</h4><span class="file">Memory_Agent.py</span></div><p>Variante enxuta com foco em manter contexto entre turnos, base para os padrões de memória usados nos agentes seguintes.</p><div class="chips"><span class="chip">memória de curto prazo</span><span class="chip">humanmessage / aimessage</span></div></div>
+            <div class="acard"><div class="head"><h4>react agent</h4><span class="file">ReAct.py</span></div><p>Agente com <em>tool calling</em>: decide sozinho quando chamar ferramentas de soma, subtração e multiplicação, alternando entre modelo e <code>ToolNode</code> até resolver a tarefa.</p><div class="chips"><span class="chip">toolnode</span><span class="chip">conditional edges</span><span class="chip">padrão react</span></div></div>
+            <div class="acard"><div class="head"><h4>drafter</h4><span class="file">Drafter.py</span></div><p>Assistente de redação com humano no loop: atualiza um documento em memória a partir de instruções e só encerra o grafo quando o usuário confirma o salvamento em <code>.txt</code>.</p><div class="chips"><span class="chip">human-in-the-loop</span><span class="chip">update / save tools</span></div></div>
+            <div class="acard"><div class="head"><h4>rag agent</h4><span class="file">RAG_Agent.py</span></div><p>Pipeline completo de Retrieval-Augmented Generation: carrega e fragmenta um PDF, indexa os trechos em uma vector store <code>ChromaDB</code> e responde perguntas citando as partes específicas do documento usadas.</p><div class="chips"><span class="chip">pypdfloader</span><span class="chip">chromadb</span><span class="chip">embeddings</span><span class="chip">retriever tool</span></div></div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}">
+          <p class="lead">The course's main module: five complete agents, each introducing a different architectural pattern on GPT-4o.</p>
+          <div class="alist">
+            <div class="acard"><div class="head"><h4>agent bot</h4><span class="file">Agent_Bot.py</span></div><p>Simple conversational chatbot: keeps the session history in memory and writes the full conversation to <code>logging.txt</code> at the end.</p><div class="chips"><span class="chip">stategraph</span><span class="chip">conversation history</span></div></div>
+            <div class="acard"><div class="head"><h4>memory agent</h4><span class="file">Memory_Agent.py</span></div><p>Lean variant focused on keeping context across turns, the basis for the memory patterns used in the following agents.</p><div class="chips"><span class="chip">short-term memory</span><span class="chip">humanmessage / aimessage</span></div></div>
+            <div class="acard"><div class="head"><h4>react agent</h4><span class="file">ReAct.py</span></div><p>Agent with <em>tool calling</em>: decides on its own when to call addition, subtraction and multiplication tools, alternating between model and <code>ToolNode</code> until it solves the task.</p><div class="chips"><span class="chip">toolnode</span><span class="chip">conditional edges</span><span class="chip">react pattern</span></div></div>
+            <div class="acard"><div class="head"><h4>drafter</h4><span class="file">Drafter.py</span></div><p>Human-in-the-loop writing assistant: updates a document in memory from instructions and only ends the graph when the user confirms the save to <code>.txt</code>.</p><div class="chips"><span class="chip">human-in-the-loop</span><span class="chip">update / save tools</span></div></div>
+            <div class="acard"><div class="head"><h4>rag agent</h4><span class="file">RAG_Agent.py</span></div><p>Complete Retrieval-Augmented Generation pipeline: loads and chunks a PDF, indexes the passages in a <code>ChromaDB</code> vector store and answers questions citing the specific document parts used.</p><div class="chips"><span class="chip">pypdfloader</span><span class="chip">chromadb</span><span class="chip">embeddings</span><span class="chip">retriever tool</span></div></div>
+          </div>
+        </sc-if>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.s4 }}" hint-size="100%,420px">
+      <div style="padding:22px 26px 28px;">
+        <div style="font-family:var(--font-aux);text-transform:uppercase;font-size:.7rem;letter-spacing:.14em;color:var(--lg-accent);margin-bottom:16px;">{{ t.secL4 }}</div>
+        <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}">
+          <ul class="concepts">
+            <li>Modelagem de estado com <code>TypedDict</code> e <code>Annotated</code></li>
+            <li>Nós, arestas simples e arestas condicionais</li>
+            <li>Laços controlados dentro de um grafo compilado</li>
+            <li>Tool calling e roteamento modelo &harr; ferramentas</li>
+            <li>Padrão ReAct: raciocínio intercalado com ação</li>
+            <li>Fluxos human-in-the-loop</li>
+            <li>Pipeline de RAG: chunking, embeddings, retrieval, citação</li>
+            <li>Persistência de memória e log de conversas</li>
+          </ul>
+        </sc-if>
+        <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}">
+          <ul class="concepts">
+            <li>State modeling with <code>TypedDict</code> and <code>Annotated</code></li>
+            <li>Nodes, simple edges and conditional edges</li>
+            <li>Controlled loops inside a compiled graph</li>
+            <li>Tool calling and model &harr; tools routing</li>
+            <li>ReAct pattern: reasoning interleaved with action</li>
+            <li>Human-in-the-loop flows</li>
+            <li>RAG pipeline: chunking, embeddings, retrieval, citation</li>
+            <li>Memory persistence and conversation logging</li>
+          </ul>
+        </sc-if>
+      </div>
+    </x-import>
+
+    <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.OutlineBox" title="{{ t.s5 }}" hint-size="100%,240px">
+      <div style="padding:22px 26px 28px;">
+        <div style="font-family:var(--font-aux);text-transform:uppercase;font-size:.7rem;letter-spacing:.14em;color:var(--lg-accent);margin-bottom:16px;">{{ t.secL5 }}</div>
+        <div class="chips stackrow">
+          <span class="chip">langgraph</span>
+          <span class="chip">langchain</span>
+          <span class="chip">openai gpt-4o</span>
+          <span class="chip">chromadb</span>
+          <span class="chip">openai embeddings</span>
+          <span class="chip">pypdf</span>
+          <span class="chip">python</span>
+          <span class="chip">jupyter</span>
+        </div>
+      </div>
+    </x-import>
+
+  </main>
+
+  <footer style="border-top:2px solid var(--forest-500);margin-top:36px;background:var(--forest-600);">
+    <div class="hd-pad" style="max-width:1180px;margin:0 auto;padding:26px 28px 40px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
+        <span style="font-family:var(--font-display);text-transform:lowercase;font-size:1.5rem;color:var(--slate-0);">langgraph course</span>
+        <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Icon" name="symbol-06" size="1.4em" hint-size="20px,20px"></x-import>
+        <span style="font-family:var(--font-aux);text-transform:uppercase;font-size:.7rem;letter-spacing:.1em;color:var(--forest-300);">{{ t.footTag }}</span>
+      </div>
+      <div style="margin-bottom:20px;">
+        <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Button" variant="primary" href="https://github.com/pedromparanhos-sys/complex-ai-agents-langgraph-course" target="_blank" rel="noopener noreferrer" hint-size="auto,40px">{{ t.footGh }}</x-import>
+      </div>
+      <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}">
+      <p style="font-family:var(--font-aux);font-size:.8rem;line-height:1.6;color:var(--slate-400);max-width:88ch;margin:0;"><strong style="color:var(--forest-300);">Sobre.</strong> Relatório de conclusão do curso <em style="font-style:normal;color:var(--slate-0);">LangGraph Complete Course for Beginners &ndash; Complex AI Agents with Python</em>. Os dez notebooks e os cinco agentes em Python estão versionados no repositório; a implementação usa <code style="background:var(--forest-700);color:var(--gold-200);padding:1px 4px;">langgraph</code>, <code style="background:var(--forest-700);color:var(--gold-200);padding:1px 4px;">langchain</code> e a API da OpenAI (GPT-4o).</p>
+      </sc-if>
+      <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}">
+      <p style="font-family:var(--font-aux);font-size:.8rem;line-height:1.6;color:var(--slate-400);max-width:88ch;margin:0;"><strong style="color:var(--forest-300);">About.</strong> Completion report for the <em style="font-style:normal;color:var(--slate-0);">LangGraph Complete Course for Beginners &ndash; Complex AI Agents with Python</em>. The ten notebooks and five Python agents are versioned in the repository; the implementation uses <code style="background:var(--forest-700);color:var(--gold-200);padding:1px 4px;">langgraph</code>, <code style="background:var(--forest-700);color:var(--gold-200);padding:1px 4px;">langchain</code> and the OpenAI API (GPT-4o).</p>
+      </sc-if>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;theme&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;light&quot;, &quot;dark&quot;], &quot;default&quot;: &quot;light&quot;, &quot;tsType&quot;: &quot;'light' | 'dark'&quot;, &quot;section&quot;: &quot;tema&quot; },
+  &quot;idioma&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;pt&quot;, &quot;en&quot;], &quot;default&quot;: &quot;pt&quot;, &quot;tsType&quot;: &quot;'pt' | 'en'&quot;, &quot;section&quot;: &quot;idioma&quot; }
+}">
+class Component extends DCLogic {
+  renderVals() {
+    const params = (typeof location !== 'undefined') ? new URLSearchParams(location.search) : new URLSearchParams();
+    const theme = params.get('theme') || this.props.theme || 'light';
+    const lang = (params.get('lang') === 'en' || this.props.idioma === 'en') ? 'en' : 'pt';
+
+    const STR = {
+      pt: {
+        eyebrowL: 'agentes de ia ∕∕ langgraph · langchain',
+        eyebrowR: 'python · gpt-4o · curso concluído',
+        badge: 'curso concluído · complex ai agents',
+        statusChip: 'concluído',
+        chNb: 'notebooks', chNbV: '10',
+        chAg: 'agentes', chAgV: '5',
+        chLoc: 'linhas (agentes)', chLocV: '501',
+        chRag: 'pipeline rag', chRagV: '1',
+        diagCap: 'O próprio curso modelado como um grafo de estado: a mesma linguagem visual do draw_mermaid_png() usada nos notebooks.',
+        flowStart: '__start__', flowEnd: '__end__',
+        n1: 'fundamentos', n1s: '5 notebooks',
+        n2: 'exercícios', n2s: '5 notebooks',
+        n3: 'agentes de ia', n3s: '5 agentes · 501 linhas',
+        s1: 'fundamentos de stategraph', s2: 'exercícios práticos', s3: 'agentes de ia', s4: 'conceitos consolidados', s5: 'stack técnica',
+        secL1: 'seção 01', secL2: 'seção 02', secL3: 'seção 03', secL4: 'seção 04', secL5: 'seção 05',
+        footTag: 'complex ai agents · 2026', footGh: 'ver no github',
+      },
+      en: {
+        eyebrowL: 'ai agents ∕∕ langgraph · langchain',
+        eyebrowR: 'python · gpt-4o · course completed',
+        badge: 'completed course · complex ai agents',
+        statusChip: 'completed',
+        chNb: 'notebooks', chNbV: '10',
+        chAg: 'agents', chAgV: '5',
+        chLoc: 'lines (agents)', chLocV: '501',
+        chRag: 'rag pipeline', chRagV: '1',
+        diagCap: 'The course itself modeled as a state graph: the same visual language as the draw_mermaid_png() used in the notebooks.',
+        flowStart: '__start__', flowEnd: '__end__',
+        n1: 'fundamentals', n1s: '5 notebooks',
+        n2: 'exercises', n2s: '5 notebooks',
+        n3: 'ai agents', n3s: '5 agents · 501 lines',
+        s1: 'stategraph fundamentals', s2: 'hands-on exercises', s3: 'ai agents', s4: 'concepts consolidated', s5: 'technical stack',
+        secL1: 'section 01', secL2: 'section 02', secL3: 'section 03', secL4: 'section 04', secL5: 'section 05',
+        footTag: 'complex ai agents · 2026', footGh: 'view on github',
+      },
+    };
+    const t = STR[lang];
+
+    return {
+      themeClass: 'theme-' + (theme === 'dark' ? 'dark' : 'light'),
+      isPT: lang === 'pt',
+      isEN: lang === 'en',
+      t,
+    };
+  }
+}
+</script>
+</body>
+</html>
