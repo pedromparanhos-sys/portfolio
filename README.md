@@ -33,7 +33,7 @@ Recursos:
 ├── .nojekyll                      # OBRIGATÓRIO: mantém a pasta _ds/ publicada
 ├── support.js                     # runtime que renderiza as páginas
 ├── dither-image.js                # componente da imagem dithered do topo
-├── _ds/                           # design system (Psyche) — tokens, fontes, componentes
+├── _ds/                           # design system — tokens, fontes, componentes
 ├── assets/                        # recursos auxiliares
 └── uploads/                       # imagens, currículo (PDF), figuras dos relatórios
     └── Pairs Trading HTML/        # relatório pairs trading + suas figuras
@@ -66,7 +66,7 @@ python -m http.server 8000
 
 ## Tecnologias
 
-HTML · JavaScript · [Psyche Design System](https://psyche.network) · sem build step (arquivos estáticos).
+HTML · JavaScript · sem build step (arquivos estáticos).
 
 Relatórios construídos com Python (pandas, numpy, scikit-learn, xgboost, statsmodels, pykalman).
 

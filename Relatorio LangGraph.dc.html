@@ -82,8 +82,8 @@
       <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.StatusChip" status="completed" hint-size="auto,22px">{{ t.statusChip }}</x-import>
     </div>
     <h1 style="font-family:var(--font-display);text-transform:lowercase;font-weight:400;font-size:clamp(2.5rem,6vw,4.2rem);line-height:1.02;margin:0 0 16px;color:var(--color-fg);">langgraph <span style="color:var(--lg-accent);">agents</span></h1>
-    <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p class="lead" style="max-width:66ch;margin:0 0 22px;">Curso concluído do zero aos agentes autônomos: de grafos de estado simples a agentes com ferramentas, memória, fluxo humano-no-loop e recuperação de documentos (RAG), todos orquestrados com <em>LangGraph</em> e <em>LangChain</em> sobre GPT-4o.</p></sc-if>
-    <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p class="lead" style="max-width:66ch;margin:0 0 22px;">Completed course from zero to autonomous agents: from simple state graphs to agents with tools, memory, human-in-the-loop flow and document retrieval (RAG), all orchestrated with <em>LangGraph</em> and <em>LangChain</em> on GPT-4o.</p></sc-if>
+    <sc-if value="{{ isPT }}" hint-placeholder-val="{{ true }}"><p class="lead" style="max-width:66ch;margin:0 0 22px;">Do zero aos agentes autônomos: de grafos de estado simples a agentes com ferramentas, memória, fluxo humano-no-loop e recuperação de documentos (RAG), todos orquestrados com <em>LangGraph</em> e <em>LangChain</em> sobre GPT-4o.</p></sc-if>
+    <sc-if value="{{ isEN }}" hint-placeholder-val="{{ false }}"><p class="lead" style="max-width:66ch;margin:0 0 22px;">From zero to autonomous agents: from simple state graphs to agents with tools, memory, human-in-the-loop flow and document retrieval (RAG), all orchestrated with <em>LangGraph</em> and <em>LangChain</em> on GPT-4o.</p></sc-if>
     <div style="display:flex;flex-wrap:wrap;gap:12px;">
       <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.InfoChit" label="{{ t.chNb }}" hint-size="auto,54px">{{ t.chNbV }}</x-import>
       <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.InfoChit" label="{{ t.chAg }}" hint-size="auto,54px">{{ t.chAgV }}</x-import>
@@ -265,8 +265,8 @@ class Component extends DCLogic {
     const STR = {
       pt: {
         eyebrowL: 'agentes de ia ∕∕ langgraph · langchain',
-        eyebrowR: 'python · gpt-4o · curso concluído',
-        badge: 'curso concluído · complex ai agents',
+        eyebrowR: 'python · gpt-4o',
+        badge: 'complex ai agents',
         statusChip: 'concluído',
         chNb: 'notebooks', chNbV: '10',
         chAg: 'agentes', chAgV: '5',
@@ -283,8 +283,8 @@ class Component extends DCLogic {
       },
       en: {
         eyebrowL: 'ai agents ∕∕ langgraph · langchain',
-        eyebrowR: 'python · gpt-4o · course completed',
-        badge: 'completed course · complex ai agents',
+        eyebrowR: 'python · gpt-4o',
+        badge: 'complex ai agents',
         statusChip: 'completed',
         chNb: 'notebooks', chNbV: '10',
         chAg: 'agents', chAgV: '5',
