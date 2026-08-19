@@ -8,11 +8,12 @@ Portfólio pessoal de **Pedro Henrique Muralha Paranhos**, estudante de Engenhar
 
 ## Sobre
 
-Site estático de página única com quatro seções — *sobre mim*, *projetos*, *experiência* e *resume* — além de dois relatórios de pesquisa quantitativa que abrem embutidos no próprio site:
+Site estático de página única com quatro seções — *sobre mim*, *projetos*, *experiência* e *resume* — além de quatro relatórios de projetos que abrem embutidos no próprio site:
 
 - **pairs trading** — arbitragem estatística sobre pares cointegrados (QQQ/XLK) com hedge ratio dinâmico via Kalman Filter e validação walk-forward.
 - **orderbook signal** — order book imbalance como sinal preditivo de preço em BTC/USDT, com signal decay e backtest de microestrutura.
 - **lbo fleury** — análise de leveraged buyout (take-private) da Fleury (FLRY3), com modelagem determinística em Excel e simulação de Monte Carlo.
+- **langgraph agents** — cinco agentes de IA em Python com LangGraph e LangChain sobre GPT-4o (chatbot, memória, ReAct, human-in-the-loop e RAG).
 
 Recursos:
 
@@ -29,8 +30,11 @@ Recursos:
 .
 ├── index.html                     # página inicial (entrada do site)
 ├── Relatorio Orderbook.dc.html    # relatório orderbook signal
-├── sitemap.xml                    # mapa do site (trocar domínio)
+├── Relatorio LBO Fleury.dc.html   # relatório lbo fleury
+├── Relatorio LangGraph.dc.html    # relatório langgraph agents
+├── sitemap.xml                    # mapa do site
 ├── .nojekyll                      # OBRIGATÓRIO: mantém a pasta _ds/ publicada
+├── .thumbnail                     # preview usado por ferramentas/embeds
 ├── support.js                     # runtime que renderiza as páginas
 ├── dither-image.js                # componente da imagem dithered do topo
 ├── _ds/                           # design system — tokens, fontes, componentes

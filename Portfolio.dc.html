@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pedro Muralha Paranhos — Finanças Quantitativas & IA</title>
-<meta name="description" content="Portfólio de Pedro Henrique Muralha Paranhos (Pedro Muralha), estudante de engenharia mecânica na UFRJ atuando em finanças quantitativas, ciência de dados e inteligência artificial. Projetos de pairs trading, order book signal e LBO (valuation / private equity).">
-<meta name="keywords" content="Pedro Muralha, Pedro Paranhos, Pedro Henrique Muralha Paranhos, Pedro Henrique Muralha, Pedro Henrique Paranhos, Pedro Muralha Paranhos, finanças quantitativas, quantitative finance, pairs trading, order book, LBO, leveraged buyout, valuation, Fleury, FLRY3, private equity, ciência de dados, IA, UFRJ">
+<meta name="description" content="Portfólio de Pedro Henrique Muralha Paranhos (Pedro Muralha), estudante de engenharia mecânica na UFRJ atuando em finanças quantitativas, ciência de dados e inteligência artificial. Projetos de pairs trading, order book signal, LBO (valuation / private equity) e agentes de IA com LangGraph.">
+<meta name="keywords" content="Pedro Muralha, Pedro Paranhos, Pedro Henrique Muralha Paranhos, Pedro Henrique Muralha, Pedro Henrique Paranhos, Pedro Muralha Paranhos, finanças quantitativas, quantitative finance, pairs trading, order book, LBO, leveraged buyout, valuation, Fleury, FLRY3, private equity, ciência de dados, IA, LangGraph, LangChain, AI agents, UFRJ">
 <meta name="author" content="Pedro Henrique Muralha Paranhos">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://pedromparanhos-sys.github.io/portfolio/">
@@ -163,7 +163,7 @@
                     <div style="display: flex; flex-direction: column; gap: 12px; padding: 20px; min-height: 200px; box-sizing: border-box">
                       <span style="font-family: var(--font-display); text-transform: lowercase; font-size: 1.5rem; line-height: 1.1">{{ pr.titulo }}</span>
                       <span style="font-family: var(--font-aux); font-size: 0.8125rem; color: var(--color-muted); flex: 1; line-height: 1.5">{{ pr.desc }}</span>
-                      <sc-if value="{{ pr.hasGithub }}" hint-placeholder-val="{{ true }}"><a href="{{ pr.github }}" onClick="{{ segurarClique }}" target="_blank" style="font-family: var(--font-aux); font-size: 0.8125rem; width: fit-content; text-decoration-line: none">github ↗</a></sc-if>
+                      <sc-if value="{{ pr.hasGithub }}" hint-placeholder-val="{{ true }}"><a href="{{ pr.github }}" onClick="{{ segurarClique }}" target="_blank" rel="noopener noreferrer" style="font-family: var(--font-aux); font-size: 0.8125rem; width: fit-content; text-decoration-line: none">github ↗</a></sc-if>
                       <span style="font-family: var(--font-body); text-transform: uppercase; letter-spacing: -0.25px; font-size: 0.8125rem; font-weight: 600; display: inline-flex; align-items: center; gap: 8px">{{ t.openReport }}
                         <x-import component-from-global-scope="PsycheDesignSystem_d0a47d.Icon" name="arrow-right" hint-size="1em,1em"></x-import>
                       </span>
@@ -247,7 +247,10 @@ class Component extends DCLogic {
   componentDidMount() {
     try {
       const saved = localStorage.getItem('pf_lang');
-      if (saved && saved !== this.state.lang) this.setState({ lang: saved });
+      if (saved && saved !== this.state.lang) {
+        document.documentElement.lang = saved === 'en' ? 'en' : 'pt-BR';
+        this.setState({ lang: saved });
+      }
       const savedTab = localStorage.getItem('pf_tab');
       if (savedTab && ['sobre','projetos','exp','resume'].includes(savedTab) && savedTab !== this.state.tab) this.setState({ tab: savedTab });
     } catch (e) {}
@@ -267,6 +270,7 @@ class Component extends DCLogic {
 
   setLang(lang) {
     try { localStorage.setItem('pf_lang', lang); } catch (e) {}
+    document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
     this.setState({ lang });
   }
 
