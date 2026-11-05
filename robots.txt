@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pedromparanhos-sys.github.io/portfolio/sitemap.xml
